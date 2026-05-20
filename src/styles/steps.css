@@ -464,14 +464,15 @@
 @media (max-width: 768px) {
   .step-landing {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 24px;
     text-align: center;
+    padding: 20px 0 16px;
   }
-  .hero-title { font-size: 2rem; }
-  .hero-subtitle { max-width: 100%; }
+  .hero-title { font-size: 1.75rem; }
+  .hero-subtitle { max-width: 100%; font-size: 0.95rem; }
   .hero-trust-line { justify-content: center; flex-wrap: wrap; }
   .hero-image { order: -1; }
-  .trust-stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .trust-stats-bar { grid-template-columns: repeat(2, 1fr); gap: 16px; padding: 20px 0; }
   .step-container { padding: 24px 20px 32px; margin: 0 8px; }
   .step-header-title { display: none; }
   .concern-cards { grid-template-columns: repeat(2, 1fr); }
@@ -479,8 +480,22 @@
 }
 
 @media (max-width: 480px) {
-  .hero-title { font-size: 1.75rem; }
+  .hero-title { font-size: 1.5rem; }
   .age-buttons { flex-wrap: wrap; }
   .concern-cards { grid-template-columns: 1fr; }
-  .step-question { font-size: 1.35rem; }
+  .step-question { font-size: 1.2rem; }
+}
+
+/* Large screens — fill the viewport, bigger text for 60+ audience */
+@media (min-width: 1200px) {
+  .step-landing {
+    gap: 56px;
+    padding: 32px 0 24px;
+  }
+  .hero-title { font-size: 3rem; }
+  .hero-subtitle { font-size: 1.125rem; line-height: 1.7; }
+  .hero-monitor-img { max-width: 520px; }
+  .trust-stats-bar { gap: 32px; }
+  .trust-stat-number { font-size: 1.75rem; }
+  .step-question { font-size: 1.75rem; }
 }

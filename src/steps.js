@@ -93,8 +93,13 @@ function renderLanding(el) {
           <span>Takes about 60 seconds</span>
         </div>
       </div>
+      
+      <div class="hero-character-center">
+        <div class="hero-glow"></div>
+        <img src="/assets/character.jpg" alt="Presenter" class="hero-character-img">
+      </div>
+
       <div class="hero-image">
-        <img src="/assets/hero-person.png" alt="Concerned person" class="hero-person-img">
         <img src="/assets/hero-monitor.png" alt="Estate Risk Report Preview" class="hero-monitor-img">
         <img src="/assets/shield-lock.png" alt="Secure Shield" class="hero-shield-overlay-img">
       </div>

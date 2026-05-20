@@ -4,10 +4,45 @@
 
 .step-landing {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 20px;
   align-items: center;
-  padding: 40px 0 32px;
+  padding: 40px 0 0;
+  position: relative;
+}
+
+.hero-content {
+  max-width: 440px;
+}
+
+.hero-character-center {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100%;
+  min-width: 300px;
+}
+
+.hero-character-img {
+  max-width: 380px;
+  height: auto;
+  position: relative;
+  z-index: 2;
+  margin-bottom: -32px;
+  mix-blend-mode: darken; /* removes white bg from the JPG */
+}
+
+.hero-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(27,122,61,0.12) 0%, rgba(255,255,255,0) 65%);
+  z-index: 0;
+  border-radius: 50%;
 }
 
 .hero-title {
@@ -56,19 +91,6 @@
   height: auto;
   filter: drop-shadow(0 4px 12px rgba(27,122,61,0.25));
   animation: floatUp 800ms ease forwards;
-}
-
-/* Person image overlapping monitor */
-.hero-person-img {
-  position: absolute;
-  bottom: 0;
-  left: -40px;
-  width: 320px;
-  height: auto;
-  z-index: 2;
-  filter: drop-shadow(4px 0 20px rgba(0,0,0,0.08));
-  object-fit: contain;
-  object-position: bottom;
 }
 
 /* ───── Trust Stats Bar ───── */
@@ -481,11 +503,13 @@
     text-align: center;
     padding: 20px 0 16px;
   }
+  .hero-content { max-width: 100%; }
+  .hero-character-center { height: auto; margin-top: 16px; }
+  .hero-character-img { max-width: 260px; margin-bottom: 0; }
   .hero-title { font-size: 1.75rem; }
-  .hero-subtitle { max-width: 100%; font-size: 0.95rem; }
+  .hero-subtitle { max-width: 100%; font-size: 0.95rem; margin: 16px auto 0; }
   .hero-trust-line { justify-content: center; flex-wrap: wrap; }
-  .hero-image { order: -1; }
-  .hero-person-img { display: none; }
+  .hero-image { order: 3; margin-top: 24px; }
   .trust-stats-bar { grid-template-columns: repeat(2, 1fr); gap: 16px; padding: 20px 0; }
   .step-container { padding: 24px 20px 32px; margin: 0 8px; }
   .step-header-title { display: none; }

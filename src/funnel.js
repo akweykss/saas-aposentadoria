@@ -143,17 +143,15 @@ export function renderDiagnosisPage(el, appState, goToStep) {
 export function renderCheckoutPage(el, appState, goToStep) {
   el.innerHTML = `
     <div class="step-checkout anim-fade-in-up">
-      <!-- LEFT: Product info -->
       <div class="checkout-product">
         <div class="checkout-product-badge">🔥 2026 UPDATED EDITION</div>
         <h2 class="checkout-product-title">2026 Retiree Asset Protection Blueprint</h2>
         <p class="checkout-product-tagline">The insider strategies to legally shield your home and life savings from nursing homes, probate courts, and greedy tax collectors.</p>
-
         <div class="checkout-product-image">
           <img src="/assets/book-blueprint.png" alt="2026 Retiree Asset Protection Blueprint" class="checkout-book-img">
         </div>
 
-        <h3 style="margin-top: 20px; font-size: 17px;">Inside Your Blueprint You'll Discover:</h3>
+        <h3>Inside Your Blueprint You'll Discover:</h3>
         <ul class="checkout-features">
           <li>✅ <strong>The Nursing Home Shield:</strong> How to protect your house and savings even if you suddenly need long-term care.</li>
           <li>✅ <strong>Probate Avoidance Tactics:</strong> Keep your family out of court and stop attorneys from taking a percentage of your estate.</li>
@@ -163,42 +161,27 @@ export function renderCheckoutPage(el, appState, goToStep) {
         </ul>
       </div>
 
-      <!-- RIGHT: Checkout card (sticky) -->
       <div class="checkout-form-section">
-        <div style="text-align: center; margin-bottom: 20px;">
-          <div style="font-size: 13px; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 1px;">Today's Price</div>
-          <div style="font-size: 3rem; font-weight: 800; color: var(--color-primary); line-height: 1.2;">$67</div>
-          <div style="font-size: 13px; color: var(--color-text-muted); margin-top: 4px;"><s style="color:#999;">$197</s> — Save $130 Today</div>
+        <div class="checkout-form-header" style="margin-bottom: 20px;">
+          <h3 style="font-size: 22px; color: var(--color-primary);">🔒 Secure Checkout</h3>
+          <p style="font-size: 15px; color: var(--color-text-light); margin-top: 8px;">Click below to complete your order securely via Hotmart.</p>
         </div>
 
-        <a onclick="return false;" href="https://pay.hotmart.com/N105921395O?checkoutMode=2" class="btn btn-primary btn-large btn-full hotmart-fb hotmart__button-checkout" style="font-size: 18px; padding: 18px; display: block; text-align: center;">Continue to Secure Checkout →</a>
-
-        <div style="text-align: center; margin-top: 12px; margin-bottom: 20px;">
-          <span style="font-size: 12px; color: var(--color-text-muted);">🔒 Secure checkout powered by Hotmart</span>
+        <div class="checkout-product-image" style="margin-bottom: 20px;">
+          <img src="/assets/book-blueprint.png" alt="2026 Retiree Asset Protection Blueprint" class="checkout-book-img">
         </div>
 
-        <div style="border-top: 1px solid var(--color-border); padding-top: 16px;">
-          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-            <span style="font-size: 20px;">💰</span>
-            <div>
-              <div style="font-size: 13px; font-weight: 600; color: var(--color-text-primary);">30-Day Money-Back Guarantee</div>
-              <div style="font-size: 12px; color: var(--color-text-muted);">Not satisfied? Full refund, no questions asked.</div>
-            </div>
-          </div>
-          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-            <span style="font-size: 20px;">🔒</span>
-            <div>
-              <div style="font-size: 13px; font-weight: 600; color: var(--color-text-primary);">256-bit SSL Encryption</div>
-              <div style="font-size: 12px; color: var(--color-text-muted);">Your payment info is fully protected.</div>
-            </div>
-          </div>
-          <div style="display: flex; align-items: center; gap: 10px;">
-            <span style="font-size: 20px;">🇺🇸</span>
-            <div>
-              <div style="font-size: 13px; font-weight: 600; color: var(--color-text-primary);">U.S. Based Support</div>
-              <div style="font-size: 12px; color: var(--color-text-muted);">Real humans, real help when you need it.</div>
-            </div>
-          </div>
+        <div style="text-align: center; margin-bottom: 16px;">
+          <div style="font-size: 14px; color: var(--color-text-muted);">Today's Price</div>
+          <div style="font-size: 2.5rem; font-weight: 800; color: var(--color-primary);">$67</div>
+        </div>
+
+        <a onclick="return false;" href="https://pay.hotmart.com/N105921395O?checkoutMode=2" class="btn btn-primary btn-large btn-full hotmart-fb hotmart__button-checkout" style="font-size: 18px; padding: 16px; display: block; text-align: center;">Continue to Secure Checkout →</a>
+
+        <div class="checkout-guarantees" style="margin-top: 20px;">
+          <span>💰 30-Day Money-Back Guarantee</span>
+          <span>🔒 Secure 256-bit SSL Encryption</span>
+          <span>🇺🇸 U.S. Based Customer Support</span>
         </div>
       </div>
     </div>

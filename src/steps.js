@@ -218,6 +218,14 @@ function renderStep1(el) {
 
   $('#btn-back').addEventListener('click', () => goToStep(0));
   $('#btn-next').addEventListener('click', () => goToStep(2));
+
+  // Enter key to advance
+  document.addEventListener('keydown', function step1Enter(e) {
+    if (e.key === 'Enter' && state.currentStep === 1 && state.ageRange && state.primaryConcern) {
+      document.removeEventListener('keydown', step1Enter);
+      goToStep(2);
+    }
+  });
 }
 
 function checkStep1Next() {
@@ -299,6 +307,14 @@ function renderStep2(el) {
     }
     goToStep(3);
   });
+
+  // Enter key to advance
+  document.addEventListener('keydown', function step2Enter(e) {
+    if (e.key === 'Enter' && state.currentStep === 2) {
+      document.removeEventListener('keydown', step2Enter);
+      $('#btn-next').click();
+    }
+  });
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -360,6 +376,14 @@ function renderStep3(el) {
   $('#btn-analyze').addEventListener('click', () => {
     runCalculations();
     showLoadingAnimation(el);
+  });
+
+  // Enter key to advance
+  document.addEventListener('keydown', function step3Enter(e) {
+    if (e.key === 'Enter' && state.currentStep === 3 && state.hasTrust !== null) {
+      document.removeEventListener('keydown', step3Enter);
+      $('#btn-analyze').click();
+    }
   });
 }
 

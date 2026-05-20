@@ -288,37 +288,87 @@ export function renderUpsellPage(el, appState, goToStep) {
 
       <div class="upsell-main">
         <div class="upsell-product-image">
-          <div class="upsell-product-placeholder">DOCUMENT<br/>PREP KIT<br/>📄</div>
+          <div class="upsell-product-placeholder">DOCUMENT<br/>PREP KIT<br/>ESTATE PLANNING<br/>🛡️</div>
         </div>
-        <div>
-          <ul class="upsell-features-list">
-            <li>✅ Power of Attorney (Financial)</li>
-            <li>✅ Health Care Directive</li>
-            <li>✅ HIPAA Authorization</li>
-            <li>✅ Beneficiary Review Guide</li>
-            <li>✅ Step-by-Step Instructions</li>
-            <li>✅ Attorney Review Checklist</li>
-          </ul>
-          <div class="upsell-why">
-            <h3>Why add this now?</h3>
-            <p>Save time, reduce legal fees, and ensure your plan is complete. Special pricing today for seniors.</p>
+        <div class="upsell-features-side">
+          <div class="upsell-feature-item">
+            <div class="upsell-feature-check">✅</div>
+            <div class="upsell-feature-content">
+              <div class="upsell-feature-title">Power of Attorney (Financial)</div>
+              <div class="upsell-feature-desc">Give someone you trust the authority to manage your financial affairs.</div>
+            </div>
           </div>
+          <div class="upsell-feature-item">
+            <div class="upsell-feature-check">✅</div>
+            <div class="upsell-feature-content">
+              <div class="upsell-feature-title">Health Care Directive</div>
+              <div class="upsell-feature-desc">Ensure your medical wishes are known and respected.</div>
+            </div>
+          </div>
+          <div class="upsell-feature-item">
+            <div class="upsell-feature-check">✅</div>
+            <div class="upsell-feature-content">
+              <div class="upsell-feature-title">HIPAA Authorization</div>
+              <div class="upsell-feature-desc">Allow trusted individuals to access your health information.</div>
+            </div>
+          </div>
+          <div class="upsell-feature-item">
+            <div class="upsell-feature-check">✅</div>
+            <div class="upsell-feature-content">
+              <div class="upsell-feature-title">Beneficiary Review Guide</div>
+              <div class="upsell-feature-desc">Make sure your accounts and policies are up to date.</div>
+            </div>
+          </div>
+          <div class="upsell-feature-item">
+            <div class="upsell-feature-check">✅</div>
+            <div class="upsell-feature-content">
+              <div class="upsell-feature-title">Step-by-Step Instructions</div>
+              <div class="upsell-feature-desc">Clear guidance to complete each document with confidence.</div>
+            </div>
+          </div>
+          <div class="upsell-feature-item">
+            <div class="upsell-feature-check">✅</div>
+            <div class="upsell-feature-content">
+              <div class="upsell-feature-title">Attorney Review Checklist</div>
+              <div class="upsell-feature-desc">Ensure everything is complete, accurate, and legally sound.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="upsell-why">
+        <div class="upsell-why-icon">🤝</div>
+        <div class="upsell-why-content">
+          <h3>Why add this now?</h3>
+          <p>Save time, reduce stress, and give your family clarity and protection.<br/>These simple steps today can prevent confusion and costly delays tomorrow.</p>
         </div>
       </div>
 
       <div class="upsell-price-section">
         <div class="upsell-price-label">Special Add-On Price</div>
         <div class="upsell-price-big">$197</div>
-        <div class="upsell-price-note">One-Time Payment · No Recurring Fees</div>
+        <div class="upsell-price-note">One-Time Payment • No Recurring Fees</div>
       </div>
 
-      <button id="btn-upsell-yes" class="btn btn-primary btn-large btn-full">Yes, Add to My Order — $197</button>
+      <button id="btn-upsell-yes" class="btn btn-primary btn-large btn-full">Yes, Add to My Order — $197 →</button>
       <a id="btn-upsell-no" class="decline-link">No thanks, continue to my order</a>
 
       <div class="upsell-trust-row">
-        <span>🔒 Secure & Confidential</span>
-        <span>✅ Satisfaction Guaranteed</span>
-        <span>🛡️ 100% Private</span>
+        <div class="upsell-trust-item">
+          <div class="upsell-trust-icon">🔒</div>
+          <div class="upsell-trust-label">Secure & Confidential</div>
+          <div class="upsell-trust-desc">Your information is protected with 256-bit encryption.</div>
+        </div>
+        <div class="upsell-trust-item">
+          <div class="upsell-trust-icon">✅</div>
+          <div class="upsell-trust-label">Satisfaction Guaranteed</div>
+          <div class="upsell-trust-desc">30-day money-back guarantee.</div>
+        </div>
+        <div class="upsell-trust-item">
+          <div class="upsell-trust-icon">🛡️</div>
+          <div class="upsell-trust-label">100% Private</div>
+          <div class="upsell-trust-desc">We never share or sell your information.</div>
+        </div>
       </div>
     </div>
   `;
@@ -346,37 +396,71 @@ export function renderThankYouPage(el, appState) {
 
   el.innerHTML = `
     <div class="step-thankyou anim-fade-in-up">
-      <div class="ty-checkmark">✓</div>
+      <div class="ty-checkmark-wrap">
+        <span class="ty-sparkle ty-sparkle-tl">✦</span>
+        <span class="ty-sparkle ty-sparkle-tr">✦</span>
+        <div class="ty-checkmark">✓</div>
+        <span class="ty-sparkle ty-sparkle-bl">✦</span>
+        <span class="ty-sparkle ty-sparkle-br">✦</span>
+      </div>
       <h1 class="ty-title">Thank You</h1>
       <p class="ty-subtitle">Your order has been received!</p>
+      <p class="ty-intro">We're excited to help you protect your assets, reduce risk, and build a more secure retirement for you and your family.</p>
 
       <div class="ty-order-summary">
-        <h3 class="ty-summary-title">Order Summary</h3>
-        <div class="ty-item"><span>2026 Retiree Asset Protection Blueprint</span><span>$67.00</span></div>
-        ${bump ? '<div class="ty-item"><span>Retirement Account Protection Checklist (Order Bump)</span><span>$27.00</span></div>' : ''}
-        ${upsell ? '<div class="ty-item"><span>Estate Planning Document Prep Kit</span><span>$197.00</span></div>' : ''}
+        <h3 class="ty-summary-title">📋 Order Summary</h3>
+        <div class="ty-item"><span>📄 2026 Retiree Asset Protection Blueprint</span><span>$67.00</span></div>
+        ${bump ? '<div class="ty-item"><span>📄 Retirement Account Protection Checklist (Order Bump)</span><span>$27.00</span></div>' : ''}
+        ${upsell ? '<div class="ty-item"><span>📄 Estate Planning Document Prep Kit</span><span>$197.00</span></div>' : ''}
         <div class="ty-total"><span>Total Paid</span><span>$${total}.00</span></div>
       </div>
 
+      <h3 class="ty-next-title">What's Next?</h3>
       <div class="ty-next-steps">
-        <h3>What's Next?</h3>
-        <div class="ty-step">
+        <div class="ty-step-card">
           <div class="ty-step-number">1</div>
-          <div class="ty-step-content"><h4>Check Your Email</h4><p>We've sent your receipt and access details.</p></div>
+          <div class="ty-step-icon">✉️</div>
+          <h4>Check Your Email</h4>
+          <p>We've sent your receipt and access details.</p>
         </div>
-        <div class="ty-step">
+        <div class="ty-step-card">
           <div class="ty-step-number">2</div>
-          <div class="ty-step-content"><h4>Access Your Guide</h4><p>Log in or use the link in your email to access your resources.</p></div>
+          <div class="ty-step-icon">📖</div>
+          <h4>Access Your Guide</h4>
+          <p>Log in or use the link in your email to access your resources.</p>
         </div>
-        <div class="ty-step">
+        <div class="ty-step-card">
           <div class="ty-step-number">3</div>
-          <div class="ty-step-content"><h4>Download & Take Action</h4><p>Review your report and start protecting your family's future today.</p></div>
+          <div class="ty-step-icon">⬇️</div>
+          <h4>Download & Take Action</h4>
+          <p>Review your report and start protecting your family's future today.</p>
         </div>
       </div>
 
       <div class="ty-help">
-        <h4>Need Help? We're here for you.</h4>
-        <p>Email: support@retireeshieldreport.com &nbsp;|&nbsp; Phone: (877) 555-0123</p>
+        <div class="ty-help-item">
+          <div class="ty-help-icon">🎧</div>
+          <div><strong>Need Help?</strong><br/>We're here for you.</div>
+        </div>
+        <div class="ty-help-item">
+          <div class="ty-help-icon">✉️</div>
+          <div><strong>Email</strong><br/>support@retireeshieldreport.com</div>
+        </div>
+        <div class="ty-help-item">
+          <div class="ty-help-icon">📞</div>
+          <div><strong>Phone</strong><br/>(877) 555-0123</div>
+        </div>
+      </div>
+
+      <div class="ty-footer">
+        <div class="ty-footer-links">
+          <a href="#">Privacy Policy</a>
+          <span>|</span>
+          <a href="#">Terms of Use</a>
+          <span>|</span>
+          <a href="#">Disclaimer</a>
+        </div>
+        <p class="ty-footer-copy">© 2026 Retiree Shield Report. All rights reserved.</p>
       </div>
     </div>
   `;

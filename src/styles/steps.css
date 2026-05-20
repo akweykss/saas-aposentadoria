@@ -58,6 +58,19 @@
   animation: floatUp 800ms ease forwards;
 }
 
+/* Person image overlapping monitor */
+.hero-person-img {
+  position: absolute;
+  bottom: 0;
+  left: -40px;
+  width: 320px;
+  height: auto;
+  z-index: 2;
+  filter: drop-shadow(4px 0 20px rgba(0,0,0,0.08));
+  object-fit: contain;
+  object-position: bottom;
+}
+
 /* ───── Trust Stats Bar ───── */
 
 .trust-stats-bar {
@@ -472,6 +485,7 @@
   .hero-subtitle { max-width: 100%; font-size: 0.95rem; }
   .hero-trust-line { justify-content: center; flex-wrap: wrap; }
   .hero-image { order: -1; }
+  .hero-person-img { display: none; }
   .trust-stats-bar { grid-template-columns: repeat(2, 1fr); gap: 16px; padding: 20px 0; }
   .step-container { padding: 24px 20px 32px; margin: 0 8px; }
   .step-header-title { display: none; }

@@ -94,6 +94,7 @@ function renderLanding(el) {
         </div>
       </div>
       <div class="hero-image">
+        <img src="/assets/hero-person.png" alt="Concerned person" class="hero-person-img">
         <img src="/assets/hero-monitor.png" alt="Estate Risk Report Preview" class="hero-monitor-img">
         <img src="/assets/shield-lock.png" alt="Secure Shield" class="hero-shield-overlay-img">
       </div>

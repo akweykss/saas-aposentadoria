@@ -159,26 +159,16 @@ export function renderCheckoutPage(el, appState, goToStep) {
           <li>✅ <strong>The Trust Advantage:</strong> Why a simple will is never enough, and the exact type of trust you actually need.</li>
           <li>✅ <strong>Step-by-Step Action Plan:</strong> No legal jargon. Just clear, simple steps to lock down your legacy today.</li>
         </ul>
-      </div>
 
-      <div class="checkout-form-section">
-        <div class="checkout-form-header" style="margin-bottom: 20px;">
-          <h3 style="font-size: 22px; color: var(--color-primary);">🔒 Secure Checkout</h3>
-          <p style="font-size: 15px; color: var(--color-text-light); margin-top: 8px;">Click below to complete your order securely via Hotmart.</p>
+      <div class="checkout-form-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 20px;">
+        <div class="checkout-form-header" style="margin-bottom: 30px;">
+          <h3 style="font-size: 24px; color: var(--color-primary);">🔒 Secure Checkout</h3>
+          <p style="font-size: 16px; color: var(--color-text-light);">Click below to complete your order securely via Hotmart.</p>
         </div>
 
-        <div class="checkout-product-image" style="margin-bottom: 20px;">
-          <img src="/assets/book-blueprint.png" alt="2026 Retiree Asset Protection Blueprint" class="checkout-book-img">
-        </div>
+        <a onclick="return false;" href="https://pay.hotmart.com/N105921395O?checkoutMode=2" class="btn btn-primary btn-large btn-full hotmart-fb hotmart__button-checkout" style="font-size: 20px; padding: 18px; max-width: 400px; display: inline-block;">Continue to Secure Checkout →</a>
 
-        <div style="text-align: center; margin-bottom: 16px;">
-          <div style="font-size: 14px; color: var(--color-text-muted);">Today's Price</div>
-          <div style="font-size: 2.5rem; font-weight: 800; color: var(--color-primary);">$67</div>
-        </div>
-
-        <a onclick="return false;" href="https://pay.hotmart.com/N105921395O?checkoutMode=2" class="btn btn-primary btn-large btn-full hotmart-fb hotmart__button-checkout" style="font-size: 18px; padding: 16px; display: block; text-align: center;">Continue to Secure Checkout →</a>
-
-        <div class="checkout-guarantees" style="margin-top: 20px;">
+        <div class="checkout-guarantees" style="margin-top: 30px;">
           <span>💰 30-Day Money-Back Guarantee</span>
           <span>🔒 Secure 256-bit SSL Encryption</span>
           <span>🇺🇸 U.S. Based Customer Support</span>

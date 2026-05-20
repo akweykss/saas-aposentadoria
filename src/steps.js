@@ -93,13 +93,8 @@ function renderLanding(el) {
           <span>Takes about 60 seconds</span>
         </div>
       </div>
-      
-      <div class="hero-character-center">
-        <div class="hero-glow"></div>
-        <img src="/assets/character.jpg" alt="Presenter" class="hero-character-img">
-      </div>
-
       <div class="hero-image">
+        <img src="/assets/hero-person.png" alt="Financial Expert" class="hero-person-img">
         <img src="/assets/hero-monitor.png" alt="Estate Risk Report Preview" class="hero-monitor-img">
         <img src="/assets/shield-lock.png" alt="Secure Shield" class="hero-shield-overlay-img">
       </div>
@@ -224,14 +219,6 @@ function renderStep1(el) {
 
   $('#btn-back').addEventListener('click', () => goToStep(0));
   $('#btn-next').addEventListener('click', () => goToStep(2));
-
-  // Enter key to advance
-  document.addEventListener('keydown', function step1Enter(e) {
-    if (e.key === 'Enter' && state.currentStep === 1 && state.ageRange && state.primaryConcern) {
-      document.removeEventListener('keydown', step1Enter);
-      goToStep(2);
-    }
-  });
 }
 
 function checkStep1Next() {
@@ -313,14 +300,6 @@ function renderStep2(el) {
     }
     goToStep(3);
   });
-
-  // Enter key to advance
-  document.addEventListener('keydown', function step2Enter(e) {
-    if (e.key === 'Enter' && state.currentStep === 2) {
-      document.removeEventListener('keydown', step2Enter);
-      $('#btn-next').click();
-    }
-  });
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -382,14 +361,6 @@ function renderStep3(el) {
   $('#btn-analyze').addEventListener('click', () => {
     runCalculations();
     showLoadingAnimation(el);
-  });
-
-  // Enter key to advance
-  document.addEventListener('keydown', function step3Enter(e) {
-    if (e.key === 'Enter' && state.currentStep === 3 && state.hasTrust !== null) {
-      document.removeEventListener('keydown', step3Enter);
-      $('#btn-analyze').click();
-    }
   });
 }
 

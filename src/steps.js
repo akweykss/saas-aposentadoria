@@ -212,6 +212,7 @@ function renderStep1(el) {
           <button class="btn btn-back" id="btn-back">← Back</button>
           <button class="btn btn-primary" id="btn-next" disabled>Continue →</button>
         </div>
+        <div class="enter-hint" id="enter-hint" style="display:none">press <kbd>Enter</kbd> ↵</div>
       </div>
     </div>
   `;
@@ -246,12 +247,24 @@ function renderStep1(el) {
   });
 
   $('#btn-back').addEventListener('click', () => goToStep(0));
-  $('#btn-next').addEventListener('click', () => goToStep(2));
+  $('#btn-next').addEventListener('click', () => { if (!$('#btn-next').disabled) goToStep(2); });
+
+  // Enter key
+  const step1Handler = (e) => {
+    if (e.key === 'Enter' && !$('#btn-next').disabled) {
+      document.removeEventListener('keydown', step1Handler);
+      goToStep(2);
+    }
+  };
+  document.addEventListener('keydown', step1Handler);
 }
 
 function checkStep1Next() {
   const btn = $('#btn-next');
-  if (btn) btn.disabled = !(state.ageRange && state.primaryConcern);
+  const hint = $('#enter-hint');
+  const ready = !!(state.ageRange && state.primaryConcern);
+  if (btn) btn.disabled = !ready;
+  if (hint) hint.style.display = ready ? 'block' : 'none';
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -308,6 +321,7 @@ function renderStep2(el) {
           <button class="btn btn-back" id="btn-back">← Back</button>
           <button class="btn btn-primary" id="btn-next">Continue →</button>
         </div>
+        <div class="enter-hint">press <kbd>Enter</kbd> ↵</div>
       </div>
     </div>
   `;
@@ -317,7 +331,8 @@ function renderStep2(el) {
   $('#state-select').addEventListener('change', (e) => { state.stateCode = e.target.value; });
 
   $('#btn-back').addEventListener('click', () => goToStep(1));
-  $('#btn-next').addEventListener('click', () => {
+
+  function tryStep2Next() {
     state.stateCode = $('#state-select').value;
     state.homeValue = parseCurrency($('#home-input').value);
     state.liquidAssets = parseCurrency($('#liquid-input').value);
@@ -327,7 +342,18 @@ function renderStep2(el) {
       return;
     }
     goToStep(3);
-  });
+  }
+
+  $('#btn-next').addEventListener('click', tryStep2Next);
+
+  // Enter key — only when not focused on select (to allow dropdown navigation)
+  const step2Handler = (e) => {
+    if (e.key === 'Enter' && document.activeElement.tagName !== 'SELECT') {
+      document.removeEventListener('keydown', step2Handler);
+      tryStep2Next();
+    }
+  };
+  document.addEventListener('keydown', step2Handler);
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -366,6 +392,7 @@ function renderStep3(el) {
         <div class="step-nav" style="justify-content:center">
           <button class="btn btn-primary btn-large btn-full" id="btn-analyze" disabled>Analyze My Risk →</button>
         </div>
+        <div class="enter-hint" id="enter-hint-3" style="display:none">press <kbd>Enter</kbd> ↵</div>
       </div>
     </div>
   `;
@@ -375,6 +402,8 @@ function renderStep3(el) {
     const card = $(`[data-value="${val}"]`, $('#trust-cards'));
     if (card) card.classList.add('selected');
     $('#btn-analyze').disabled = false;
+    const hint3 = $('#enter-hint-3');
+    if (hint3) hint3.style.display = 'block';
   }
 
   $('#trust-cards').addEventListener('click', (e) => {
@@ -384,12 +413,25 @@ function renderStep3(el) {
     card.classList.add('selected');
     state.hasTrust = card.dataset.value === 'true';
     $('#btn-analyze').disabled = false;
+    const hint3 = $('#enter-hint-3');
+    if (hint3) hint3.style.display = 'block';
   });
 
-  $('#btn-analyze').addEventListener('click', () => {
+  function doAnalyze() {
     runCalculations();
     showLoadingAnimation(el);
-  });
+  }
+
+  $('#btn-analyze').addEventListener('click', doAnalyze);
+
+  // Enter key — advance when card selected
+  const step3Handler = (e) => {
+    if (e.key === 'Enter' && state.hasTrust !== null) {
+      document.removeEventListener('keydown', step3Handler);
+      doAnalyze();
+    }
+  };
+  document.addEventListener('keydown', step3Handler);
 }
 
 /* ───────────── Loading Animation ─────────────── */

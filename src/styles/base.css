@@ -1,0 +1,174 @@
+/* ===== BASE RESET & BODY ===== */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: var(--gradient-bg-radial);
+  pointer-events: none;
+  z-index: var(--z-bg);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  color: var(--color-text-primary);
+}
+
+a {
+  color: var(--color-accent-blue);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-accent-cyan);
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+  border: none;
+}
+
+::selection {
+  background: rgba(79, 125, 249, 0.3);
+  color: var(--color-text-primary);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Background canvas */
+.bg-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-bg);
+  pointer-events: none;
+}
+
+/* App container */
+#app {
+  position: relative;
+  z-index: var(--z-base);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-content {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-6);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - 60px);
+}
+
+/* Progress bar container */
+.progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-modal);
+  padding: var(--space-4) var(--space-6);
+  background: rgba(6, 8, 15, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.progress-container.hidden {
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.progress-track {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+  transition: width 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0%;
+  box-shadow: 0 0 12px rgba(79, 125, 249, 0.4);
+}
+
+.progress-label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  min-width: 80px;
+  text-align: right;
+}

@@ -1,0 +1,77 @@
+/**
+ * US State Estate/Inheritance Tax Data
+ * States with estate or inheritance taxes, their thresholds and rates.
+ * States not listed here have NO state estate tax (stateTax = 0).
+ */
+
+export const STATE_TAX_DATA = {
+  CT: { name: 'Connecticut',   threshold: 13610000, rate: 0.12 },
+  DC: { name: 'Washington DC', threshold: 4710800,  rate: 0.12 },
+  HI: { name: 'Hawaii',        threshold: 5490000,  rate: 0.10 },
+  IL: { name: 'Illinois',      threshold: 4000000,  rate: 0.10 },
+  MA: { name: 'Massachusetts', threshold: 1000000,  rate: 0.10 },
+  MD: { name: 'Maryland',      threshold: 5000000,  rate: 0.10 },
+  ME: { name: 'Maine',         threshold: 6410000,  rate: 0.08 },
+  MN: { name: 'Minnesota',     threshold: 3000000,  rate: 0.13 },
+  NY: { name: 'New York',      threshold: 6940000,  rate: 0.10 },
+  OR: { name: 'Oregon',        threshold: 1000000,  rate: 0.10 },
+  RI: { name: 'Rhode Island',  threshold: 1774583,  rate: 0.10 },
+  VT: { name: 'Vermont',       threshold: 5000000,  rate: 0.16 },
+  WA: { name: 'Washington',    threshold: 2193000,  rate: 0.15 },
+};
+
+/**
+ * Full list of US states for the dropdown
+ */
+export const US_STATES = [
+  { code: 'AL', name: 'Alabama' },
+  { code: 'AK', name: 'Alaska' },
+  { code: 'AZ', name: 'Arizona' },
+  { code: 'AR', name: 'Arkansas' },
+  { code: 'CA', name: 'California' },
+  { code: 'CO', name: 'Colorado' },
+  { code: 'CT', name: 'Connecticut' },
+  { code: 'DE', name: 'Delaware' },
+  { code: 'FL', name: 'Florida' },
+  { code: 'GA', name: 'Georgia' },
+  { code: 'HI', name: 'Hawaii' },
+  { code: 'ID', name: 'Idaho' },
+  { code: 'IL', name: 'Illinois' },
+  { code: 'IN', name: 'Indiana' },
+  { code: 'IA', name: 'Iowa' },
+  { code: 'KS', name: 'Kansas' },
+  { code: 'KY', name: 'Kentucky' },
+  { code: 'LA', name: 'Louisiana' },
+  { code: 'ME', name: 'Maine' },
+  { code: 'MD', name: 'Maryland' },
+  { code: 'MA', name: 'Massachusetts' },
+  { code: 'MI', name: 'Michigan' },
+  { code: 'MN', name: 'Minnesota' },
+  { code: 'MS', name: 'Mississippi' },
+  { code: 'MO', name: 'Missouri' },
+  { code: 'MT', name: 'Montana' },
+  { code: 'NE', name: 'Nebraska' },
+  { code: 'NV', name: 'Nevada' },
+  { code: 'NH', name: 'New Hampshire' },
+  { code: 'NJ', name: 'New Jersey' },
+  { code: 'NM', name: 'New Mexico' },
+  { code: 'NY', name: 'New York' },
+  { code: 'NC', name: 'North Carolina' },
+  { code: 'ND', name: 'North Dakota' },
+  { code: 'OH', name: 'Ohio' },
+  { code: 'OK', name: 'Oklahoma' },
+  { code: 'OR', name: 'Oregon' },
+  { code: 'PA', name: 'Pennsylvania' },
+  { code: 'RI', name: 'Rhode Island' },
+  { code: 'SC', name: 'South Carolina' },
+  { code: 'SD', name: 'South Dakota' },
+  { code: 'TN', name: 'Tennessee' },
+  { code: 'TX', name: 'Texas' },
+  { code: 'UT', name: 'Utah' },
+  { code: 'VT', name: 'Vermont' },
+  { code: 'VA', name: 'Virginia' },
+  { code: 'WA', name: 'Washington' },
+  { code: 'WV', name: 'West Virginia' },
+  { code: 'WI', name: 'Wisconsin' },
+  { code: 'WY', name: 'Wyoming' },
+];

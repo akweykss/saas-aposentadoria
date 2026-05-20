@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>Estate & Medicaid Shield Calculator | Protect Your Family's Wealth</title>
+  <meta name="description" content="Free calculator: discover how much of your wealth is exposed to Probate costs, Medicaid spend-down, and State Estate Taxes. Get your personalized risk report in 60 seconds." />
+  <meta name="keywords" content="estate planning calculator, probate cost calculator, medicaid asset protection, estate tax calculator, wealth protection" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Estate & Medicaid Shield Calculator" />
+  <meta property="og:description" content="Discover how much of your wealth is at risk from Probate, Medicaid, and Estate Taxes." />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div id="app">
+    <!-- Progress bar -->
+    <div id="progress-container" class="progress-container hidden">
+      <div class="progress-track">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+      <span id="progress-label" class="progress-label">Step 1 of 6</span>
+    </div>
+
+    <!-- Main content area -->
+    <main id="main-content" class="main-content">
+      <!-- Steps render here dynamically -->
+    </main>
+  </div>
+
+  <!-- Particle background canvas -->
+  <canvas id="bg-canvas" class="bg-canvas"></canvas>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

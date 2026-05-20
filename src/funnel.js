@@ -176,7 +176,7 @@ export function renderCheckoutPage(el, appState, goToStep) {
             <span style="font-size: 13px; color: var(--color-text-light); display: block; margin-top: 2px;">One-time payment · Instant digital access</span>
           </div>
 
-          <a onclick="return false;" href="https://pay.hotmart.com/N105921395O?checkoutMode=2" class="btn btn-primary btn-large btn-full hotmart-fb hotmart__button-checkout" style="font-size: 18px; padding: 16px; display: block; text-align: center;">Continue to Secure Checkout →</a>
+          <a href="https://pay.hotmart.com/N105921395O?checkoutMode=2" target="_blank" rel="noopener" class="btn btn-primary btn-large btn-full hotmart-fb hotmart__button-checkout" style="font-size: 18px; padding: 16px; display: block; text-align: center;">Continue to Secure Checkout →</a>
 
           <div class="checkout-guarantees" style="margin-top: 16px;">
             <span>💰 30-Day Money-Back Guarantee</span>
@@ -188,11 +188,11 @@ export function renderCheckoutPage(el, appState, goToStep) {
     </div>
   `;
 
-  // Quando o botão for clicado, podemos disparar o webhook com os dados do quiz
+  // Quando o botão for clicado, dispara o webhook com dados do quiz
   const hotmartBtn = el.querySelector('.hotmart__button-checkout');
   if (hotmartBtn) {
-    hotmartBtn.addEventListener('click', () => {
-      // Dispara webhook em background com dados do quiz (sem nome/email que serão preenchidos na Hotmart)
+    hotmartBtn.addEventListener('click', (e) => {
+      // Dispara webhook em background com dados do quiz
       submitLead({
         firstName: 'Hotmart',
         email: 'Checkout',
@@ -203,9 +203,9 @@ export function renderCheckoutPage(el, appState, goToStep) {
         liquidAssets: appState.liquidAssets,
         hasTrust: appState.hasTrust
       }).catch(console.warn);
-      
-      // Simula o avanço
-      setTimeout(() => goToStep('upsell'), 3000); 
+
+      // Abre o Hotmart em nova aba — a Hotmart redireciona para /upsell após a compra
+      window.open('https://pay.hotmart.com/N105921395O?checkoutMode=2', '_blank');
     });
   }
 }

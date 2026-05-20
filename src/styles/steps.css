@@ -43,12 +43,12 @@
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-  min-height: 380px;
+  min-height: 460px;
 }
 
 .hero-monitor-img {
-  width: 60%;
-  max-width: 360px;
+  width: 72%;
+  max-width: 440px;
   height: auto;
   border-radius: 4px;
   filter: drop-shadow(0 8px 24px rgba(0,0,0,0.12));
@@ -70,10 +70,10 @@
 /* Person character overlay */
 .hero-person-img {
   position: absolute;
-  left: 0;
+  left: -5%;
   bottom: 0;
-  width: 55%;
-  max-width: 300px;
+  width: 68%;
+  max-width: 380px;
   height: auto;
   z-index: 2;
   mix-blend-mode: multiply;
@@ -84,11 +84,11 @@
 .hero-image::before {
   content: '';
   position: absolute;
-  left: 5%;
-  bottom: 10%;
-  width: 50%;
-  height: 70%;
-  background: radial-gradient(ellipse at center, rgba(27,122,61,0.08) 0%, rgba(27,122,61,0.03) 50%, transparent 75%);
+  left: 2%;
+  bottom: 5%;
+  width: 55%;
+  height: 85%;
+  background: radial-gradient(ellipse at center 60%, rgba(27,122,61,0.12) 0%, rgba(27,122,61,0.06) 40%, transparent 70%);
   z-index: 1;
   border-radius: 50%;
   pointer-events: none;
@@ -531,9 +531,9 @@
   }
   .hero-title { font-size: 3rem; }
   .hero-subtitle { font-size: 1.125rem; line-height: 1.7; }
-  .hero-image { min-height: 440px; }
-  .hero-monitor-img { max-width: 400px; }
-  .hero-person-img { max-width: 340px; }
+  .hero-image { min-height: 500px; }
+  .hero-monitor-img { max-width: 480px; width: 75%; }
+  .hero-person-img { max-width: 420px; width: 72%; }
   .trust-stats-bar { gap: 32px; }
   .trust-stat-number { font-size: 1.75rem; }
   .step-question { font-size: 1.75rem; }

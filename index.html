@@ -10,24 +10,63 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script type="text/javascript">
-    function importHotmart(){ 
-      var imported = document.createElement('script'); 
-      imported.src = 'https://static.hotmart.com/checkout/widget.min.js'; 
-      document.head.appendChild(imported); 
-      var link = document.createElement('link'); 
-      link.rel = 'stylesheet'; 
-      link.type = 'text/css'; 
-      link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css'; 
+    function importHotmart(){
+      var imported = document.createElement('script');
+      imported.src = 'https://static.hotmart.com/checkout/widget.min.js';
+      document.head.appendChild(imported);
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css';
       document.head.appendChild(link);
-    } 
-    importHotmart(); 
-  </script> 
+    }
+    importHotmart();
+  </script>
   <!-- Hotmart Sales Funnel Widget (Upsell / Downsell) -->
   <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+  <style>
+    .legal-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .legal-modal-overlay.active { display: flex; }
+    .legal-modal {
+      background: #fff;
+      border-radius: 12px;
+      max-width: 680px;
+      width: 100%;
+      max-height: 82vh;
+      overflow-y: auto;
+      padding: 44px 40px;
+      position: relative;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.75;
+      color: #333;
+    }
+    .legal-modal h2 { font-size: 22px; font-weight: 700; margin-bottom: 18px; color: #1a1a1a; }
+    .legal-modal h3 { font-size: 15px; font-weight: 600; margin: 22px 0 6px; color: #1a1a1a; }
+    .legal-modal p { margin-bottom: 12px; }
+    .legal-modal-close {
+      position: absolute;
+      top: 14px; right: 18px;
+      background: none; border: none;
+      font-size: 28px; cursor: pointer;
+      color: #888; line-height: 1;
+    }
+    .legal-modal-close:hover { color: #111; }
+  </style>
 </head>
 <body>
+  <!-- NAVBAR — logo only, no nav links -->
   <nav class="site-navbar">
-    <div class="navbar-inner">
+    <div class="navbar-inner" style="justify-content: center;">
       <a class="navbar-logo" href="/">
         <span class="navbar-logo-icon">🛡️</span>
         <span class="navbar-logo-text">
@@ -35,14 +74,6 @@
           <span class="navbar-tagline">Protect What Matters Most.</span>
         </span>
       </a>
-      <div class="navbar-links">
-        <a href="#">How It Works</a>
-        <a href="#">About</a>
-        <a href="#">FAQs</a>
-        <a href="#">Resources</a>
-        <a href="#">Login</a>
-        <a href="#" class="navbar-secure-btn">🔒 Secure Login</a>
-      </div>
     </div>
   </nav>
 
@@ -55,14 +86,148 @@
         <span class="footer-copyright">&copy; 2026 Retiree Shield Report</span>
       </div>
       <div class="footer-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
-        <a href="#">Disclaimer</a>
-        <a href="#">Do Not Sell My Information</a>
-        <a href="#">Contact Us</a>
+        <a href="#" onclick="openLegal('privacy'); return false;">Privacy Policy</a>
+        <a href="#" onclick="openLegal('terms'); return false;">Terms of Use</a>
+        <a href="#" onclick="openLegal('disclaimer'); return false;">Disclaimer</a>
+        <a href="#" onclick="openLegal('dnsmpi'); return false;">Do Not Sell My Information</a>
+        <a href="#" onclick="openLegal('contact'); return false;">Contact Us</a>
       </div>
     </div>
   </footer>
+
+  <!-- ══════════════════════════════════════
+       LEGAL MODALS
+  ══════════════════════════════════════ -->
+
+  <!-- PRIVACY POLICY -->
+  <div class="legal-modal-overlay" id="modal-privacy" onclick="if(event.target===this)closeLegal()">
+    <div class="legal-modal">
+      <button class="legal-modal-close" onclick="closeLegal()">&#215;</button>
+      <h2>Privacy Policy</h2>
+      <p><strong>Effective Date: January 1, 2026</strong></p>
+      <p>Retiree Shield Report ("we," "our," or "us") is committed to protecting your personal information. This Privacy Policy explains what data we collect, how we use it, and your rights regarding that data.</p>
+      <h3>1. Information We Collect</h3>
+      <p>We collect information you voluntarily provide — such as your name, email address, and phone number — when you complete our free estate risk assessment or make a purchase. We also automatically collect non-personal data (browser type, IP address, pages visited) through cookies and analytics tools.</p>
+      <h3>2. How We Use Your Information</h3>
+      <p>We use your data to: deliver purchased digital products; send order confirmations and access instructions; provide customer support; and send relevant educational content related to estate planning and asset protection. We do not sell, rent, or trade your personal information to third parties for their marketing purposes.</p>
+      <h3>3. Payment Processing</h3>
+      <p>All payments are securely processed by Hotmart, a globally trusted and PCI-DSS compliant payment platform. We do not store your full credit card number or sensitive payment details on our servers.</p>
+      <h3>4. Cookies and Tracking</h3>
+      <p>We use cookies to remember your session, analyze traffic, and improve our website experience. You may disable cookies in your browser settings, though some features may be affected. We may also use pixel tracking for advertising purposes on platforms such as Google and Meta.</p>
+      <h3>5. Data Security</h3>
+      <p>We implement industry-standard security measures, including 256-bit SSL encryption, to protect your information from unauthorized access, disclosure, or misuse.</p>
+      <h3>6. Third-Party Services</h3>
+      <p>We use trusted third-party services (including Hotmart for payments, and email providers for delivery) to operate our business. These providers have their own privacy policies and are contractually required to handle your data securely.</p>
+      <h3>7. Your Rights</h3>
+      <p>You may at any time request access to, correction of, or deletion of your personal data by contacting us at davidretiress@gmail.com.</p>
+      <h3>8. Contact</h3>
+      <p>Questions? Email us at: <strong>davidretiress@gmail.com</strong></p>
+    </div>
+  </div>
+
+  <!-- TERMS OF USE -->
+  <div class="legal-modal-overlay" id="modal-terms" onclick="if(event.target===this)closeLegal()">
+    <div class="legal-modal">
+      <button class="legal-modal-close" onclick="closeLegal()">&#215;</button>
+      <h2>Terms of Use</h2>
+      <p><strong>Effective Date: January 1, 2026</strong></p>
+      <p>By accessing our website or purchasing our products, you agree to be bound by these Terms of Use. Please read them carefully before proceeding.</p>
+      <h3>1. Acceptance of Terms</h3>
+      <p>Your use of this website and any products purchased constitutes your agreement to these terms. If you do not agree, please do not use our site or purchase our products.</p>
+      <h3>2. Digital Products</h3>
+      <p>All products sold by Retiree Shield Report are digital informational products, delivered electronically via email or secure download link through our payment processor, Hotmart. You will receive access instructions within minutes of your purchase being confirmed.</p>
+      <h3>3. 30-Day Money-Back Guarantee</h3>
+      <p>We stand behind our products with a 30-day money-back guarantee. If you are unsatisfied for any reason, contact us at davidretiress@gmail.com within 30 days of purchase and we will issue a full refund — no questions asked.</p>
+      <h3>4. Intellectual Property</h3>
+      <p>All content, guides, worksheets, and materials provided by Retiree Shield Report are protected under U.S. copyright law. You are granted a personal, non-transferable license for individual use only. Reproduction, redistribution, reselling, or sharing of our materials is strictly prohibited.</p>
+      <h3>5. Permitted Use</h3>
+      <p>Our products are for your personal, non-commercial use only. You agree not to share, resell, sublicense, or distribute our materials in any form without our express written consent.</p>
+      <h3>6. Limitation of Liability</h3>
+      <p>To the fullest extent permitted by law, Retiree Shield Report shall not be liable for any indirect, incidental, special, or consequential damages arising out of your use of our website or products. Our maximum liability is limited to the amount you paid for the product in question.</p>
+      <h3>7. Governing Law</h3>
+      <p>These Terms shall be governed by the laws of the United States. Any disputes shall be resolved through binding arbitration in accordance with the rules of the American Arbitration Association.</p>
+      <h3>8. Changes to Terms</h3>
+      <p>We reserve the right to update these Terms at any time. Continued use of our site after changes constitutes your acceptance of the new terms.</p>
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="legal-modal-overlay" id="modal-disclaimer" onclick="if(event.target===this)closeLegal()">
+    <div class="legal-modal">
+      <button class="legal-modal-close" onclick="closeLegal()">&#215;</button>
+      <h2>Disclaimer</h2>
+      <p><strong>Effective Date: January 1, 2026</strong></p>
+      <p><strong>IMPORTANT — PLEASE READ CAREFULLY.</strong> The information provided by Retiree Shield Report through its website, assessments, and digital products is intended solely for general educational and informational purposes.</p>
+      <h3>Not Legal, Financial, or Tax Advice</h3>
+      <p>Nothing on this website or in any of our products constitutes legal advice, financial advice, tax advice, or any other form of professional advice. We are not licensed attorneys, certified financial planners, CPAs, or investment advisors. You should not rely on our content as a substitute for professional legal or financial counsel.</p>
+      <h3>Results Vary</h3>
+      <p>The estate risk estimates and projections provided through our assessment tool are illustrative in nature and are based on the information you voluntarily provide along with publicly available national data. Actual outcomes — including potential estate taxes, probate costs, or Medicaid eligibility — will vary significantly based on your personal financial situation, family circumstances, and the laws of your state of residence.</p>
+      <h3>No Attorney-Client Relationship</h3>
+      <p>Your use of this website or our products does not create an attorney-client relationship, fiduciary relationship, or any other professional relationship between you and Retiree Shield Report.</p>
+      <h3>Consult a Licensed Professional</h3>
+      <p>We strongly encourage all users to consult with a licensed estate planning attorney and/or a certified financial planner before making any legal, financial, or estate planning decisions.</p>
+      <h3>Accuracy of Information</h3>
+      <p>While we make every effort to provide accurate and current information, laws, tax rules, and regulations change frequently. Retiree Shield Report makes no warranties or representations regarding the completeness, accuracy, or timeliness of any information contained in our products or on this website.</p>
+      <h3>Earnings Disclaimer</h3>
+      <p>Retiree Shield Report makes no guarantee of financial outcomes or savings. Any estimates of potential savings from avoiding probate or reducing estate taxes are illustrative examples only and not a promise of results.</p>
+    </div>
+  </div>
+
+  <!-- DO NOT SELL MY INFORMATION -->
+  <div class="legal-modal-overlay" id="modal-dnsmpi" onclick="if(event.target===this)closeLegal()">
+    <div class="legal-modal">
+      <button class="legal-modal-close" onclick="closeLegal()">&#215;</button>
+      <h2>Do Not Sell My Personal Information</h2>
+      <p><strong>Effective Date: January 1, 2026</strong></p>
+      <p>Retiree Shield Report respects your right to privacy. This page describes your rights under the California Consumer Privacy Act (CCPA) and similar applicable privacy laws.</p>
+      <h3>We Do Not Sell Your Information</h3>
+      <p>Retiree Shield Report does not sell your personal information to third parties for monetary compensation. We may share limited data with trusted service providers — such as our payment processor (Hotmart) and email delivery services — solely for the purpose of operating our business and delivering your purchased products.</p>
+      <h3>Your Rights Under the CCPA</h3>
+      <p>As a California resident (or a resident of another state with applicable privacy laws), you have the right to:</p>
+      <p>• <strong>Know</strong> what personal information we collect, use, and share.<br>
+      • <strong>Delete</strong> your personal information, subject to certain exceptions.<br>
+      • <strong>Opt out</strong> of the sale of your personal information (note: we do not sell your data).<br>
+      • <strong>Non-discrimination</strong> — we will not discriminate against you for exercising these rights.</p>
+      <h3>How to Submit a Privacy Request</h3>
+      <p>To exercise any of the above rights, please contact us at:<br>
+      📧 <strong>Email:</strong> davidretiress@gmail.com<br>
+      📌 <strong>Subject line:</strong> "Privacy Rights Request"</p>
+      <p>We will acknowledge your request within 10 days and respond fully within 45 days, as required by applicable law.</p>
+    </div>
+  </div>
+
+  <!-- CONTACT US -->
+  <div class="legal-modal-overlay" id="modal-contact" onclick="if(event.target===this)closeLegal()">
+    <div class="legal-modal">
+      <button class="legal-modal-close" onclick="closeLegal()">&#215;</button>
+      <h2>Contact Us</h2>
+      <p>We're here to help. Whether you have a question about your order, need technical support, or want to request a refund, our team is ready to assist you.</p>
+      <h3>Customer Support</h3>
+      <p>📧 <strong>Email:</strong> davidretiress@gmail.com<br>
+      📞 <strong>Phone:</strong> +1 (904) 231-8483<br>
+      🕐 <strong>Hours:</strong> Monday – Friday, 9:00 AM – 5:00 PM EST</p>
+      <h3>Order & Refund Requests</h3>
+      <p>If you need a refund or have an issue with your order, please email davidretiress@gmail.com with your order number. We honor our <strong>30-day money-back guarantee</strong> with no hassle and no questions asked. Refunds are typically processed within 3–5 business days.</p>
+      <h3>Technical Support</h3>
+      <p>Having trouble accessing your digital product? Send us your order confirmation email and we will re-send your access link promptly.</p>
+      <h3>Privacy Requests</h3>
+      <p>For data privacy requests (CCPA, deletion, etc.), please email: <strong>davidretiress@gmail.com</strong></p>
+    </div>
+  </div>
+
+  <!-- Modal scripts -->
+  <script>
+    function openLegal(id) {
+      document.querySelectorAll('.legal-modal-overlay').forEach(function(m){ m.classList.remove('active'); });
+      var el = document.getElementById('modal-' + id);
+      if (el) { el.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    }
+    function closeLegal() {
+      document.querySelectorAll('.legal-modal-overlay').forEach(function(m){ m.classList.remove('active'); });
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeLegal(); });
+  </script>
 
   <script type="module" src="/src/main.js"></script>
 </body>

@@ -280,9 +280,11 @@ export function renderUpsellPage(el, appState, goToStep) {
         </div>
       </div>
 
-      <!-- HOTMART - Sales Funnel Widget -->
-      <div id="hotmart-sales-funnel" style="margin-top: 30px;"></div>
-      <!-- HOTMART - Sales Funnel Widget -->
+      <!-- Botões de ação (fallback local / aparência em produção) -->
+      <div id="upsell-action-area" style="margin-top: 30px; text-align: center;">
+        <button class="btn btn-primary btn-large btn-full" id="btn-upsell-yes" style="font-size: 20px; padding: 18px; margin-bottom: 16px;">✅ Yes! Add The Legal Forms Vault to My Order — $197 →</button>
+        <button id="btn-upsell-no" style="background: none; border: none; color: var(--color-text-light); font-size: 14px; cursor: pointer; text-decoration: underline;">No thanks, I'll pay thousands to an attorney later.</button>
+      </div>
 
       <div class="upsell-trust-row" style="margin-top: 40px;">
         <div class="upsell-trust-item">
@@ -304,16 +306,28 @@ export function renderUpsellPage(el, appState, goToStep) {
     </div>
   `;
 
-  // Initialize Hotmart Sales Funnel Widget
+  // Em produção: tenta montar o widget Hotmart (substitui os botões acima)
   setTimeout(() => {
-    if (window.checkoutElements && document.getElementById('hotmart-sales-funnel')) {
+    if (window.checkoutElements) {
       try {
-        window.checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+        const area = document.getElementById('upsell-action-area');
+        if (area) {
+          const hotmartDiv = document.createElement('div');
+          hotmartDiv.id = 'hotmart-sales-funnel';
+          area.replaceWith(hotmartDiv);
+          window.checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+          return;
+        }
       } catch (e) {
-        console.warn('Hotmart Sales Funnel init error:', e);
+        console.warn('Hotmart Sales Funnel: sem sessão ativa, usando botões locais.');
       }
     }
-  }, 100);
+    // Fallback local: botões normais
+    const yesBtn = document.getElementById('btn-upsell-yes');
+    const noBtn = document.getElementById('btn-upsell-no');
+    if (yesBtn) yesBtn.addEventListener('click', () => { appState.upsellAccepted = true; appState.orderTotal += 197; goToStep('thankyou'); });
+    if (noBtn) noBtn.addEventListener('click', () => goToStep('downsell'));
+  }, 200);
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -345,22 +359,36 @@ export function renderDownsellPage(el, appState, goToStep) {
         </div>
       </div>
 
-      <!-- HOTMART - Sales Funnel Widget -->
-      <div id="hotmart-sales-funnel"></div>
-      <!-- HOTMART - Sales Funnel Widget -->
+      <!-- Botões de ação (fallback local / aparência em produção) -->
+      <div id="downsell-action-area" style="text-align: center; margin-top: 20px;">
+        <button class="btn btn-primary btn-large btn-full" id="btn-ds-yes" style="font-size: 18px; padding: 16px; margin-bottom: 14px;">✅ Yes, Add the Medicaid Survival Guide for $37 →</button>
+        <button id="btn-ds-no" style="background: none; border: none; color: var(--color-text-light); font-size: 14px; cursor: pointer; text-decoration: underline;">No thanks, I'll figure it out on my own.</button>
+      </div>
     </div>
   `;
 
-  // Initialize Hotmart Sales Funnel Widget
+  // Em produção: tenta montar o widget Hotmart
   setTimeout(() => {
-    if (window.checkoutElements && document.getElementById('hotmart-sales-funnel')) {
+    if (window.checkoutElements) {
       try {
-        window.checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+        const area = document.getElementById('downsell-action-area');
+        if (area) {
+          const hotmartDiv = document.createElement('div');
+          hotmartDiv.id = 'hotmart-sales-funnel';
+          area.replaceWith(hotmartDiv);
+          window.checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+          return;
+        }
       } catch (e) {
-        console.warn('Hotmart Sales Funnel init error:', e);
+        console.warn('Hotmart Sales Funnel: sem sessão ativa, usando botões locais.');
       }
     }
-  }, 100);
+    // Fallback local
+    const yesBtn = document.getElementById('btn-ds-yes');
+    const noBtn = document.getElementById('btn-ds-no');
+    if (yesBtn) yesBtn.addEventListener('click', () => { appState.orderTotal += 37; goToStep('thankyou'); });
+    if (noBtn) noBtn.addEventListener('click', () => goToStep('thankyou'));
+  }, 200);
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -422,11 +450,11 @@ export function renderThankYouPage(el, appState) {
         </div>
         <div class="ty-help-item">
           <div class="ty-help-icon">✉️</div>
-          <div><strong>Email</strong><br/>support@retireeshieldreport.com</div>
+          <div><strong>Email</strong><br/>davidretiress@gmail.com</div>
         </div>
         <div class="ty-help-item">
           <div class="ty-help-icon">📞</div>
-          <div><strong>Phone</strong><br/>(877) 555-0123</div>
+          <div><strong>Phone</strong><br/>+1 (904) 231-8483</div>
         </div>
       </div>
 

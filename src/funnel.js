@@ -191,7 +191,7 @@ export function renderCheckoutPage(el, appState, goToStep) {
   // Quando o botão for clicado, dispara o webhook com dados do quiz
   const hotmartBtn = el.querySelector('.hotmart__button-checkout');
   if (hotmartBtn) {
-    hotmartBtn.addEventListener('click', (e) => {
+    hotmartBtn.addEventListener('click', () => {
       // Dispara webhook em background com dados do quiz
       submitLead({
         firstName: 'Hotmart',
@@ -203,9 +203,7 @@ export function renderCheckoutPage(el, appState, goToStep) {
         liquidAssets: appState.liquidAssets,
         hasTrust: appState.hasTrust
       }).catch(console.warn);
-
-      // Abre o Hotmart em nova aba — a Hotmart redireciona para /upsell após a compra
-      window.open('https://pay.hotmart.com/N105921395O?checkoutMode=2', '_blank');
+      // O href do link já cuida da navegação para a Hotmart na mesma aba
     });
   }
 }

@@ -106,14 +106,14 @@ export function renderDonutChart(container, segments, options = {}) {
       ctx.globalAlpha = textOpacity;
 
       ctx.font = `800 ${size * 0.12}px Inter, sans-serif`;
-      ctx.fillStyle = '#f0f2f8';
+      ctx.fillStyle = '#1a1a2e';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(centerText, cx, centerSubtext ? cy - 8 : cy);
 
       if (centerSubtext) {
         ctx.font = `500 ${size * 0.055}px Inter, sans-serif`;
-        ctx.fillStyle = '#8891b0';
+        ctx.fillStyle = '#6b7280';
         ctx.fillText(centerSubtext, cx, cy + 16);
       }
 
@@ -127,21 +127,8 @@ export function renderDonutChart(container, segments, options = {}) {
 
   requestAnimationFrame(draw);
 
-  // Legend
-  const legend = document.createElement('div');
-  legend.style.cssText = 'display:flex;flex-direction:column;gap:8px;margin-top:16px;';
-  for (const seg of segments) {
-    if (seg.value <= 0) continue;
-    const item = document.createElement('div');
-    item.style.cssText = 'display:flex;align-items:center;gap:8px;font-size:13px;';
-    item.innerHTML = `
-      <span style="width:10px;height:10px;border-radius:50%;background:${seg.color};flex-shrink:0;"></span>
-      <span style="color:#8891b0;flex:1;">${seg.label}</span>
-      <span style="color:#f0f2f8;font-weight:600;font-family:Inter,sans-serif;">$${seg.value.toLocaleString('en-US')}</span>
-    `;
-    legend.appendChild(item);
-  }
-  container.appendChild(legend);
+  // Legend is already rendered in the diagnosis-legend section of the page
+  // No duplicate legend needed here
 }
 
 function easeOutCubic(t) {

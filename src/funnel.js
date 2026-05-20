@@ -64,6 +64,11 @@ export function renderDiagnosisPage(el, appState, goToStep) {
         </div>
       </div>
 
+      <!-- CTA button between diagnosis and cards -->
+      <div style="text-align: center; margin: 28px 0;">
+        <button class="btn btn-primary btn-large" id="btn-protect-top">Discover How to Shield Your Wealth →</button>
+      </div>
+
       <div class="risk-breakdown-cards">
         <div class="risk-card">
           <div class="risk-card-icon-wrap">⚖️</div>
@@ -127,6 +132,8 @@ export function renderDiagnosisPage(el, appState, goToStep) {
   }
 
   $('#btn-protect', el).addEventListener('click', () => goToStep('checkout'));
+  const topBtn = $('#btn-protect-top', el);
+  if (topBtn) topBtn.addEventListener('click', () => goToStep('checkout'));
 }
 
 /* ════════════════════════════════════════════════════════════

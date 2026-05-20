@@ -26,53 +26,88 @@ export function renderDiagnosisPage(el, appState, goToStep) {
         <p>Here's what could be at risk without proper planning.</p>
       </div>
 
-      <div class="diagnosis-risk-card">
-        <div class="risk-label-top">Estimated Wealth at Risk</div>
-        <div class="risk-amount-big">${formatCurrency(r.totalAtRisk)}</div>
-        <div class="risk-pct">Due to probate costs, Medicaid spend-down, and potential state taxes.</div>
-        <div class="diagnosis-chart" id="diag-chart"></div>
+      <div class="diagnosis-main">
+        <div class="diagnosis-chart-section">
+          <div class="diagnosis-chart-wrap" id="diag-chart">
+            <div class="diagnosis-chart-label">
+              <div class="chart-amount">${formatCurrency(r.totalAtRisk)}</div>
+              <div class="chart-sublabel">At Risk</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="diagnosis-amount-section">
+          <div class="diagnosis-amount-label">Estimated Wealth at Risk</div>
+          <div class="diagnosis-amount-big">${formatCurrency(r.totalAtRisk)}</div>
+          <div class="diagnosis-amount-desc">Due to probate costs, Medicaid spend-down, and potential state taxes.</div>
+        </div>
+
+        <div class="diagnosis-legend">
+          <div class="diagnosis-legend-item">
+            <span class="diagnosis-legend-dot" style="background:#D32F2F"></span>
+            <span class="diagnosis-legend-label">Probate Costs</span>
+            <span class="diagnosis-legend-value">${formatCurrency(r.probateCost)}</span>
+            <span class="diagnosis-legend-pct">(${probatePct}%)</span>
+          </div>
+          <div class="diagnosis-legend-item">
+            <span class="diagnosis-legend-dot" style="background:#E67E22"></span>
+            <span class="diagnosis-legend-label">Medicaid Exposure</span>
+            <span class="diagnosis-legend-value">${formatCurrency(r.medicaidRisk)}</span>
+            <span class="diagnosis-legend-pct">(${medicaidPct}%)</span>
+          </div>
+          <div class="diagnosis-legend-item">
+            <span class="diagnosis-legend-dot" style="background:#B8860B"></span>
+            <span class="diagnosis-legend-label">State Taxes</span>
+            <span class="diagnosis-legend-value">${formatCurrency(r.stateTax)}</span>
+            <span class="diagnosis-legend-pct">(${taxPct}%)</span>
+          </div>
+        </div>
       </div>
 
       <div class="risk-breakdown-cards">
         <div class="risk-card">
-          <div class="risk-card-icon">⚖️</div>
-          <div class="risk-card-label">Probate Costs</div>
-          <div class="risk-card-value">${formatCurrency(r.probateCost)}</div>
-          <div class="risk-card-pct">${probatePct}% of total risk</div>
+          <div class="risk-card-icon-wrap">⚖️</div>
+          <div class="risk-card-info">
+            <div class="risk-card-label">Probate Costs</div>
+            <div class="risk-card-value">${formatCurrency(r.probateCost)}</div>
+            <div class="risk-card-pct">${probatePct}% of total risk</div>
+          </div>
+          <div class="risk-card-trend">📈</div>
         </div>
         <div class="risk-card">
-          <div class="risk-card-icon">🏥</div>
-          <div class="risk-card-label">Medicaid Exposure</div>
-          <div class="risk-card-value">${formatCurrency(r.medicaidRisk)}</div>
-          <div class="risk-card-pct">${medicaidPct}% of total risk</div>
+          <div class="risk-card-icon-wrap">🛡️</div>
+          <div class="risk-card-info">
+            <div class="risk-card-label">Medicaid Exposure</div>
+            <div class="risk-card-value">${formatCurrency(r.medicaidRisk)}</div>
+            <div class="risk-card-pct">${medicaidPct}% of total risk</div>
+          </div>
+          <div class="risk-card-trend">📈</div>
         </div>
         <div class="risk-card">
-          <div class="risk-card-icon">💰</div>
-          <div class="risk-card-label">State Taxes</div>
-          <div class="risk-card-value">${formatCurrency(r.stateTax)}</div>
-          <div class="risk-card-pct">${taxPct}% of total risk</div>
+          <div class="risk-card-icon-wrap">🏛️</div>
+          <div class="risk-card-info">
+            <div class="risk-card-label">State Taxes</div>
+            <div class="risk-card-value">${formatCurrency(r.stateTax)}</div>
+            <div class="risk-card-pct">${taxPct}% of total risk</div>
+          </div>
+          <div class="risk-card-trend">📈</div>
         </div>
       </div>
 
-      <div class="risk-bar-breakdown">
-        <div class="risk-bar-item">
-          <span class="risk-bar-dot" style="background:#D32F2F"></span>
-          <span>Probate Costs</span>
-          <span class="risk-bar-pct" style="color:#D32F2F">${formatCurrency(r.probateCost)}</span>
-        </div>
-        <div class="risk-bar-item">
-          <span class="risk-bar-dot" style="background:#E67E22"></span>
-          <span>Medicaid Exposure</span>
-          <span class="risk-bar-pct" style="color:#E67E22">${formatCurrency(r.medicaidRisk)}</span>
-        </div>
-        <div class="risk-bar-item">
-          <span class="risk-bar-dot" style="background:#B8860B"></span>
-          <span>State Tax Impact</span>
-          <span class="risk-bar-pct" style="color:#B8860B">${formatCurrency(r.stateTax)}</span>
+      <div class="diagnosis-disclaimer">
+        <div class="disclaimer-icon">⚠️</div>
+        <div class="disclaimer-content">
+          <div class="disclaimer-title">This is an estimate, not a guarantee.</div>
+          <div class="disclaimer-text">Actual costs vary based on individual circumstances and state laws. Taking action now can help protect more of your assets and your family's future.</div>
         </div>
       </div>
 
-      <div class="diagnosis-disclaimer">This is an estimate, not a guarantee. Actual costs vary based on individual circumstances and state laws. Taking action now can help protect more of your assets and your family's future.</div>
+      <div class="diagnosis-trust-bar">
+        <div class="diagnosis-trust-item"><span class="trust-icon">✅</span> Trusted by thousands of families nationwide</div>
+        <div class="diagnosis-trust-item"><span class="trust-icon">🔒</span> Your information is secure and confidential</div>
+        <div class="diagnosis-trust-item"><span class="trust-icon">👥</span> 10,000+ families protected</div>
+        <div class="diagnosis-trust-item"><span class="trust-icon">⭐</span> 4.8/5 average customer rating</div>
+      </div>
 
       <div class="diagnosis-cta">
         <button id="btn-protect" class="btn btn-primary btn-large">See How to Protect Your Assets →</button>
@@ -159,7 +194,7 @@ export function renderCheckoutPage(el, appState, goToStep) {
         </form>
 
         <div class="checkout-guarantees">
-          <span>💰 30-Day Money-Back</span>
+          <span>💰 30-Day Money-Back Guarantee</span>
           <span>🔒 Secure 256-bit SSL Encryption</span>
           <span>🇺🇸 U.S. Based Customer Support</span>
         </div>
@@ -199,7 +234,9 @@ export function renderCheckoutPage(el, appState, goToStep) {
 
     try {
       await submitLead({
-        ...appState.lead,
+        firstName: appState.lead.firstName,
+        email: appState.lead.email,
+        phone: appState.lead.phone,
         ageRange: appState.ageRange,
         primaryConcern: appState.primaryConcern,
         stateCode: appState.stateCode,
@@ -249,28 +286,40 @@ export function renderUpsellPage(el, appState, goToStep) {
       <h1 class="upsell-headline">Estate Planning Document Prep Kit</h1>
       <p class="upsell-subtitle">Have attorney-ready documents — without the high cost.</p>
 
-      <div class="upsell-features-grid">
-        <div class="upsell-feature">📄 Power of Attorney (Financial)</div>
-        <div class="upsell-feature">📄 Health Care Directive</div>
-        <div class="upsell-feature">📄 HIPAA Authorization</div>
-        <div class="upsell-feature">📄 Beneficiary Review Guide</div>
-        <div class="upsell-feature">📄 Step-by-Step Instructions</div>
-        <div class="upsell-feature">📄 Attorney Review Checklist</div>
-      </div>
-
-      <div class="upsell-why">
-        <h3>Why add this now?</h3>
-        <p>Save time, reduce legal fees, and ensure your plan is complete. Special pricing today for seniors.</p>
+      <div class="upsell-main">
+        <div class="upsell-product-image">
+          <div class="upsell-product-placeholder">DOCUMENT<br/>PREP KIT<br/>📄</div>
+        </div>
+        <div>
+          <ul class="upsell-features-list">
+            <li>✅ Power of Attorney (Financial)</li>
+            <li>✅ Health Care Directive</li>
+            <li>✅ HIPAA Authorization</li>
+            <li>✅ Beneficiary Review Guide</li>
+            <li>✅ Step-by-Step Instructions</li>
+            <li>✅ Attorney Review Checklist</li>
+          </ul>
+          <div class="upsell-why">
+            <h3>Why add this now?</h3>
+            <p>Save time, reduce legal fees, and ensure your plan is complete. Special pricing today for seniors.</p>
+          </div>
+        </div>
       </div>
 
       <div class="upsell-price-section">
         <div class="upsell-price-label">Special Add-On Price</div>
         <div class="upsell-price-big">$197</div>
-        <div class="upsell-price-note">One-Time Payment</div>
+        <div class="upsell-price-note">One-Time Payment · No Recurring Fees</div>
       </div>
 
       <button id="btn-upsell-yes" class="btn btn-primary btn-large btn-full">Yes, Add to My Order — $197</button>
       <a id="btn-upsell-no" class="decline-link">No thanks, continue to my order</a>
+
+      <div class="upsell-trust-row">
+        <span>🔒 Secure & Confidential</span>
+        <span>✅ Satisfaction Guaranteed</span>
+        <span>🛡️ 100% Private</span>
+      </div>
     </div>
   `;
 
@@ -299,9 +348,9 @@ export function renderThankYouPage(el, appState) {
     <div class="step-thankyou anim-fade-in-up">
       <div class="ty-checkmark">✓</div>
       <h1 class="ty-title">Thank You</h1>
-      <p class="ty-subtitle">Your order has been received.</p>
+      <p class="ty-subtitle">Your order has been received!</p>
 
-      <div class="ty-order-summary card-glass-static">
+      <div class="ty-order-summary">
         <h3 class="ty-summary-title">Order Summary</h3>
         <div class="ty-item"><span>2026 Retiree Asset Protection Blueprint</span><span>$67.00</span></div>
         ${bump ? '<div class="ty-item"><span>Retirement Account Protection Checklist (Order Bump)</span><span>$27.00</span></div>' : ''}
@@ -321,7 +370,7 @@ export function renderThankYouPage(el, appState) {
         </div>
         <div class="ty-step">
           <div class="ty-step-number">3</div>
-          <div class="ty-step-content"><h4>Download &amp; Take Action</h4><p>Review your report and start protecting your family's future today.</p></div>
+          <div class="ty-step-content"><h4>Download & Take Action</h4><p>Review your report and start protecting your family's future today.</p></div>
         </div>
       </div>
 
@@ -338,7 +387,6 @@ export function renderThankYouPage(el, appState) {
    ════════════════════════════════════════════════════════════ */
 
 function showDownsellModal(appState, goToStep) {
-  // Remove any existing modal
   const existing = document.querySelector('.downsell-overlay');
   if (existing) existing.remove();
 
@@ -350,29 +398,20 @@ function showDownsellModal(appState, goToStep) {
       <h2 class="downsell-title">Wait — Don't Leave Empty-Handed</h2>
       <p class="downsell-text">Your estate risk snapshot showed <strong>${formatCurrency(appState.results?.totalAtRisk || 0)}</strong> could be at risk. Take the first step to protect your family.</p>
       <p class="downsell-offer">Get the <strong>2026 Retiree Asset Protection Blueprint</strong> for just <strong>$67</strong> — a fraction of what probate or legal fees can cost.</p>
-      <button class="btn btn-primary btn-large btn-full" id="ds-stay">Yes, I Want to Protect My Family</button>
+      <button class="btn btn-primary btn-large btn-full" id="ds-stay" style="margin-top:20px">Yes, I Want to Protect My Family</button>
       <a class="decline-link" id="ds-leave">No thanks, I'll risk it</a>
     </div>
   `;
 
   document.body.appendChild(overlay);
 
-  // Close modal
   const close = () => overlay.remove();
   document.getElementById('ds-close').addEventListener('click', close);
-  document.getElementById('ds-leave').addEventListener('click', (e) => {
-    e.preventDefault();
-    close();
-  });
+  document.getElementById('ds-leave').addEventListener('click', (e) => { e.preventDefault(); close(); });
   document.getElementById('ds-stay').addEventListener('click', () => {
     close();
-    // Scroll back to form
     const form = document.getElementById('checkout-form');
     if (form) form.scrollIntoView({ behavior: 'smooth' });
   });
-
-  // Close on overlay click
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) close();
-  });
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
 }

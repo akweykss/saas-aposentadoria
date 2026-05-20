@@ -268,26 +268,38 @@
 
 .trust-card-yes {
   border: 2px solid var(--color-primary) !important;
+  transition: all 200ms ease;
 }
 .trust-card-yes:hover {
-  background: rgba(27,122,61,0.02);
+  background: rgba(27,122,61,0.06);
+  transform: translateY(-2px);
 }
 .trust-card-yes.selected {
-  background: rgba(27,122,61,0.04) !important;
+  background: rgba(27,122,61,0.12) !important;
   border-color: var(--color-primary) !important;
-  box-shadow: 0 0 0 3px rgba(27,122,61,0.1);
+  box-shadow: 0 0 0 4px rgba(27,122,61,0.18);
+  transform: scale(1.02);
+}
+.trust-card-yes.selected .radio-card-icon svg {
+  fill: rgba(27,122,61,0.15);
 }
 
 .trust-card-no {
   border: 2px solid var(--color-danger) !important;
+  transition: all 200ms ease;
 }
 .trust-card-no:hover {
-  background: rgba(211,47,47,0.02);
+  background: rgba(211,47,47,0.06);
+  transform: translateY(-2px);
 }
 .trust-card-no.selected {
-  background: rgba(211,47,47,0.04) !important;
+  background: rgba(211,47,47,0.10) !important;
   border-color: var(--color-danger) !important;
-  box-shadow: 0 0 0 3px rgba(211,47,47,0.1);
+  box-shadow: 0 0 0 4px rgba(211,47,47,0.18);
+  transform: scale(1.02);
+}
+.trust-card-no.selected .radio-card-icon svg {
+  fill: rgba(211,47,47,0.15);
 }
 
 /* ───── Currency Input ───── */

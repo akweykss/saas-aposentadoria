@@ -143,6 +143,7 @@ export function renderDiagnosisPage(el, appState, goToStep) {
 export function renderCheckoutPage(el, appState, goToStep) {
   el.innerHTML = `
     <div class="step-checkout anim-fade-in-up">
+      <!-- LEFT COLUMN: Product info + book image -->
       <div class="checkout-product">
         <div class="checkout-product-badge">🔥 2026 UPDATED EDITION</div>
         <h2 class="checkout-product-title">2026 Retiree Asset Protection Blueprint</h2>
@@ -150,8 +151,11 @@ export function renderCheckoutPage(el, appState, goToStep) {
         <div class="checkout-product-image">
           <img src="/assets/book-blueprint.png" alt="2026 Retiree Asset Protection Blueprint" class="checkout-book-img">
         </div>
+      </div>
 
-        <h3>Inside Your Blueprint You'll Discover:</h3>
+      <!-- RIGHT COLUMN: Features + Secure Checkout -->
+      <div class="checkout-right-col">
+        <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--color-text-primary);">Inside Your Blueprint You'll Discover:</h3>
         <ul class="checkout-features">
           <li>✅ <strong>The Nursing Home Shield:</strong> How to protect your house and savings even if you suddenly need long-term care.</li>
           <li>✅ <strong>Probate Avoidance Tactics:</strong> Keep your family out of court and stop attorneys from taking a percentage of your estate.</li>
@@ -160,18 +164,19 @@ export function renderCheckoutPage(el, appState, goToStep) {
           <li>✅ <strong>Step-by-Step Action Plan:</strong> No legal jargon. Just clear, simple steps to lock down your legacy today.</li>
         </ul>
 
-      <div class="checkout-form-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 20px;">
-        <div class="checkout-form-header" style="margin-bottom: 30px;">
-          <h3 style="font-size: 24px; color: var(--color-primary);">🔒 Secure Checkout</h3>
-          <p style="font-size: 16px; color: var(--color-text-light);">Click below to complete your order securely via Hotmart.</p>
-        </div>
+        <div class="checkout-form-section">
+          <div class="checkout-form-header">
+            <h3 style="font-size: 20px; color: var(--color-primary);">🔒 Secure Checkout</h3>
+            <p style="font-size: 14px; color: var(--color-text-light); margin-top: 4px;">Click below to complete your order securely via Hotmart.</p>
+          </div>
 
-        <a onclick="return false;" href="https://pay.hotmart.com/N105921395O?checkoutMode=2" class="btn btn-primary btn-large btn-full hotmart-fb hotmart__button-checkout" style="font-size: 20px; padding: 18px; max-width: 400px; display: inline-block;">Continue to Secure Checkout →</a>
+          <a onclick="return false;" href="https://pay.hotmart.com/N105921395O?checkoutMode=2" class="btn btn-primary btn-large btn-full hotmart-fb hotmart__button-checkout" style="font-size: 18px; padding: 16px; display: block; text-align: center;">Continue to Secure Checkout →</a>
 
-        <div class="checkout-guarantees" style="margin-top: 30px;">
-          <span>💰 30-Day Money-Back Guarantee</span>
-          <span>🔒 Secure 256-bit SSL Encryption</span>
-          <span>🇺🇸 U.S. Based Customer Support</span>
+          <div class="checkout-guarantees" style="margin-top: 16px;">
+            <span>💰 30-Day Money-Back Guarantee</span>
+            <span>🔒 Secure 256-bit SSL Encryption</span>
+            <span>🇺🇸 U.S. Based Customer Support</span>
+          </div>
         </div>
       </div>
     </div>

@@ -213,11 +213,17 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: 36px;
   align-items: start;
 }
 
 .checkout-product {}
+
+.checkout-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
 
 .checkout-product-badge {
   display: inline-block;

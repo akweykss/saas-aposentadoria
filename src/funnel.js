@@ -176,7 +176,7 @@ export function renderCheckoutPage(el, appState, goToStep) {
             <span style="font-size: 13px; color: var(--color-text-light); display: block; margin-top: 2px;">One-time payment · Instant digital access</span>
           </div>
 
-          <a href="https://pay.hotmart.com/N105921395O?checkoutMode=2" target="_blank" rel="noopener" class="btn btn-primary btn-large btn-full hotmart-fb hotmart__button-checkout" style="font-size: 18px; padding: 16px; display: block; text-align: center;">Continue to Secure Checkout →</a>
+          <a href="https://pay.hotmart.com/N105921395O?checkoutMode=2" class="btn btn-primary btn-large btn-full hotmart-fb hotmart__button-checkout" style="font-size: 18px; padding: 16px; display: block; text-align: center;">Continue to Secure Checkout →</a>
 
           <div class="checkout-guarantees" style="margin-top: 16px;">
             <span>💰 30-Day Money-Back Guarantee</span>

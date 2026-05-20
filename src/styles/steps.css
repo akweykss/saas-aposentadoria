@@ -37,74 +37,25 @@
   color: var(--color-text-muted);
 }
 
-/* Hero image placeholder */
+/* Hero image - real assets */
 .hero-image { position: relative; }
 
-.hero-image-placeholder {
-  background: var(--color-bg-secondary);
-  border: 1px solid var(--color-border);
-  border-radius: 16px;
-  overflow: hidden;
+.hero-monitor-img {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  border-radius: 4px;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.12));
 }
 
-.hero-monitor {
-  padding: 0;
-}
-
-.hero-monitor-header {
-  background: #1A1A1A;
-  color: white;
-  padding: 12px 20px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-align: center;
-  border-radius: 16px 16px 0 0;
-}
-
-.hero-monitor-body {
-  padding: 32px 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  min-height: 220px;
-  justify-content: center;
-}
-
-.hero-mini-chart {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: conic-gradient(#D32F2F 0% 28%, #E67E22 28% 79%, #B8860B 79% 100%);
-  position: relative;
-}
-.hero-mini-chart::after {
-  content: '';
+.hero-shield-overlay-img {
   position: absolute;
-  inset: 25px;
-  border-radius: 50%;
-  background: var(--color-bg-secondary);
-}
-
-.hero-risk-badge {
-  background: white;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 13px;
-  color: var(--color-text-secondary);
-  text-align: center;
-  line-height: 1.4;
-}
-.hero-risk-badge strong { color: var(--color-primary); font-size: 16px; }
-
-.hero-shield-overlay {
-  position: absolute;
-  bottom: -16px;
-  right: -16px;
-  font-size: 64px;
-  filter: drop-shadow(0 4px 12px rgba(27,122,61,0.2));
+  bottom: -20px;
+  right: -10px;
+  width: 110px;
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(27,122,61,0.25));
+  animation: floatUp 800ms ease forwards;
 }
 
 /* ───── Trust Stats Bar ───── */

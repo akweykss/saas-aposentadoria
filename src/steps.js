@@ -93,16 +93,8 @@ function renderLanding(el) {
         </div>
       </div>
       <div class="hero-image">
-        <div class="hero-image-placeholder">
-          <div class="hero-monitor">
-            <div class="hero-monitor-header">ESTATE RISK REPORT</div>
-            <div class="hero-monitor-body">
-              <div class="hero-mini-chart"></div>
-              <div class="hero-risk-badge">Overall Risk Level<br/><strong>LOW</strong> ✅</div>
-            </div>
-          </div>
-        </div>
-        <div class="hero-shield-overlay">🛡️</div>
+        <img src="/assets/hero-monitor.png" alt="Estate Risk Report Preview" class="hero-monitor-img">
+        <img src="/assets/shield-lock.png" alt="Secure Shield" class="hero-shield-overlay-img">
       </div>
     </div>
     <div class="trust-stats-bar anim-fade-in-up anim-delay-3">

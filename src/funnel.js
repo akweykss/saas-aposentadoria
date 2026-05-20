@@ -140,7 +140,7 @@ export function renderCheckoutPage(el, appState, goToStep) {
         <h2 class="checkout-product-title">2026 Retiree Asset Protection Blueprint</h2>
         <p class="checkout-product-tagline">Your step-by-step guide to protect more of your assets and your family.</p>
         <div class="checkout-product-image">
-          <div class="checkout-book-mockup">2026<br/>RETIREE ASSET<br/>PROTECTION<br/>BLUEPRINT</div>
+          <img src="/assets/book-blueprint.png" alt="2026 Retiree Asset Protection Blueprint" class="checkout-book-img">
         </div>
 
         <h3>What's Included:</h3>
@@ -288,7 +288,7 @@ export function renderUpsellPage(el, appState, goToStep) {
 
       <div class="upsell-main">
         <div class="upsell-product-image">
-          <div class="upsell-product-placeholder">DOCUMENT<br/>PREP KIT<br/>ESTATE PLANNING<br/>🛡️</div>
+          <img src="/assets/document-prep-kit.png" alt="Document Prep Kit" class="upsell-product-img">
         </div>
         <div class="upsell-features-side">
           <div class="upsell-feature-item">

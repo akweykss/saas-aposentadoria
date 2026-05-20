@@ -256,13 +256,18 @@
   margin-bottom: 24px;
 }
 
-.checkout-book-mockup {
-  font-size: 16px;
-  font-weight: 800;
-  color: var(--color-primary);
-  line-height: 1.6;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.checkout-book-img {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1));
+}
+
+.upsell-product-img {
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1));
 }
 
 .checkout-features {

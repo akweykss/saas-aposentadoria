@@ -1,650 +1,801 @@
-/* ===== SALES FUNNEL STYLES ===== */
+/* ═══════════════════════════════════════════
+   FUNNEL — Light Theme (Retiree Shield Report)
+   ═══════════════════════════════════════════ */
 
-/* --- Diagnosis Warning Bar --- */
-.diagnosis-warning {
-  background: linear-gradient(135deg, rgba(255, 71, 87, 0.08) 0%, rgba(255, 71, 87, 0.03) 100%);
-  border: 1px solid rgba(255, 71, 87, 0.2);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
-  margin-bottom: var(--space-8);
+/* ─── Diagnosis ─── */
+.step-diagnosis {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--space-12) 0;
+}
+
+.diagnosis-header {
   text-align: center;
+  margin-bottom: var(--space-8);
 }
 
-.warning-bar {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-bold);
-  color: var(--color-danger);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: var(--space-3);
+.diagnosis-header h2 {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
 }
 
-.warning-pulse {
-  width: 8px;
-  height: 8px;
-  background: var(--color-danger);
-  border-radius: 50%;
-  animation: pulseGlow 1.5s ease-in-out infinite;
-  box-shadow: 0 0 8px rgba(255, 71, 87, 0.6);
+.diagnosis-header p {
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
 }
 
-.warning-text {
-  font-size: var(--fs-sm);
-  color: var(--color-text-secondary);
-  line-height: var(--lh-normal);
-}
-
-/* --- Diagnosis Risk Card --- */
 .diagnosis-risk-card {
   text-align: center;
   padding: var(--space-8);
-  background: var(--color-bg-card);
-  border: 1px solid rgba(255, 71, 87, 0.15);
-  border-radius: var(--radius-lg);
-  margin-bottom: var(--space-8);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--space-6);
 }
 
 .risk-label-top {
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
   color: var(--color-danger);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   margin-bottom: var(--space-2);
 }
 
 .risk-amount-big {
-  font-size: var(--fs-5xl);
-  font-weight: var(--fw-extrabold);
+  font-size: var(--font-size-5xl);
+  font-weight: 800;
   color: var(--color-danger);
-  font-family: var(--font-sans);
-  text-shadow: 0 0 40px rgba(255, 71, 87, 0.3);
   line-height: 1;
   margin-bottom: var(--space-2);
 }
 
 .risk-pct {
-  font-size: var(--fs-sm);
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-6);
+  font-size: var(--font-size-base);
+  color: var(--text-muted);
 }
 
+/* ─── Diagnosis Chart ─── */
 .diagnosis-chart {
-  max-width: 200px;
-  margin: 0 auto var(--space-6);
+  max-width: 220px;
+  margin: var(--space-6) auto;
 }
 
-.risk-mini-grid {
+/* ─── Risk Breakdown Cards ─── */
+.risk-breakdown-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-3);
-}
-
-.risk-mini {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.risk-mini-val {
-  font-size: var(--fs-base);
-  font-weight: var(--fw-bold);
-  font-family: var(--font-sans);
-}
-
-.risk-mini-lbl {
-  font-size: var(--fs-xs);
-  color: var(--color-text-muted);
-}
-
-/* --- Offer Transition --- */
-.offer-transition {
-  text-align: center;
-  margin-bottom: var(--space-8);
-}
-
-.offer-intro-text {
-  font-size: var(--fs-md);
-  color: var(--color-text-secondary);
-  line-height: var(--lh-normal);
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-/* --- Main Offer Card --- */
-.offer-card {
-  background: var(--color-bg-card);
-  border: 2px solid rgba(79, 125, 249, 0.2);
-  border-radius: var(--radius-xl);
-  padding: var(--space-10);
-  position: relative;
-  overflow: hidden;
-}
-
-.offer-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--gradient-primary);
-}
-
-.offer-badge-top {
-  display: inline-block;
-  padding: var(--space-1) var(--space-4);
-  background: rgba(251, 191, 36, 0.1);
-  border: 1px solid rgba(251, 191, 36, 0.3);
-  border-radius: var(--radius-full);
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-bold);
-  color: var(--color-accent-gold);
-  letter-spacing: 0.05em;
-  margin-bottom: var(--space-4);
-}
-
-.offer-title {
-  font-family: var(--font-serif);
-  font-size: var(--fs-2xl);
-  font-weight: var(--fw-extrabold);
-  margin-bottom: var(--space-3);
-  line-height: var(--lh-tight);
-}
-
-.offer-tagline {
-  font-size: var(--fs-sm);
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-6);
-  line-height: var(--lh-normal);
-}
-
-.offer-features {
-  list-style: none;
-  padding: 0;
-  margin-bottom: var(--space-8);
-}
-
-.offer-features li {
-  padding: var(--space-2) 0;
-  font-size: var(--fs-sm);
-  color: var(--color-text-primary);
-  line-height: var(--lh-normal);
-}
-
-/* --- Price Anchor --- */
-.offer-price-anchor {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-6);
-  margin-bottom: var(--space-6);
-}
-
-.price-compare { margin-bottom: var(--space-4); }
-
-.price-line {
-  display: flex;
-  justify-content: space-between;
-  padding: var(--space-2) 0;
-  font-size: var(--fs-sm);
-  color: var(--color-text-muted);
-}
-
-.price-val { font-family: var(--font-sans); }
-
-.line-through { text-decoration: line-through; opacity: 0.6; }
-
-.price-total-line {
-  display: flex;
-  justify-content: space-between;
-  padding: var(--space-3) 0;
-  border-top: 1px solid var(--color-border);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-semibold);
-  color: var(--color-text-secondary);
-}
-
-.price-today {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: var(--space-3);
-  border-top: 2px solid rgba(79, 125, 249, 0.3);
-}
-
-.price-today-val {
-  font-size: var(--fs-3xl);
-  font-weight: var(--fw-extrabold);
-  color: var(--color-accent-blue);
-  font-family: var(--font-sans);
-}
-
-/* --- Order Bump --- */
-.order-bump {
-  background: rgba(251, 191, 36, 0.04);
-  border: 2px dashed rgba(251, 191, 36, 0.3);
-  border-radius: var(--radius-md);
-  padding: var(--space-5);
-  margin-bottom: var(--space-8);
-  transition: all var(--transition-base);
-}
-
-.order-bump:has(.bump-checkbox:checked) {
-  background: rgba(251, 191, 36, 0.08);
-  border-color: var(--color-accent-gold);
-  box-shadow: 0 0 16px rgba(251, 191, 36, 0.1);
-}
-
-.bump-checkbox-wrap {
-  display: flex;
   gap: var(--space-4);
-  cursor: pointer;
-  align-items: flex-start;
+  margin-top: var(--space-6);
 }
 
-.bump-checkbox {
-  width: 20px;
-  height: 20px;
-  margin-top: 4px;
-  accent-color: var(--color-accent-gold);
-  flex-shrink: 0;
-  cursor: pointer;
+.risk-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-5);
+  text-align: center;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
 }
 
-.bump-content { flex: 1; }
+.risk-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+}
 
-.bump-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.risk-card-icon {
+  font-size: 40px;
   margin-bottom: var(--space-2);
+  line-height: 1;
 }
 
-.bump-tag {
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-bold);
-  color: var(--color-accent-gold);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.bump-price {
-  font-size: var(--fs-lg);
-  font-weight: var(--fw-bold);
-  color: var(--color-accent-gold);
-  font-family: var(--font-sans);
-}
-
-.bump-title {
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-bold);
-  color: var(--color-text-primary);
+.risk-card-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
   margin-bottom: var(--space-1);
 }
 
-.bump-desc {
-  font-size: var(--fs-xs);
-  color: var(--color-text-muted);
-  line-height: var(--lh-normal);
+.risk-card-value {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--text-primary);
 }
 
-/* --- Offer Form --- */
-.offer-form { display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-4); }
-.offer-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
-.offer-form .input-group { margin-bottom: 0; }
-
-.offer-guarantees {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-6);
-  flex-wrap: wrap;
-  font-size: var(--fs-xs);
-  color: var(--color-text-muted);
-  margin-top: var(--space-4);
+.risk-card-pct {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  margin-top: var(--space-1);
 }
 
-/* --- Upsell Page --- */
-.step-upsell {
-  max-width: 600px;
+.diagnosis-disclaimer {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: var(--space-6);
+  border-top: 1px solid var(--border-color);
+  padding-top: var(--space-4);
+  text-align: center;
+}
+
+.diagnosis-cta {
+  margin-top: var(--space-8);
+  text-align: center;
+}
+
+/* ─── Checkout ─── */
+.step-checkout {
+  max-width: 900px;
   margin: 0 auto;
-  text-align: center;
-  padding: var(--space-8) 0;
+  padding: var(--space-12) 0;
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  gap: var(--space-8);
+  align-items: start;
 }
 
-.upsell-stop-badge {
-  display: inline-block;
-  padding: var(--space-2) var(--space-6);
-  background: var(--color-danger-bg);
-  border: 1px solid rgba(255, 71, 87, 0.3);
-  border-radius: var(--radius-full);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-bold);
-  color: var(--color-danger);
-  letter-spacing: 0.05em;
-  margin-bottom: var(--space-6);
-  animation: shakeWarning 800ms ease-in-out;
-}
-
-.upsell-headline {
-  font-family: var(--font-serif);
-  font-size: var(--fs-3xl);
-  font-weight: var(--fw-extrabold);
-  line-height: var(--lh-tight);
-  margin-bottom: var(--space-4);
-}
-
-.upsell-subheadline {
-  font-family: var(--font-serif);
-  font-size: var(--fs-xl);
-  font-weight: var(--fw-bold);
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-8);
-}
-
-.upsell-body {
-  font-size: var(--fs-base);
-  color: var(--color-text-secondary);
-  line-height: var(--lh-normal);
-  margin-bottom: var(--space-8);
-  text-align: left;
-}
-
-.upsell-includes {
-  text-align: left;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
-  margin-bottom: var(--space-8);
-}
-
-.upsell-includes h3 {
-  font-size: var(--fs-md);
-  font-weight: var(--fw-bold);
-  margin-bottom: var(--space-4);
-  font-family: var(--font-sans);
-}
-
-.upsell-includes ul {
-  list-style: none;
-  padding: 0;
-}
-
-.upsell-includes li {
-  padding: var(--space-2) 0;
-  font-size: var(--fs-sm);
-  color: var(--color-text-primary);
-}
-
-.upsell-price-section {
-  margin-bottom: var(--space-8);
-}
-
-.upsell-price-was, .upsell-price-offer {
-  font-size: var(--fs-sm);
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-2);
-}
-
-.upsell-price-today {
-  font-size: var(--fs-lg);
-  font-weight: var(--fw-bold);
-  color: var(--color-text-primary);
-  margin-bottom: var(--space-2);
-}
-
-.upsell-price-big {
-  font-size: var(--fs-4xl);
-  font-weight: var(--fw-extrabold);
-  color: var(--color-danger);
-  font-family: var(--font-sans);
-}
-
-.upsell-price-note {
-  font-size: var(--fs-xs);
-  color: var(--color-text-muted);
-}
-
-.upsell-secure-badges {
+.checkout-product {
   display: flex;
-  justify-content: center;
-  gap: var(--space-6);
-  font-size: var(--fs-xs);
-  color: var(--color-text-muted);
-  margin-top: var(--space-4);
-  margin-bottom: var(--space-6);
+  flex-direction: column;
+  gap: var(--space-5);
 }
 
-/* --- Decline Link --- */
-.decline-link {
-  display: block;
-  text-align: center;
-  font-size: var(--fs-xs);
-  color: var(--color-text-muted);
-  cursor: pointer;
-  padding: var(--space-4);
-  opacity: 0.6;
-  transition: opacity var(--transition-fast);
-  text-decoration: underline;
+.checkout-product-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  border-radius: var(--border-radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  width: fit-content;
 }
 
-.decline-link:hover { opacity: 1; }
+.checkout-product-title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
 
-/* --- Downsell Modal --- */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
-  z-index: 1000;
+.checkout-product-tagline {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.checkout-product-image {
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius-lg);
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+.checkout-product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.checkout-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.checkout-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.checkout-features li::before {
+  content: '✅';
+  flex-shrink: 0;
+}
+
+/* ─── Order Bump ─── */
+.checkout-bump {
+  border: 2px dashed var(--color-gold);
+  background-color: var(--color-gold-light);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-4);
+  transition: all var(--transition-base);
+}
+
+.checkout-bump.checked {
+  border-style: solid;
+  background-color: rgba(184, 134, 11, 0.08);
+}
+
+.checkout-bump-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.checkout-bump-checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--color-gold);
+  cursor: pointer;
+}
+
+.checkout-bump-title {
+  font-weight: 700;
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+}
+
+.checkout-bump-desc {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  padding-left: 32px;
+}
+
+.checkout-bump-price {
+  font-weight: 700;
+  color: var(--color-gold);
+}
+
+/* ─── Checkout Form ─── */
+.checkout-form-section {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-xl);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.checkout-form-header {
+  text-align: center;
+  margin-bottom: var(--space-4);
+}
+
+.checkout-form-header h3 {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.checkout-form-header p {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  margin-top: var(--space-1);
+}
+
+.checkout-total-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.checkout-total {
+  font-size: var(--font-size-3xl);
+  font-weight: 800;
+  color: var(--text-primary);
+  text-align: center;
+  line-height: 1;
+}
+
+.checkout-guarantees {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.checkout-guarantee {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+
+/* ─── Upsell ─── */
+.step-upsell {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--space-12) 0;
+}
+
+.upsell-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-xl);
+  padding: var(--space-10);
+  text-align: center;
+}
+
+.upsell-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-4);
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  border-radius: var(--border-radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-5);
+}
+
+.upsell-headline {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.upsell-subtitle {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-8);
+  line-height: 1.6;
+}
+
+.upsell-features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  text-align: left;
+  margin-bottom: var(--space-8);
+}
+
+.upsell-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3);
+}
+
+.upsell-feature-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.upsell-feature-text {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.upsell-feature-text strong {
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: var(--space-1);
+}
+
+.upsell-why {
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius-lg);
   padding: var(--space-6);
+  margin-bottom: var(--space-8);
+  text-align: left;
+}
+
+.upsell-why h4 {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.upsell-why p {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.upsell-price {
+  margin-bottom: var(--space-6);
+}
+
+.upsell-price-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-1);
+}
+
+.upsell-price-amount {
+  font-size: var(--font-size-3xl);
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.upsell-price-note {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  margin-top: var(--space-1);
+}
+
+.upsell-cta {
+  margin-bottom: var(--space-4);
+}
+
+.decline-link {
+  display: inline-block;
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+  border: none;
+  background: none;
+  text-decoration: underline;
+  font-family: var(--font-sans);
+}
+
+.decline-link:hover {
+  color: var(--text-secondary);
+}
+
+/* ─── Thank You ─── */
+.step-thankyou {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: var(--space-12) 0;
+  text-align: center;
+}
+
+.ty-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-6);
+}
+
+.ty-icon::after {
+  content: '✓';
+  font-size: 36px;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+}
+
+.ty-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.ty-subtitle {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-8);
+}
+
+.ty-order-summary {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-6);
+  margin-bottom: var(--space-8);
+  text-align: left;
+}
+
+.ty-order-summary h3 {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+}
+
+.ty-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--bg-input-focus);
+  padding: var(--space-3) 0;
+  font-size: var(--font-size-sm);
+}
+
+.ty-item:last-child {
+  border-bottom: none;
+}
+
+.ty-item-name {
+  color: var(--text-secondary);
+}
+
+.ty-item-price {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.ty-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 2px solid var(--text-primary);
+  padding-top: var(--space-3);
+  margin-top: var(--space-3);
+  font-weight: 700;
+  font-size: var(--font-size-md);
+}
+
+.ty-next-steps {
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-8);
+  text-align: left;
+  margin-bottom: var(--space-6);
+}
+
+.ty-next-steps h3 {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  margin-bottom: var(--space-6);
+}
+
+.ty-step {
+  display: flex;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.ty-step:last-child {
+  margin-bottom: 0;
+}
+
+.ty-step-number {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  color: white;
+  font-weight: 700;
+  font-size: var(--font-size-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ty-step-content h4 {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.ty-step-content p {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.ty-help {
+  border-top: 1px solid var(--border-color);
+  padding-top: var(--space-6);
+  margin-top: var(--space-6);
+}
+
+.ty-help-title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.ty-help-contact {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.ty-help-contact a {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+/* ─── Downsell Modal ─── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--bg-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal-backdrop);
+  padding: var(--space-4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
 }
 
 .downsell-card {
-  background: var(--color-bg-secondary);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius-xl);
   padding: var(--space-10);
-  max-width: 500px;
+  max-width: 480px;
   width: 100%;
-  position: relative;
   text-align: center;
-  max-height: 90vh;
-  overflow-y: auto;
+  box-shadow: var(--shadow-xl);
+  transform: scale(0.95);
+  transition: transform var(--transition-base);
+  position: relative;
 }
 
-.modal-close {
+.modal-overlay.active .downsell-card {
+  transform: scale(1);
+}
+
+.downsell-close {
   position: absolute;
   top: var(--space-4);
   right: var(--space-4);
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: var(--text-muted);
+  cursor: pointer;
   width: 32px;
   height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--color-text-muted);
-  cursor: pointer;
-  font-size: var(--fs-sm);
   transition: all var(--transition-fast);
 }
 
-.modal-close:hover { background: rgba(255, 255, 255, 0.1); color: var(--color-text-primary); }
+.downsell-close:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
 
-.downsell-icon { font-size: 48px; margin-bottom: var(--space-4); }
+.downsell-emoji {
+  font-size: 48px;
+  margin-bottom: var(--space-4);
+}
 
 .downsell-title {
-  font-family: var(--font-serif);
-  font-size: var(--fs-xl);
-  font-weight: var(--fw-bold);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--text-primary);
   margin-bottom: var(--space-3);
 }
 
-.downsell-subtitle {
-  font-size: var(--fs-sm);
-  color: var(--color-text-secondary);
-  line-height: var(--lh-normal);
+.downsell-text {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
   margin-bottom: var(--space-6);
+  line-height: 1.6;
 }
 
 .downsell-offer-box {
-  background: rgba(255, 71, 87, 0.05);
-  border: 1px solid rgba(255, 71, 87, 0.15);
-  border-radius: var(--radius-md);
-  padding: var(--space-6);
+  border: 1px solid var(--color-danger);
+  background-color: var(--color-danger-light);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-5);
   margin-bottom: var(--space-6);
 }
 
-.downsell-offer-label {
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-danger);
-  margin-bottom: var(--space-3);
-}
-
-.downsell-product {
-  font-family: var(--font-serif);
-  font-size: var(--fs-lg);
-  font-weight: var(--fw-bold);
-  margin-bottom: var(--space-3);
-}
-
-.downsell-desc {
-  font-size: var(--fs-xs);
-  color: var(--color-text-secondary);
-  line-height: var(--lh-normal);
-  margin-bottom: var(--space-4);
-  text-align: left;
-}
-
-.downsell-price {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-3);
-}
-
-.price-was {
-  font-size: var(--fs-lg);
-  color: var(--color-text-muted);
+.downsell-price-was {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
   text-decoration: line-through;
 }
 
-.price-now {
-  font-size: var(--fs-3xl);
-  font-weight: var(--fw-extrabold);
+.downsell-price-now {
+  font-size: var(--font-size-2xl);
+  font-weight: 800;
   color: var(--color-danger);
-  font-family: var(--font-sans);
+  margin-top: var(--space-1);
 }
 
-.price-badge {
-  padding: 2px 8px;
-  background: rgba(46, 213, 115, 0.1);
-  border: 1px solid rgba(46, 213, 115, 0.3);
-  border-radius: var(--radius-full);
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-bold);
-  color: var(--color-success);
-}
-
-/* --- Thank You Page --- */
-.step-thankyou {
-  max-width: 560px;
-  margin: 0 auto;
-  text-align: center;
-  padding: var(--space-8) 0;
-}
-
-.ty-icon { font-size: 64px; margin-bottom: var(--space-4); }
-
-.ty-title {
-  font-family: var(--font-serif);
-  font-size: var(--fs-3xl);
-  font-weight: var(--fw-extrabold);
-  margin-bottom: var(--space-3);
-}
-
-.ty-subtitle {
-  font-size: var(--fs-md);
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-10);
-}
-
-.ty-order-summary {
-  text-align: left;
-  margin-bottom: var(--space-8);
-}
-
-.ty-summary-title {
-  font-size: var(--fs-md);
-  font-weight: var(--fw-bold);
-  margin-bottom: var(--space-4);
-  font-family: var(--font-sans);
-}
-
-.ty-item {
-  display: flex;
-  justify-content: space-between;
-  padding: var(--space-3) 0;
-  font-size: var(--fs-sm);
-  color: var(--color-text-secondary);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.ty-total {
-  display: flex;
-  justify-content: space-between;
-  padding: var(--space-4) 0;
-  font-size: var(--fs-lg);
-  font-weight: var(--fw-bold);
-  color: var(--color-text-primary);
-}
-
-.ty-next-step {
-  background: linear-gradient(135deg, rgba(79, 125, 249, 0.06) 0%, rgba(124, 58, 237, 0.06) 100%);
-  border: 1px solid rgba(79, 125, 249, 0.15);
-  border-radius: var(--radius-lg);
-  padding: var(--space-8);
-}
-
-.ty-next-step h3 {
-  font-size: var(--fs-xl);
-  font-weight: var(--fw-bold);
-  margin-bottom: var(--space-3);
-  font-family: var(--font-sans);
-}
-
-.ty-next-step p {
-  font-size: var(--fs-sm);
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-6);
-  line-height: var(--lh-normal);
-}
-
-/* --- Step: Diagnosis (wider layout) --- */
-.step-diagnosis {
-  max-width: 640px;
-  margin: 0 auto;
+.downsell-cta .btn {
+  background-color: var(--color-danger);
+  color: var(--text-inverse);
   width: 100%;
 }
 
-/* --- Responsive Additions --- */
-@media (max-width: 640px) {
-  .offer-form-row { grid-template-columns: 1fr; }
-  .risk-mini-grid { grid-template-columns: 1fr; gap: var(--space-2); }
-  .risk-amount-big { font-size: var(--fs-4xl); }
-  .offer-card { padding: var(--space-6); }
-  .upsell-headline { font-size: var(--fs-2xl); }
-  .downsell-card { padding: var(--space-6); }
-  .offer-guarantees { flex-direction: column; align-items: center; }
+.downsell-cta .btn:hover {
+  background-color: var(--color-danger-dark);
+}
+
+.downsell-decline {
+  display: inline-block;
+  margin-top: var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  border: none;
+  background: none;
+  text-decoration: underline;
+  font-family: var(--font-sans);
+}
+
+.downsell-decline:hover {
+  color: var(--text-secondary);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .step-checkout {
+    grid-template-columns: 1fr;
+    padding: var(--space-8) var(--space-4);
+  }
+
+  .checkout-form-section {
+    order: -1;
+  }
+
+  .risk-breakdown-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .upsell-features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .upsell-card {
+    padding: var(--space-6);
+  }
+
+  .step-diagnosis {
+    padding: var(--space-8) var(--space-4);
+  }
+
+  .step-thankyou {
+    padding: var(--space-8) var(--space-4);
+  }
+
+  .ty-step-number {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    font-size: var(--font-size-sm);
+  }
+
+  .risk-amount-big {
+    font-size: var(--font-size-3xl);
+  }
+
+  .checkout-guarantees {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .downsell-card {
+    padding: var(--space-6);
+  }
 }

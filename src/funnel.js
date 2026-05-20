@@ -1,297 +1,378 @@
-/**
- * Sales Funnel Components
- * Main Offer + Order Bump, Upsell (OTO), Downsell Modal, Thank You
- */
 import { formatCurrency } from './calculator.js';
 import { renderDonutChart } from './components/donutChart.js';
 import { submitLead } from './webhook.js';
 
-function $(sel, ctx = document) { return ctx.querySelector(sel); }
+/* ───────────────────────── Helper ───────────────────────── */
 
-// ─── Downsell Modal ───
-let downsellShown = false;
-let exitIntentBound = false;
-
-function showDownsellModal() {
-  if (downsellShown || document.getElementById('downsell-modal')) return;
-  downsellShown = true;
-
-  const overlay = document.createElement('div');
-  overlay.id = 'downsell-modal';
-  overlay.className = 'modal-overlay anim-fade-in-up';
-  overlay.innerHTML = `
-    <div class="modal-card downsell-card anim-fade-in-scale">
-      <div class="modal-close" id="modal-close-ds">✕</div>
-      <div class="downsell-icon">🚨</div>
-      <h2 class="downsell-title">Wait! Don't Leave Your Family Exposed.</h2>
-      <p class="downsell-subtitle">We understand the full Blueprint may not be for everyone right now. But you can't afford to leave <em>without any protection plan at all.</em></p>
-      <div class="downsell-offer-box">
-        <div class="downsell-offer-label">EMERGENCY OFFER</div>
-        <h3 class="downsell-product">The Emergency Medicaid<br/>Asset Protection Guide</h3>
-        <p class="downsell-desc">Learn the critical 5-Year Medicaid Look-Back Rule, how nursing homes legally seize assets, and the 3 emergency steps you can take <strong>this week</strong> to protect your savings.</p>
-        <div class="downsell-price">
-          <span class="price-was">$67</span>
-          <span class="price-now">$37</span>
-          <span class="price-badge">Save 45%</span>
-        </div>
-      </div>
-      <button id="btn-ds-accept" class="btn btn-danger btn-large btn-full btn-pulse">Claim My Emergency Medicaid Guide for $37</button>
-      <a id="btn-ds-decline" class="decline-link">No thanks, I'll risk leaving my family unprotected.</a>
-    </div>`;
-
-  document.body.appendChild(overlay);
-
-  $('#modal-close-ds').addEventListener('click', () => overlay.remove());
-  overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
-  $('#btn-ds-accept').addEventListener('click', () => {
-    console.log('[Funnel] Downsell accepted: $37');
-    overlay.remove();
-    // In production: trigger Stripe payment for $37
-    // For now, go to thank you
-    if (window.__funnelGoToStep) window.__funnelGoToStep('thankyou');
-  });
-  $('#btn-ds-decline').addEventListener('click', (e) => {
-    e.preventDefault();
-    overlay.remove();
-  });
+function $(sel, ctx) {
+  return (ctx || document).querySelector(sel);
 }
 
-function bindExitIntent() {
-  if (exitIntentBound) return;
-  exitIntentBound = true;
-  document.addEventListener('mouseleave', (e) => {
-    if (e.clientY <= 0) showDownsellModal();
-  });
-}
+/* ════════════════════════════════════════════════════════════
+   DIAGNOSIS PAGE (Step 4)
+   ════════════════════════════════════════════════════════════ */
 
-function unbindExitIntent() {
-  exitIntentBound = false;
-  downsellShown = false;
-}
-
-// ─── Diagnosis + Main Offer + Order Bump (Step 9) ───
-export function renderDiagnosisOffer(el, appState, goToStep) {
-  window.__funnelGoToStep = goToStep;
+export function renderDiagnosisPage(el, appState, goToStep) {
   const r = appState.results;
-  const concern = appState.primaryConcern || 'Losing assets';
+  const total = r.totalAtRisk || 1;
+  const probatePct = Math.round((r.probateCost / total) * 100);
+  const medicaidPct = Math.round((r.medicaidRisk / total) * 100);
+  const taxPct = Math.max(0, 100 - probatePct - medicaidPct);
 
   el.innerHTML = `
-    <div class="step-diagnosis anim-fade-in-scale">
-      <!-- CRITICAL WARNING -->
-      <div class="diagnosis-warning anim-fade-in-up">
-        <div class="warning-bar">
-          <span class="warning-pulse"></span>
-          <span>⚠️ CRITICAL SYSTEM WARNING</span>
-        </div>
-        <p class="warning-text">Based on ${appState.stateCode} state regulations, your estate is <strong>highly exposed</strong> to government liquidation. Immediate action is recommended.</p>
+    <div class="step-diagnosis anim-fade-in-up">
+      <div class="diagnosis-header">
+        <h2>Your Estate Risk Snapshot</h2>
+        <p>Here's what could be at risk without proper planning.</p>
       </div>
 
-      <!-- RISK CHART -->
-      <div class="diagnosis-risk-card anim-fade-in-up anim-delay-2">
-        <div class="risk-label-top">TOTAL WEALTH AT RISK</div>
+      <div class="diagnosis-risk-card">
+        <div class="risk-label-top">Estimated Wealth at Risk</div>
         <div class="risk-amount-big">${formatCurrency(r.totalAtRisk)}</div>
-        <div class="risk-pct">${r.riskPercentage}% of your ${formatCurrency(r.totalNetWorth)} net worth</div>
+        <div class="risk-pct">Due to probate costs, Medicaid spend-down, and potential state taxes.</div>
         <div class="diagnosis-chart" id="diag-chart"></div>
-        <div class="risk-mini-grid">
-          <div class="risk-mini"><span class="risk-mini-val" style="color:#ff4757">${formatCurrency(r.probateCost)}</span><span class="risk-mini-lbl">Probate</span></div>
-          <div class="risk-mini"><span class="risk-mini-val" style="color:#ff9f43">${formatCurrency(r.medicaidRisk)}</span><span class="risk-mini-lbl">Medicaid</span></div>
-          <div class="risk-mini"><span class="risk-mini-val" style="color:#fbbf24">${formatCurrency(r.stateTax)}</span><span class="risk-mini-lbl">Estate Tax</span></div>
+      </div>
+
+      <div class="risk-breakdown-cards">
+        <div class="risk-card">
+          <div class="risk-card-icon">⚖️</div>
+          <div class="risk-card-label">Probate Costs</div>
+          <div class="risk-card-value">${formatCurrency(r.probateCost)}</div>
+          <div class="risk-card-pct">${probatePct}% of total risk</div>
+        </div>
+        <div class="risk-card">
+          <div class="risk-card-icon">🏥</div>
+          <div class="risk-card-label">Medicaid Exposure</div>
+          <div class="risk-card-value">${formatCurrency(r.medicaidRisk)}</div>
+          <div class="risk-card-pct">${medicaidPct}% of total risk</div>
+        </div>
+        <div class="risk-card">
+          <div class="risk-card-icon">💰</div>
+          <div class="risk-card-label">State Taxes</div>
+          <div class="risk-card-value">${formatCurrency(r.stateTax)}</div>
+          <div class="risk-card-pct">${taxPct}% of total risk</div>
         </div>
       </div>
 
-      <!-- SOLUTION INTRO -->
-      <div class="offer-transition anim-fade-in-up anim-delay-4">
-        <p class="offer-intro-text">The good news? <strong>97% of these losses are legally preventable</strong> with the right strategy. We've compiled everything into one actionable guide:</p>
+      <div class="risk-bar-breakdown">
+        <div class="risk-bar-item">
+          <span class="risk-bar-dot" style="background:#D32F2F"></span>
+          <span>Probate Costs</span>
+          <span class="risk-bar-pct" style="color:#D32F2F">${formatCurrency(r.probateCost)}</span>
+        </div>
+        <div class="risk-bar-item">
+          <span class="risk-bar-dot" style="background:#E67E22"></span>
+          <span>Medicaid Exposure</span>
+          <span class="risk-bar-pct" style="color:#E67E22">${formatCurrency(r.medicaidRisk)}</span>
+        </div>
+        <div class="risk-bar-item">
+          <span class="risk-bar-dot" style="background:#B8860B"></span>
+          <span>State Tax Impact</span>
+          <span class="risk-bar-pct" style="color:#B8860B">${formatCurrency(r.stateTax)}</span>
+        </div>
       </div>
 
-      <!-- MAIN OFFER -->
-      <div class="offer-card anim-fade-in-up anim-delay-5">
-        <div class="offer-badge-top">🔥 2026 UPDATED EDITION</div>
-        <h2 class="offer-title">The 2026 Retiree Asset<br/>Protection Blueprint</h2>
-        <p class="offer-tagline">The step-by-step guide trusted by 12,000+ American retirees to legally shield their wealth from Probate, Medicaid seizures, and IRS estate taxes.</p>
+      <div class="diagnosis-disclaimer">This is an estimate, not a guarantee. Actual costs vary based on individual circumstances and state laws. Taking action now can help protect more of your assets and your family's future.</div>
 
-        <ul class="offer-features">
-          <li>✅ State-specific Probate avoidance strategies for ${appState.stateCode}</li>
-          <li>✅ The Medicaid 5-Year Look-Back Rule loophole (Chapter 4)</li>
-          <li>✅ IRS Estate Tax exemption maximization playbook</li>
-          <li>✅ Living Trust vs. Will: The $50,000 decision matrix</li>
-          <li>✅ Emergency asset re-titling checklist</li>
-          <li>✅ Bonus: "The 7 Questions to Ask Any Estate Attorney"</li>
+      <div class="diagnosis-cta">
+        <button id="btn-protect" class="btn btn-primary btn-large">See How to Protect Your Assets →</button>
+      </div>
+    </div>
+  `;
+
+  // Render donut chart
+  const chartEl = $('#diag-chart', el);
+  if (chartEl) {
+    renderDonutChart(chartEl, [
+      { label: 'Probate',  value: r.probateCost,  color: '#D32F2F' },
+      { label: 'Medicaid', value: r.medicaidRisk, color: '#E67E22' },
+      { label: 'Taxes',    value: r.stateTax,     color: '#B8860B' },
+    ]);
+  }
+
+  $('#btn-protect', el).addEventListener('click', () => goToStep('checkout'));
+}
+
+/* ════════════════════════════════════════════════════════════
+   CHECKOUT PAGE
+   ════════════════════════════════════════════════════════════ */
+
+export function renderCheckoutPage(el, appState, goToStep) {
+  el.innerHTML = `
+    <div class="step-checkout anim-fade-in-up">
+      <div class="checkout-product">
+        <div class="checkout-product-badge">🔥 2026 UPDATED EDITION</div>
+        <h2 class="checkout-product-title">2026 Retiree Asset Protection Blueprint</h2>
+        <p class="checkout-product-tagline">Your step-by-step guide to protect more of your assets and your family.</p>
+        <div class="checkout-product-image">
+          <div class="checkout-book-mockup">2026<br/>RETIREE ASSET<br/>PROTECTION<br/>BLUEPRINT</div>
+        </div>
+
+        <h3>What's Included:</h3>
+        <ul class="checkout-features">
+          <li>✅ Personalized Estate Risk Report</li>
+          <li>✅ Asset Protection Strategies</li>
+          <li>✅ Medicaid &amp; Long-Term Care Planning</li>
+          <li>✅ Avoid Probate &amp; Save Taxes</li>
+          <li>✅ Action Plan for You and Your Family</li>
+          <li>✅ Lifetime Updates &amp; Free Access</li>
         </ul>
 
-        <div class="offer-price-anchor">
-          <div class="price-compare">
-            <div class="price-line"><span class="price-item">Standard Legal Consultation</span><span class="price-val line-through">$1,500</span></div>
-            <div class="price-line"><span class="price-item">Estate Planning Attorney (avg.)</span><span class="price-val line-through">$3,000</span></div>
-            <div class="price-line"><span class="price-item">Financial Advisor Session</span><span class="price-val line-through">$500</span></div>
-          </div>
-          <div class="price-total-line">
-            <span>Total Value</span>
-            <span class="line-through">$5,000</span>
-          </div>
-          <div class="price-today">
-            <span>Your Access Today</span>
-            <span class="price-today-val">$67</span>
-          </div>
-        </div>
-
         <!-- ORDER BUMP -->
-        <div class="order-bump" id="order-bump">
+        <div class="checkout-bump" id="order-bump">
           <label class="bump-checkbox-wrap">
             <input type="checkbox" id="bump-check" class="bump-checkbox">
             <div class="bump-content">
-              <div class="bump-header">
-                <span class="bump-tag">⚡ ONE-TIME ADD-ON</span>
-                <span class="bump-price">+$27</span>
-              </div>
-              <div class="bump-title">Yes! Add the 24-Hour Roth IRA Restructuring Checklist</div>
-              <div class="bump-desc">Learn how to legally reposition your IRA/401(k) to minimize taxes and protect retirement funds from Medicaid spend-down — actionable in 24 hours.</div>
+              <div class="bump-title">Yes! Add the Retirement Account Protection Checklist</div>
+              <div class="bump-price">+$27</div>
+              <div class="bump-desc">Protect IRAs, 401(k)s, and other accounts from common estate planning mistakes.</div>
             </div>
           </label>
         </div>
+      </div>
 
-        <!-- LEAD CAPTURE + CTA -->
-        <form class="offer-form" id="offer-form">
-          <div class="offer-form-row">
-            <div class="input-group"><label class="input-label">First Name</label><input type="text" class="input-field" id="off-fname" placeholder="John" required></div>
-            <div class="input-group"><label class="input-label">Last Name</label><input type="text" class="input-field" id="off-lname" placeholder="Smith" required></div>
+      <div class="checkout-form-section">
+        <div class="checkout-form-header">
+          <h3>🔒 Secure Access</h3>
+          <p>Your information is 100% secure.</p>
+        </div>
+        <form class="checkout-form" id="checkout-form">
+          <div class="input-group">
+            <label class="input-label">First Name</label>
+            <input type="text" class="input-field" id="off-fname" placeholder="e.g. John" required>
           </div>
-          <div class="input-group"><label class="input-label">Email Address</label><input type="email" class="input-field" id="off-email" placeholder="john@example.com" required></div>
-          <div class="input-group"><label class="input-label">Phone Number</label><input type="tel" class="input-field" id="off-phone" placeholder="(555) 123-4567" required></div>
-          <button type="submit" class="btn btn-danger btn-large btn-full btn-pulse" id="btn-secure">🔒 Secure My Assets & Continue — <span id="offer-total-display">$67</span></button>
+          <div class="input-group">
+            <label class="input-label">Email Address</label>
+            <input type="email" class="input-field" id="off-email" placeholder="e.g. john@email.com" required>
+          </div>
+          <div class="input-group">
+            <label class="input-label">Phone (Optional)</label>
+            <input type="tel" class="input-field" id="off-phone" placeholder="e.g. (555) 123-4567">
+          </div>
+
+          <div class="checkout-total-section">
+            <div class="checkout-total-label">Total Due Today</div>
+            <div class="checkout-total" id="checkout-total">$67</div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-large btn-full">Continue to Secure Checkout — <span id="checkout-total-btn">$67</span></button>
         </form>
 
-        <div class="offer-guarantees">
-          <span>🔒 256-bit SSL</span>
-          <span>💰 60-Day Money-Back Guarantee</span>
-          <span>📧 Instant Digital Delivery</span>
+        <div class="checkout-guarantees">
+          <span>💰 30-Day Money-Back</span>
+          <span>🔒 Secure 256-bit SSL Encryption</span>
+          <span>🇺🇸 U.S. Based Customer Support</span>
         </div>
       </div>
-    </div>`;
+    </div>
+  `;
 
-  // Render chart
-  renderDonutChart($('#diag-chart'), [
-    { label: 'Probate', value: r.probateCost, color: '#ff4757' },
-    { label: 'Medicaid', value: r.medicaidRisk, color: '#ff9f43' },
-    { label: 'Estate Tax', value: r.stateTax, color: '#fbbf24' },
-  ], { size: 200, centerText: formatCurrency(r.totalAtRisk), centerSubtext: 'Exposed' });
+  // ─── Order bump toggle ───
+  const bumpCheck = $('#bump-check', el);
+  const totalEl = $('#checkout-total', el);
+  const totalBtnEl = $('#checkout-total-btn', el);
 
-  // Bump toggle
-  const bumpCheck = $('#bump-check');
-  const totalDisplay = $('#offer-total-display');
-  bumpCheck.addEventListener('change', () => {
-    totalDisplay.textContent = bumpCheck.checked ? '$94' : '$67';
-  });
-
-  // Phone mask
-  const phoneInp = $('#off-phone');
-  phoneInp.addEventListener('input', () => {
-    const d = phoneInp.value.replace(/\D/g, '').slice(0, 10);
-    if (d.length <= 3) { phoneInp.value = d; return; }
-    if (d.length <= 6) { phoneInp.value = `(${d.slice(0,3)}) ${d.slice(3)}`; return; }
-    phoneInp.value = `(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}`;
-  });
-
-  // Form submit
-  $('#offer-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    unbindExitIntent();
-    appState.lead = {
-      firstName: $('#off-fname').value.trim(),
-      lastName: $('#off-lname').value.trim(),
-      email: $('#off-email').value.trim(),
-      phone: '+1' + $('#off-phone').value.replace(/\D/g, ''),
-    };
+  function updateTotal() {
+    const base = 67;
+    const bump = bumpCheck.checked ? 27 : 0;
+    const amount = base + bump;
     appState.orderBump = bumpCheck.checked;
-    appState.orderTotal = bumpCheck.checked ? 94 : 67;
+    appState.orderTotal = amount;
+    totalEl.textContent = `$${amount}`;
+    totalBtnEl.textContent = `$${amount}`;
+  }
 
-    await submitLead({
-      leadInfo: appState.lead,
-      financialProfile: { age: appState.age, maritalStatus: appState.maritalStatus, state: appState.stateCode, netWorth: r.totalNetWorth, hasTrust: appState.hasTrust },
-      calculatedRisk: r,
-    });
+  bumpCheck.addEventListener('change', updateTotal);
 
-    console.log('[Funnel] Main offer accepted:', appState.orderTotal);
-    // In production: process Stripe payment here, then redirect
+  // ─── Phone mask ───
+  const phoneInput = $('#off-phone', el);
+  phoneInput.addEventListener('input', (e) => {
+    e.target.value = formatPhone(e.target.value);
+  });
+
+  // ─── Form submit ───
+  $('#checkout-form', el).addEventListener('submit', async (e) => {
+    e.preventDefault();
+    appState.lead.firstName = $('#off-fname', el).value.trim();
+    appState.lead.email = $('#off-email', el).value.trim();
+    appState.lead.phone = phoneInput.value.trim();
+
+    try {
+      await submitLead({
+        ...appState.lead,
+        ageRange: appState.ageRange,
+        primaryConcern: appState.primaryConcern,
+        stateCode: appState.stateCode,
+        homeValue: appState.homeValue,
+        liquidAssets: appState.liquidAssets,
+        hasTrust: appState.hasTrust,
+        orderBump: appState.orderBump,
+        orderTotal: appState.orderTotal,
+      });
+    } catch (err) {
+      console.warn('Lead submit failed:', err);
+    }
+
     goToStep('upsell');
   });
 
-  // Bind exit intent for downsell
-  bindExitIntent();
+  // ─── Exit-intent downsell ───
+  let exitShown = false;
+  document.addEventListener('mouseleave', function handleExit(e) {
+    if (e.clientY > 10 || exitShown) return;
+    if (appState.currentStep !== 'checkout') {
+      document.removeEventListener('mouseleave', handleExit);
+      return;
+    }
+    exitShown = true;
+    showDownsellModal(appState, goToStep);
+  });
 }
 
-// ─── Upsell Page (OTO) ───
-export function renderUpsell(el, appState, goToStep) {
+/* ─── Phone formatting helper ─── */
+
+function formatPhone(val) {
+  const d = val.replace(/\D/g, '').slice(0, 10);
+  if (d.length <= 3) return d;
+  if (d.length <= 6) return `(${d.slice(0, 3)}) ${d.slice(3)}`;
+  return `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}`;
+}
+
+/* ════════════════════════════════════════════════════════════
+   UPSELL PAGE
+   ════════════════════════════════════════════════════════════ */
+
+export function renderUpsellPage(el, appState, goToStep) {
   el.innerHTML = `
     <div class="step-upsell anim-fade-in-up">
-      <div class="upsell-stop-badge">🛑 WAIT — ONE-TIME OFFER</div>
-      <h1 class="upsell-headline">STOP! Don't Form Your Plan<br/>with Blank Pages.</h1>
-      <h2 class="upsell-subheadline">Upgrade to the <span class="text-gradient">Complete Legal Forms Vault</span></h2>
+      <div class="upsell-badge">Recommended Add-On</div>
+      <h1 class="upsell-headline">Estate Planning Document Prep Kit</h1>
+      <p class="upsell-subtitle">Have attorney-ready documents — without the high cost.</p>
 
-      <p class="upsell-body">Get access to our AI-generated, attorney-reviewed <strong>Living Trust & Last Will</strong> customizable templates to execute your plan legally from home — without spending $3,000+ on lawyers.</p>
+      <div class="upsell-features-grid">
+        <div class="upsell-feature">📄 Power of Attorney (Financial)</div>
+        <div class="upsell-feature">📄 Health Care Directive</div>
+        <div class="upsell-feature">📄 HIPAA Authorization</div>
+        <div class="upsell-feature">📄 Beneficiary Review Guide</div>
+        <div class="upsell-feature">📄 Step-by-Step Instructions</div>
+        <div class="upsell-feature">📄 Attorney Review Checklist</div>
+      </div>
 
-      <div class="upsell-includes">
-        <h3>What's Inside the Vault:</h3>
-        <ul>
-          <li>📄 Customizable Revocable Living Trust Template</li>
-          <li>📄 Last Will & Testament Template</li>
-          <li>📄 Healthcare Power of Attorney</li>
-          <li>📄 Financial Power of Attorney</li>
-          <li>📄 HIPAA Authorization Form</li>
-          <li>📄 Beneficiary Designation Worksheet</li>
-          <li>🎥 Step-by-step video walkthrough for each document</li>
-          <li>✅ Attorney-reviewed for all 50 states</li>
-        </ul>
+      <div class="upsell-why">
+        <h3>Why add this now?</h3>
+        <p>Save time, reduce legal fees, and ensure your plan is complete. Special pricing today for seniors.</p>
       </div>
 
       <div class="upsell-price-section">
-        <div class="upsell-price-was">Standard Legal Package Value: <span class="line-through">$3,000</span></div>
-        <div class="upsell-price-offer">Our Price: <span class="line-through">$497</span></div>
-        <div class="upsell-price-today">Today Only: <span class="upsell-price-big">$197</span></div>
-        <div class="upsell-price-note">One-time payment. No subscriptions. Instant access.</div>
+        <div class="upsell-price-label">Special Add-On Price</div>
+        <div class="upsell-price-big">$197</div>
+        <div class="upsell-price-note">One-Time Payment</div>
       </div>
 
-      <button id="btn-upsell-yes" class="btn btn-danger btn-large btn-full btn-pulse">Yes, Add the Legal Forms Vault to My Order ($197)</button>
+      <button id="btn-upsell-yes" class="btn btn-primary btn-large btn-full">Yes, Add to My Order — $197</button>
+      <a id="btn-upsell-no" class="decline-link">No thanks, continue to my order</a>
+    </div>
+  `;
 
-      <div class="upsell-secure-badges">
-        <span>🔒 Secure 1-Click Upgrade</span>
-        <span>💰 60-Day Guarantee</span>
-      </div>
-
-      <a id="btn-upsell-no" class="decline-link">No thanks, I prefer to write my legal documents from scratch and risk court errors.</a>
-    </div>`;
-
-  $('#btn-upsell-yes').addEventListener('click', () => {
+  $('#btn-upsell-yes', el).addEventListener('click', () => {
     appState.upsellAccepted = true;
     appState.orderTotal += 197;
-    console.log('[Funnel] Upsell accepted. New total:', appState.orderTotal);
-    // In production: trigger Stripe 1-click charge for $197
     goToStep('thankyou');
   });
 
-  $('#btn-upsell-no').addEventListener('click', (e) => {
+  $('#btn-upsell-no', el).addEventListener('click', (e) => {
     e.preventDefault();
-    appState.upsellAccepted = false;
-    console.log('[Funnel] Upsell declined.');
     goToStep('thankyou');
   });
 }
 
-// ─── Thank You Page ───
-export function renderThankYou(el, appState) {
-  const name = appState.lead?.firstName || 'there';
+/* ════════════════════════════════════════════════════════════
+   THANK YOU PAGE
+   ════════════════════════════════════════════════════════════ */
+
+export function renderThankYouPage(el, appState) {
+  const bump = appState.orderBump;
+  const upsell = appState.upsellAccepted;
+  const total = 67 + (bump ? 27 : 0) + (upsell ? 197 : 0);
+
   el.innerHTML = `
     <div class="step-thankyou anim-fade-in-up">
-      <div class="ty-icon">🎉</div>
-      <h1 class="ty-title">Thank You, ${name}!</h1>
-      <p class="ty-subtitle">Your order has been confirmed. Check your email for instant access to your materials.</p>
+      <div class="ty-checkmark">✓</div>
+      <h1 class="ty-title">Thank You</h1>
+      <p class="ty-subtitle">Your order has been received.</p>
 
       <div class="ty-order-summary card-glass-static">
         <h3 class="ty-summary-title">Order Summary</h3>
-        <div class="ty-item"><span>The 2026 Retiree Asset Protection Blueprint</span><span>$67</span></div>
-        ${appState.orderBump ? '<div class="ty-item"><span>24-Hour Roth IRA Restructuring Checklist</span><span>$27</span></div>' : ''}
-        ${appState.upsellAccepted ? '<div class="ty-item"><span>Complete Legal Forms Vault</span><span>$197</span></div>' : ''}
-        <div class="ty-total"><span>Total Charged</span><span>$${appState.orderTotal || 67}</span></div>
+        <div class="ty-item"><span>2026 Retiree Asset Protection Blueprint</span><span>$67.00</span></div>
+        ${bump ? '<div class="ty-item"><span>Retirement Account Protection Checklist (Order Bump)</span><span>$27.00</span></div>' : ''}
+        ${upsell ? '<div class="ty-item"><span>Estate Planning Document Prep Kit</span><span>$197.00</span></div>' : ''}
+        <div class="ty-total"><span>Total Paid</span><span>$${total}.00</span></div>
       </div>
-    </div>`;
+
+      <div class="ty-next-steps">
+        <h3>What's Next?</h3>
+        <div class="ty-step">
+          <div class="ty-step-number">1</div>
+          <div class="ty-step-content"><h4>Check Your Email</h4><p>We've sent your receipt and access details.</p></div>
+        </div>
+        <div class="ty-step">
+          <div class="ty-step-number">2</div>
+          <div class="ty-step-content"><h4>Access Your Guide</h4><p>Log in or use the link in your email to access your resources.</p></div>
+        </div>
+        <div class="ty-step">
+          <div class="ty-step-number">3</div>
+          <div class="ty-step-content"><h4>Download &amp; Take Action</h4><p>Review your report and start protecting your family's future today.</p></div>
+        </div>
+      </div>
+
+      <div class="ty-help">
+        <h4>Need Help? We're here for you.</h4>
+        <p>Email: support@retireeshieldreport.com &nbsp;|&nbsp; Phone: (877) 555-0123</p>
+      </div>
+    </div>
+  `;
+}
+
+/* ════════════════════════════════════════════════════════════
+   DOWNSELL MODAL (Exit-Intent)
+   ════════════════════════════════════════════════════════════ */
+
+function showDownsellModal(appState, goToStep) {
+  // Remove any existing modal
+  const existing = document.querySelector('.downsell-overlay');
+  if (existing) existing.remove();
+
+  const overlay = document.createElement('div');
+  overlay.className = 'downsell-overlay';
+  overlay.innerHTML = `
+    <div class="downsell-modal anim-fade-in-up">
+      <button class="downsell-close" id="ds-close">&times;</button>
+      <h2 class="downsell-title">Wait — Don't Leave Empty-Handed</h2>
+      <p class="downsell-text">Your estate risk snapshot showed <strong>${formatCurrency(appState.results?.totalAtRisk || 0)}</strong> could be at risk. Take the first step to protect your family.</p>
+      <p class="downsell-offer">Get the <strong>2026 Retiree Asset Protection Blueprint</strong> for just <strong>$67</strong> — a fraction of what probate or legal fees can cost.</p>
+      <button class="btn btn-primary btn-large btn-full" id="ds-stay">Yes, I Want to Protect My Family</button>
+      <a class="decline-link" id="ds-leave">No thanks, I'll risk it</a>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  // Close modal
+  const close = () => overlay.remove();
+  document.getElementById('ds-close').addEventListener('click', close);
+  document.getElementById('ds-leave').addEventListener('click', (e) => {
+    e.preventDefault();
+    close();
+  });
+  document.getElementById('ds-stay').addEventListener('click', () => {
+    close();
+    // Scroll back to form
+    const form = document.getElementById('checkout-form');
+    if (form) form.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // Close on overlay click
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) close();
+  });
 }

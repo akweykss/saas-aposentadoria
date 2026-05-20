@@ -1,45 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- SEO -->
-  <title>Estate & Medicaid Shield Calculator | Protect Your Family's Wealth</title>
-  <meta name="description" content="Free calculator: discover how much of your wealth is exposed to Probate costs, Medicaid spend-down, and State Estate Taxes. Get your personalized risk report in 60 seconds." />
-  <meta name="keywords" content="estate planning calculator, probate cost calculator, medicaid asset protection, estate tax calculator, wealth protection" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Estate & Medicaid Shield Calculator" />
-  <meta property="og:description" content="Discover how much of your wealth is at risk from Probate, Medicaid, and Estate Taxes." />
-  <meta property="og:type" content="website" />
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retiree Shield Report | Free Estate Risk Assessment</title>
+  <meta name="description" content="Get your free 60-second estate risk assessment. See what probate, Medicaid, or state taxes could cost your family — and how to protect your assets.">
+  <link rel="icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="app">
-    <!-- Progress bar -->
-    <div id="progress-container" class="progress-container hidden">
-      <div class="progress-track">
-        <div id="progress-fill" class="progress-fill"></div>
+  <nav class="site-navbar">
+    <div class="navbar-inner">
+      <a class="navbar-logo" href="/">🛡️ Retiree Shield Report</a>
+      <div class="navbar-links">
+        <a href="#">How It Works</a>
+        <a href="#">About</a>
+        <a href="#">FAQs</a>
+        <a href="#">Login</a>
       </div>
-      <span id="progress-label" class="progress-label">Step 1 of 6</span>
     </div>
+  </nav>
 
-    <!-- Main content area -->
-    <main id="main-content" class="main-content">
-      <!-- Steps render here dynamically -->
-    </main>
+  <div id="progress-container" class="progress-container hidden">
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+    <div class="progress-label" id="progress-label">Step 1 of 4</div>
   </div>
 
-  <!-- Particle background canvas -->
-  <canvas id="bg-canvas" class="bg-canvas"></canvas>
+  <main id="main-content" class="main-content"></main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      &copy; 2026 Retiree Shield Report &nbsp;&middot;&nbsp; <a href="#">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="#">Terms of Use</a> &nbsp;&middot;&nbsp; <a href="#">Disclaimer</a>
+    </div>
+  </footer>
 
   <script type="module" src="/src/main.js"></script>
 </body>

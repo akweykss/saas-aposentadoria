@@ -40,41 +40,39 @@
 /* Hero image - real assets */
 .hero-image {
   position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
   min-height: 520px;
   overflow: visible;
 }
 
 .hero-monitor-img {
-  width: 80%;
-  max-width: 480px;
+  position: absolute;
+  top: 0;
+  right: -20px;
+  width: 58%;
+  max-width: 340px;
   height: auto;
   border-radius: 4px;
-  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.12));
-  position: relative;
-  right: -30px;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.1));
   z-index: 1;
 }
 
 .hero-shield-overlay-img {
   position: absolute;
-  bottom: -16px;
+  bottom: 60px;
   right: -20px;
-  width: 110px;
+  width: 100px;
   height: auto;
   z-index: 3;
   filter: drop-shadow(0 4px 12px rgba(27,122,61,0.25));
   animation: floatUp 800ms ease forwards;
 }
 
-/* Person character overlay */
+/* Person character — main visual element */
 .hero-person-img {
   position: absolute;
-  left: -12%;
+  left: 10%;
   bottom: 0;
-  width: 78%;
+  width: 75%;
   max-width: 440px;
   height: auto;
   z-index: 2;
@@ -86,11 +84,11 @@
 .hero-image::before {
   content: '';
   position: absolute;
-  left: -5%;
-  bottom: 5%;
+  left: 10%;
+  bottom: 2%;
   width: 60%;
-  height: 90%;
-  background: radial-gradient(ellipse at center 60%, rgba(27,122,61,0.13) 0%, rgba(27,122,61,0.06) 45%, transparent 72%);
+  height: 95%;
+  background: radial-gradient(ellipse at center 55%, rgba(27,122,61,0.13) 0%, rgba(27,122,61,0.06) 45%, transparent 72%);
   z-index: 1;
   border-radius: 50%;
   pointer-events: none;
@@ -533,9 +531,9 @@
   }
   .hero-title { font-size: 3rem; }
   .hero-subtitle { font-size: 1.125rem; line-height: 1.7; }
-  .hero-image { min-height: 560px; }
-  .hero-monitor-img { max-width: 520px; right: -40px; }
-  .hero-person-img { max-width: 480px; width: 82%; }
+  .hero-image { min-height: 580px; }
+  .hero-monitor-img { max-width: 380px; right: -30px; }
+  .hero-person-img { max-width: 500px; width: 80%; }
   .trust-stats-bar { gap: 32px; }
   .trust-stat-number { font-size: 1.75rem; }
   .step-question { font-size: 1.75rem; }

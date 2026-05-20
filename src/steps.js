@@ -43,6 +43,31 @@ function fmtInput(e) {
   e.target.value = raw.toLocaleString('en-US');
 }
 
+/* ──────────────── URL ↔ Step Mapping ─────────────────────── */
+
+const STEP_TO_PATH = {
+  0: '/',
+  1: '/quiz/1',
+  2: '/quiz/2',
+  3: '/quiz/3',
+  4: '/diagnosis',
+  'checkout': '/checkout',
+  'upsell': '/upsell',
+  'downsell': '/downsell',
+  'thankyou': '/thankyou',
+};
+
+const PATH_TO_STEP = {};
+for (const [step, path] of Object.entries(STEP_TO_PATH)) {
+  PATH_TO_STEP[path] = isNaN(step) ? step : Number(step);
+}
+
+function getStepFromURL() {
+  const path = window.location.pathname;
+  if (PATH_TO_STEP.hasOwnProperty(path)) return PATH_TO_STEP[path];
+  return 0; // default to landing
+}
+
 /* ──────────────────── Step Navigation ───────────────────── */
 
 function goToStep(step) {
@@ -51,6 +76,9 @@ function goToStep(step) {
   setTimeout(() => {
     el.classList.remove('anim-slide-out-left');
     state.currentStep = step;
+    // Update URL without page reload
+    const path = STEP_TO_PATH[step] || '/';
+    window.history.pushState({ step }, '', path);
     renderStep(step);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, 300);
@@ -431,5 +459,16 @@ function runCalculations() {
 /* ───────────── Init ─────────────── */
 
 export function initSteps() {
-  renderStep(0);
+  // Read URL and render the correct page
+  const initialStep = getStepFromURL();
+  state.currentStep = initialStep;
+  renderStep(initialStep);
+
+  // Handle browser back/forward buttons
+  window.addEventListener('popstate', (e) => {
+    const step = e.state?.step ?? getStepFromURL();
+    state.currentStep = step;
+    renderStep(step);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 }

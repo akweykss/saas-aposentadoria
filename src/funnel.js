@@ -170,6 +170,12 @@ export function renderCheckoutPage(el, appState, goToStep) {
             <p style="font-size: 14px; color: var(--color-text-light); margin-top: 4px;">Click below to complete your order securely via Hotmart.</p>
           </div>
 
+          <div style="text-align: center; margin: 16px 0;">
+            <span style="font-size: 14px; color: var(--color-text-light); text-decoration: line-through;">$197</span>
+            <span style="font-size: 36px; font-weight: 800; color: var(--color-primary); margin-left: 8px;">$67</span>
+            <span style="font-size: 13px; color: var(--color-text-light); display: block; margin-top: 2px;">One-time payment · Instant digital access</span>
+          </div>
+
           <a onclick="return false;" href="https://pay.hotmart.com/N105921395O?checkoutMode=2" class="btn btn-primary btn-large btn-full hotmart-fb hotmart__button-checkout" style="font-size: 18px; padding: 16px; display: block; text-align: center;">Continue to Secure Checkout →</a>
 
           <div class="checkout-guarantees" style="margin-top: 16px;">

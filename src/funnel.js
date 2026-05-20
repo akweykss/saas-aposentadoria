@@ -22,8 +22,8 @@ export function renderDiagnosisPage(el, appState, goToStep) {
   el.innerHTML = `
     <div class="step-diagnosis anim-fade-in-up">
       <div class="diagnosis-header">
-        <h2>Your Estate Risk Snapshot</h2>
-        <p>Here's what could be at risk without proper planning.</p>
+        <h2>WARNING: Your Estate is Vulnerable</h2>
+        <p>Based on your answers, this is the brutal reality of what probate courts, nursing homes, and taxes could strip away from your family. Every dollar here is money your heirs may never see.</p>
       </div>
 
       <div class="diagnosis-main">
@@ -106,11 +106,12 @@ export function renderDiagnosisPage(el, appState, goToStep) {
         <div class="diagnosis-trust-item"><span class="trust-icon">✅</span> Trusted by thousands of families nationwide</div>
         <div class="diagnosis-trust-item"><span class="trust-icon">🔒</span> Your information is secure and confidential</div>
         <div class="diagnosis-trust-item"><span class="trust-icon">👥</span> 10,000+ families protected</div>
-        <div class="diagnosis-trust-item"><span class="trust-icon">⭐</span> 4.8/5 average customer rating</div>
       </div>
-
-      <div class="diagnosis-cta">
-        <button id="btn-protect" class="btn btn-primary btn-large">See How to Protect Your Assets →</button>
+      
+      <div class="step-diagnosis-action">
+        <h3>Don't Let the System Drain Your Legacy.</h3>
+        <p>The good news? You can legally shield your assets from nursing homes, skip the grueling probate process, and ensure 100% of your wealth goes exactly where you want it. But you must put the right documents in place <strong>before</strong> a crisis hits.</p>
+        <button class="btn btn-primary btn-large" id="btn-protect">Discover How to Shield Your Wealth →</button>
       </div>
     </div>
   `;
@@ -138,62 +139,29 @@ export function renderCheckoutPage(el, appState, goToStep) {
       <div class="checkout-product">
         <div class="checkout-product-badge">🔥 2026 UPDATED EDITION</div>
         <h2 class="checkout-product-title">2026 Retiree Asset Protection Blueprint</h2>
-        <p class="checkout-product-tagline">Your step-by-step guide to protect more of your assets and your family.</p>
+        <p class="checkout-product-tagline">The insider strategies to legally shield your home and life savings from nursing homes, probate courts, and greedy tax collectors.</p>
         <div class="checkout-product-image">
           <img src="/assets/book-blueprint.png" alt="2026 Retiree Asset Protection Blueprint" class="checkout-book-img">
         </div>
 
-        <h3>What's Included:</h3>
+        <h3>Inside Your Blueprint You'll Discover:</h3>
         <ul class="checkout-features">
-          <li>✅ Personalized Estate Risk Report</li>
-          <li>✅ Asset Protection Strategies</li>
-          <li>✅ Medicaid &amp; Long-Term Care Planning</li>
-          <li>✅ Avoid Probate &amp; Save Taxes</li>
-          <li>✅ Action Plan for You and Your Family</li>
-          <li>✅ Lifetime Updates &amp; Free Access</li>
+          <li>✅ <strong>The Nursing Home Shield:</strong> How to protect your house and savings even if you suddenly need long-term care.</li>
+          <li>✅ <strong>Probate Avoidance Tactics:</strong> Keep your family out of court and stop attorneys from taking a percentage of your estate.</li>
+          <li>✅ <strong>Tax-Saving Loopholes:</strong> Legally structure your assets so your heirs get everything, not the IRS.</li>
+          <li>✅ <strong>The Trust Advantage:</strong> Why a simple will is never enough, and the exact type of trust you actually need.</li>
+          <li>✅ <strong>Step-by-Step Action Plan:</strong> No legal jargon. Just clear, simple steps to lock down your legacy today.</li>
         </ul>
 
-        <!-- ORDER BUMP -->
-        <div class="checkout-bump" id="order-bump">
-          <label class="bump-checkbox-wrap">
-            <input type="checkbox" id="bump-check" class="bump-checkbox">
-            <div class="bump-content">
-              <div class="bump-title">Yes! Add the Retirement Account Protection Checklist</div>
-              <div class="bump-price">+$27</div>
-              <div class="bump-desc">Protect IRAs, 401(k)s, and other accounts from common estate planning mistakes.</div>
-            </div>
-          </label>
+      <div class="checkout-form-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 20px;">
+        <div class="checkout-form-header" style="margin-bottom: 30px;">
+          <h3 style="font-size: 24px; color: var(--color-primary);">🔒 Secure Checkout</h3>
+          <p style="font-size: 16px; color: var(--color-text-light);">Click below to complete your order securely via Hotmart.</p>
         </div>
-      </div>
 
-      <div class="checkout-form-section">
-        <div class="checkout-form-header">
-          <h3>🔒 Secure Access</h3>
-          <p>Your information is 100% secure.</p>
-        </div>
-        <form class="checkout-form" id="checkout-form">
-          <div class="input-group">
-            <label class="input-label">First Name</label>
-            <input type="text" class="input-field" id="off-fname" placeholder="e.g. John" required>
-          </div>
-          <div class="input-group">
-            <label class="input-label">Email Address</label>
-            <input type="email" class="input-field" id="off-email" placeholder="e.g. john@email.com" required>
-          </div>
-          <div class="input-group">
-            <label class="input-label">Phone (Optional)</label>
-            <input type="tel" class="input-field" id="off-phone" placeholder="e.g. (555) 123-4567">
-          </div>
+        <a onclick="return false;" href="https://pay.hotmart.com/N105921395O?checkoutMode=2" class="btn btn-primary btn-large btn-full hotmart-fb hotmart__button-checkout" style="font-size: 20px; padding: 18px; max-width: 400px; display: inline-block;">Continue to Secure Checkout →</a>
 
-          <div class="checkout-total-section">
-            <div class="checkout-total-label">Total Due Today</div>
-            <div class="checkout-total" id="checkout-total">$67</div>
-          </div>
-
-          <button type="submit" class="btn btn-primary btn-large btn-full">Continue to Secure Checkout — <span id="checkout-total-btn">$67</span></button>
-        </form>
-
-        <div class="checkout-guarantees">
+        <div class="checkout-guarantees" style="margin-top: 30px;">
           <span>💰 30-Day Money-Back Guarantee</span>
           <span>🔒 Secure 256-bit SSL Encryption</span>
           <span>🇺🇸 U.S. Based Customer Support</span>
@@ -202,68 +170,26 @@ export function renderCheckoutPage(el, appState, goToStep) {
     </div>
   `;
 
-  // ─── Order bump toggle ───
-  const bumpCheck = $('#bump-check', el);
-  const totalEl = $('#checkout-total', el);
-  const totalBtnEl = $('#checkout-total-btn', el);
-
-  function updateTotal() {
-    const base = 67;
-    const bump = bumpCheck.checked ? 27 : 0;
-    const amount = base + bump;
-    appState.orderBump = bumpCheck.checked;
-    appState.orderTotal = amount;
-    totalEl.textContent = `$${amount}`;
-    totalBtnEl.textContent = `$${amount}`;
-  }
-
-  bumpCheck.addEventListener('change', updateTotal);
-
-  // ─── Phone mask ───
-  const phoneInput = $('#off-phone', el);
-  phoneInput.addEventListener('input', (e) => {
-    e.target.value = formatPhone(e.target.value);
-  });
-
-  // ─── Form submit ───
-  $('#checkout-form', el).addEventListener('submit', async (e) => {
-    e.preventDefault();
-    appState.lead.firstName = $('#off-fname', el).value.trim();
-    appState.lead.email = $('#off-email', el).value.trim();
-    appState.lead.phone = phoneInput.value.trim();
-
-    try {
-      await submitLead({
-        firstName: appState.lead.firstName,
-        email: appState.lead.email,
-        phone: appState.lead.phone,
+  // Quando o botão for clicado, podemos disparar o webhook com os dados do quiz
+  const hotmartBtn = el.querySelector('.hotmart__button-checkout');
+  if (hotmartBtn) {
+    hotmartBtn.addEventListener('click', () => {
+      // Dispara webhook em background com dados do quiz (sem nome/email que serão preenchidos na Hotmart)
+      submitLead({
+        firstName: 'Hotmart',
+        email: 'Checkout',
         ageRange: appState.ageRange,
         primaryConcern: appState.primaryConcern,
         stateCode: appState.stateCode,
         homeValue: appState.homeValue,
         liquidAssets: appState.liquidAssets,
-        hasTrust: appState.hasTrust,
-        orderBump: appState.orderBump,
-        orderTotal: appState.orderTotal,
-      });
-    } catch (err) {
-      console.warn('Lead submit failed:', err);
-    }
-
-    goToStep('upsell');
-  });
-
-  // ─── Exit-intent downsell ───
-  let exitShown = false;
-  document.addEventListener('mouseleave', function handleExit(e) {
-    if (e.clientY > 10 || exitShown) return;
-    if (appState.currentStep !== 'checkout') {
-      document.removeEventListener('mouseleave', handleExit);
-      return;
-    }
-    exitShown = true;
-    showDownsellModal(appState, goToStep);
-  });
+        hasTrust: appState.hasTrust
+      }).catch(console.warn);
+      
+      // Simula o avanço
+      setTimeout(() => goToStep('upsell'), 3000); 
+    });
+  }
 }
 
 /* ─── Phone formatting helper ─── */
@@ -291,25 +217,35 @@ export function renderUpsellPage(el, appState, goToStep) {
           <img src="/assets/document-prep-kit.png" alt="Document Prep Kit" class="upsell-product-img">
         </div>
         <div class="upsell-features-side">
+          <p style="font-size: 16px; margin-bottom: 20px; color: var(--color-text); line-height: 1.6;">
+            The Blueprint shows you exactly <em>what</em> to do. But to make it legally binding, you need the right documents. You could pay an estate attorney $3,000+ to draft these... or you can use our attorney-reviewed <strong>Complete Legal Forms Vault</strong> right now.
+          </p>
+          <div class="upsell-feature-item">
+            <div class="upsell-feature-check">✅</div>
+            <div class="upsell-feature-content">
+              <div class="upsell-feature-title">Financial Power of Attorney</div>
+              <div class="upsell-feature-desc">Ensure your bills are paid and assets managed by someone you trust if you're incapacitated.</div>
+            </div>
+          </div>
+          <div class="upsell-feature-item">
+            <div class="upsell-feature-check">✅</div>
+            <div class="upsell-feature-content">
+              <div class="upsell-feature-title">Advance Healthcare Directive</div>
+              <div class="upsell-feature-desc">Dictate your exact medical wishes so your family doesn't have to make agonizing choices.</div>
+            </div>
+          </div>
+          <div class="upsell-feature-item">
+            <div class="upsell-feature-check">✅</div>
+            <div class="upsell-feature-content">
+              <div class="upsell-feature-title">Last Will and Testament</div>
+              <div class="upsell-feature-desc">The foundational document to guarantee your assets go exactly where you want them.</div>
+            </div>
+          </div>
           <div class="upsell-feature-item">
             <div class="upsell-feature-check">✅</div>
             <div class="upsell-feature-content">
               <div class="upsell-feature-title">Power of Attorney (Financial)</div>
               <div class="upsell-feature-desc">Give someone you trust the authority to manage your financial affairs.</div>
-            </div>
-          </div>
-          <div class="upsell-feature-item">
-            <div class="upsell-feature-check">✅</div>
-            <div class="upsell-feature-content">
-              <div class="upsell-feature-title">Health Care Directive</div>
-              <div class="upsell-feature-desc">Ensure your medical wishes are known and respected.</div>
-            </div>
-          </div>
-          <div class="upsell-feature-item">
-            <div class="upsell-feature-check">✅</div>
-            <div class="upsell-feature-content">
-              <div class="upsell-feature-title">HIPAA Authorization</div>
-              <div class="upsell-feature-desc">Allow trusted individuals to access your health information.</div>
             </div>
           </div>
           <div class="upsell-feature-item">
@@ -344,16 +280,11 @@ export function renderUpsellPage(el, appState, goToStep) {
         </div>
       </div>
 
-      <div class="upsell-price-section">
-        <div class="upsell-price-label">Special Add-On Price</div>
-        <div class="upsell-price-big">$197</div>
-        <div class="upsell-price-note">One-Time Payment • No Recurring Fees</div>
-      </div>
+      <!-- HOTMART - Sales Funnel Widget -->
+      <div id="hotmart-sales-funnel" style="margin-top: 30px;"></div>
+      <!-- HOTMART - Sales Funnel Widget -->
 
-      <button id="btn-upsell-yes" class="btn btn-primary btn-large btn-full">Yes, Add to My Order — $197 →</button>
-      <a id="btn-upsell-no" class="decline-link">No thanks, continue to my order</a>
-
-      <div class="upsell-trust-row">
+      <div class="upsell-trust-row" style="margin-top: 40px;">
         <div class="upsell-trust-item">
           <div class="upsell-trust-icon">🔒</div>
           <div class="upsell-trust-label">Secure & Confidential</div>
@@ -373,16 +304,63 @@ export function renderUpsellPage(el, appState, goToStep) {
     </div>
   `;
 
-  $('#btn-upsell-yes', el).addEventListener('click', () => {
-    appState.upsellAccepted = true;
-    appState.orderTotal += 197;
-    goToStep('thankyou');
-  });
+  // Initialize Hotmart Sales Funnel Widget
+  setTimeout(() => {
+    if (window.checkoutElements && document.getElementById('hotmart-sales-funnel')) {
+      try {
+        window.checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+      } catch (e) {
+        console.warn('Hotmart Sales Funnel init error:', e);
+      }
+    }
+  }, 100);
+}
 
-  $('#btn-upsell-no', el).addEventListener('click', (e) => {
-    e.preventDefault();
-    goToStep('thankyou');
-  });
+/* ════════════════════════════════════════════════════════════
+   DOWNSELL PAGE
+   ════════════════════════════════════════════════════════════ */
+
+export function renderDownsellPage(el, appState, goToStep) {
+  el.innerHTML = `
+    <div class="step-upsell anim-fade-in-up" style="max-width: 600px; margin: 40px auto; padding: 40px; background: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+      <h2 style="font-size: 28px; color: var(--color-danger); text-align: center; margin-bottom: 20px;">Wait — Don't Leave Empty-Handed</h2>
+      <p style="text-align: center; font-size: 16px; color: var(--color-text); margin-bottom: 30px;">
+        Since you decided to pass on the complete Vault, you can still get the absolute essential protection for your assets.
+      </p>
+
+      <div style="background: var(--color-bg); padding: 25px; border-radius: 8px; border: 1px solid var(--color-border); margin-bottom: 30px;">
+        <h3 style="font-size: 20px; color: var(--color-primary); margin-bottom: 15px;">The Emergency Medicaid Survival Guide</h3>
+        <p style="font-size: 15px; line-height: 1.6; margin-bottom: 15px;">
+          Learn the exact legal loopholes to protect your home and savings if you suddenly need nursing home care — before the government forces you to spend it all down.
+        </p>
+        
+        <ul style="list-style: none; padding: 0; margin-bottom: 20px;">
+          <li style="margin-bottom: 10px;">✅ <strong>Nursing Home Loophole:</strong> How to transfer assets safely.</li>
+          <li style="margin-bottom: 10px;">✅ <strong>Spousal Protection:</strong> Keep your healthy spouse from going broke.</li>
+          <li>✅ <strong>Fast-Action Plan:</strong> What to do if a medical crisis hits today.</li>
+        </ul>
+
+        <div style="text-align: center; font-weight: bold; font-size: 24px; color: var(--color-primary); margin-top: 20px;">
+          Just $37 Today
+        </div>
+      </div>
+
+      <!-- HOTMART - Sales Funnel Widget -->
+      <div id="hotmart-sales-funnel"></div>
+      <!-- HOTMART - Sales Funnel Widget -->
+    </div>
+  `;
+
+  // Initialize Hotmart Sales Funnel Widget
+  setTimeout(() => {
+    if (window.checkoutElements && document.getElementById('hotmart-sales-funnel')) {
+      try {
+        window.checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+      } catch (e) {
+        console.warn('Hotmart Sales Funnel init error:', e);
+      }
+    }
+  }, 100);
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -464,38 +442,4 @@ export function renderThankYouPage(el, appState) {
       </div>
     </div>
   `;
-}
-
-/* ════════════════════════════════════════════════════════════
-   DOWNSELL MODAL (Exit-Intent)
-   ════════════════════════════════════════════════════════════ */
-
-function showDownsellModal(appState, goToStep) {
-  const existing = document.querySelector('.downsell-overlay');
-  if (existing) existing.remove();
-
-  const overlay = document.createElement('div');
-  overlay.className = 'downsell-overlay';
-  overlay.innerHTML = `
-    <div class="downsell-modal anim-fade-in-up">
-      <button class="downsell-close" id="ds-close">&times;</button>
-      <h2 class="downsell-title">Wait — Don't Leave Empty-Handed</h2>
-      <p class="downsell-text">Your estate risk snapshot showed <strong>${formatCurrency(appState.results?.totalAtRisk || 0)}</strong> could be at risk. Take the first step to protect your family.</p>
-      <p class="downsell-offer">Get the <strong>2026 Retiree Asset Protection Blueprint</strong> for just <strong>$67</strong> — a fraction of what probate or legal fees can cost.</p>
-      <button class="btn btn-primary btn-large btn-full" id="ds-stay" style="margin-top:20px">Yes, I Want to Protect My Family</button>
-      <a class="decline-link" id="ds-leave">No thanks, I'll risk it</a>
-    </div>
-  `;
-
-  document.body.appendChild(overlay);
-
-  const close = () => overlay.remove();
-  document.getElementById('ds-close').addEventListener('click', close);
-  document.getElementById('ds-leave').addEventListener('click', (e) => { e.preventDefault(); close(); });
-  document.getElementById('ds-stay').addEventListener('click', () => {
-    close();
-    const form = document.getElementById('checkout-form');
-    if (form) form.scrollIntoView({ behavior: 'smooth' });
-  });
-  overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
 }

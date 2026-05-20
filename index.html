@@ -9,6 +9,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="text/javascript">
+    function importHotmart(){ 
+      var imported = document.createElement('script'); 
+      imported.src = 'https://static.hotmart.com/checkout/widget.min.js'; 
+      document.head.appendChild(imported); 
+      var link = document.createElement('link'); 
+      link.rel = 'stylesheet'; 
+      link.type = 'text/css'; 
+      link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css'; 
+      document.head.appendChild(link);
+    } 
+    importHotmart(); 
+  </script> 
+  <!-- Hotmart Sales Funnel Widget (Upsell / Downsell) -->
+  <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
 </head>
 <body>
   <nav class="site-navbar">

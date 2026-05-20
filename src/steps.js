@@ -1,6 +1,6 @@
 import { US_STATES } from './stateTaxData.js';
 import { calculateRisk, formatCurrency } from './calculator.js';
-import { renderDiagnosisPage, renderCheckoutPage, renderUpsellPage, renderThankYouPage } from './funnel.js';
+import { renderDiagnosisPage, renderCheckoutPage, renderUpsellPage, renderDownsellPage, renderThankYouPage } from './funnel.js';
 
 /* ───────────────────────── State ───────────────────────── */
 
@@ -68,6 +68,7 @@ function renderStep(step) {
     case 4:  renderDiagnosisPage(el, state, goToStep); break;
     case 'checkout':  renderCheckoutPage(el, state, goToStep); break;
     case 'upsell':    renderUpsellPage(el, state, goToStep);   break;
+    case 'downsell':  renderDownsellPage(el, state, goToStep); break;
     case 'thankyou':  renderThankYouPage(el, state);           break;
     default: renderLanding(el); break;
   }
@@ -81,8 +82,8 @@ function renderLanding(el) {
   el.innerHTML = `
     <div class="step-landing anim-fade-in-up">
       <div class="hero-content">
-        <h1 class="hero-title">See What Probate, Medicaid, or State Taxes Could <span class="text-danger">Cost</span> Your Family</h1>
-        <p class="hero-subtitle">Get your free <strong class="text-accent">60-second</strong> estate risk assessment and see what your loved ones could be left with — or lose — based on your unique situation.</p>
+        <h1 class="hero-title">The Government Could Legally <span class="text-danger">Confiscate</span> Your Life's Savings If You Don't Act Now</h1>
+        <p class="hero-subtitle">Nursing homes, probate courts, and state taxes can drain your estate in months. Get your free <strong class="text-accent">60-second</strong> estate risk assessment and uncover exactly how much of your hard-earned money your family might lose — and how to shield it immediately.</p>
         <button id="btn-start" class="btn btn-primary btn-large">Start My Free Estate Risk Check →</button>
         <div class="hero-trust-line">
           <span>🔒 No credit card required</span>

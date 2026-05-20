@@ -41,42 +41,44 @@
 .hero-image {
   position: relative;
   min-height: 520px;
-  overflow: visible;
 }
 
 .hero-monitor-img {
   position: absolute;
   top: 0;
-  right: -20px;
-  width: 58%;
-  max-width: 340px;
+  right: 0;
+  width: 70%;
+  max-width: 420px;
   height: auto;
   border-radius: 4px;
-  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.1));
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.12));
   z-index: 1;
 }
 
 .hero-shield-overlay-img {
   position: absolute;
-  bottom: 60px;
-  right: -20px;
-  width: 100px;
+  top: -15px;
+  right: -15px;
+  width: 120px;
   height: auto;
   z-index: 3;
   filter: drop-shadow(0 4px 12px rgba(27,122,61,0.25));
   animation: floatUp 800ms ease forwards;
 }
 
-/* Person character — main visual element */
+/* Person character overlay — fills full hero height */
 .hero-person-img {
   position: absolute;
-  left: 10%;
+  left: -10%;
   bottom: 0;
-  width: 75%;
-  max-width: 440px;
-  height: auto;
+  top: -20px;
+  width: auto;
+  height: 105%;
+  max-height: 560px;
   z-index: 2;
   mix-blend-mode: multiply;
+  object-fit: contain;
+  object-position: bottom;
   animation: floatUp 600ms ease forwards;
 }
 
@@ -84,11 +86,11 @@
 .hero-image::before {
   content: '';
   position: absolute;
-  left: 10%;
-  bottom: 2%;
-  width: 60%;
-  height: 95%;
-  background: radial-gradient(ellipse at center 55%, rgba(27,122,61,0.13) 0%, rgba(27,122,61,0.06) 45%, transparent 72%);
+  left: 0;
+  bottom: 0;
+  width: 55%;
+  height: 90%;
+  background: radial-gradient(ellipse at center 60%, rgba(27,122,61,0.12) 0%, rgba(27,122,61,0.06) 40%, transparent 70%);
   z-index: 1;
   border-radius: 50%;
   pointer-events: none;
@@ -527,13 +529,14 @@
 @media (min-width: 1200px) {
   .step-landing {
     gap: 40px;
-    padding: 32px 0 24px;
+    padding: 24px 0;
   }
   .hero-title { font-size: 3rem; }
   .hero-subtitle { font-size: 1.125rem; line-height: 1.7; }
-  .hero-image { min-height: 580px; }
-  .hero-monitor-img { max-width: 380px; right: -30px; }
-  .hero-person-img { max-width: 500px; width: 80%; }
+  .hero-image { min-height: 560px; }
+  .hero-monitor-img { max-width: 480px; width: 75%; }
+  .hero-person-img { max-height: 620px; height: 110%; }
+  .hero-shield-overlay-img { width: 130px; }
   .trust-stats-bar { gap: 32px; }
   .trust-stat-number { font-size: 1.75rem; }
   .step-question { font-size: 1.75rem; }

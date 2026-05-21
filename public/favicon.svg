@@ -1,11 +1,58 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
   <defs>
-    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#4f7df9"/>
-      <stop offset="100%" style="stop-color:#7c3aed"/>
+    <linearGradient id="shieldOuter" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2db82d"/>
+      <stop offset="100%" style="stop-color:#0a6e0a"/>
+    </linearGradient>
+    <linearGradient id="shieldInner" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1faa1f"/>
+      <stop offset="100%" style="stop-color:#0d7a0d"/>
     </linearGradient>
   </defs>
-  <path d="M32 4 L56 16 V36 C56 50 32 60 32 60 C32 60 8 50 8 36 V16 Z" fill="url(#shieldGrad)" opacity="0.9"/>
-  <path d="M32 4 L56 16 V36 C56 50 32 60 32 60 C32 60 8 50 8 36 V16 Z" fill="none" stroke="white" stroke-width="2" opacity="0.4"/>
-  <path d="M24 32 L30 38 L40 26" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Outer shield body -->
+  <path d="M250 22
+           C250 22 440 80 440 80
+           L440 265
+           C440 375 340 455 250 482
+           C160 455 60 375 60 265
+           L60 80 Z"
+        fill="url(#shieldOuter)" stroke="#1a7a1a" stroke-width="4"/>
+
+  <!-- White border ring inside -->
+  <path d="M250 50
+           C250 50 412 102 412 102
+           L412 265
+           C412 360 323 432 250 456
+           C177 432 88 360 88 265
+           L88 102 Z"
+        fill="none" stroke="white" stroke-width="12"/>
+
+  <!-- Inner shield body -->
+  <path d="M250 66
+           C250 66 400 114 400 114
+           L400 265
+           C400 348 318 414 250 436
+           C182 414 100 348 100 265
+           L100 114 Z"
+        fill="url(#shieldInner)"/>
+
+  <!-- Adult 1 (tall, left) - head -->
+  <circle cx="200" cy="178" r="44" fill="white"/>
+  <!-- Adult 1 - body -->
+  <path d="M130 400 Q130 248 200 248 Q270 248 270 330 L270 400 Z" fill="white"/>
+
+  <!-- Adult 2 (shorter, right) - head -->
+  <circle cx="308" cy="198" r="34" fill="rgba(255,255,255,0.88)"/>
+  <!-- Adult 2 - body -->
+  <path d="M262 400 Q264 272 308 272 Q354 272 356 335 L356 400 Z" fill="rgba(255,255,255,0.88)"/>
+
+  <!-- Child (center front) - head -->
+  <circle cx="244" cy="308" r="26" fill="#0d8a0d"/>
+  <!-- Child - body -->
+  <path d="M208 400 Q210 348 244 348 Q278 348 280 400 Z" fill="#0d8a0d"/>
+
+  <!-- White overlay for child (to show on green bg) -->
+  <circle cx="244" cy="308" r="24" fill="white" opacity="0.95"/>
+  <path d="M210 400 Q213 352 244 352 Q275 352 277 400 Z" fill="white" opacity="0.95"/>
 </svg>

@@ -1,3 +1,58 @@
+/* ===== LEAD CAPTURE PAGE ===== */
+
+.lead-capture-wrap {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+  padding: 48px 40px;
+  text-align: center;
+  border-top: 4px solid var(--color-primary);
+}
+
+.lead-capture-badge {
+  display: inline-block;
+  background: rgba(27,122,61,0.10);
+  color: var(--color-primary);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+}
+
+.lead-capture-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+.lead-capture-sub {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.lead-capture-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.lead-capture-trust {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 24px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  flex-wrap: wrap;
+}
+
 /* ===== DIAGNOSIS PAGE ===== */
 
 .step-diagnosis {

@@ -1,49 +1,42 @@
 /**
- * Webhook integration — fires lead data to a configurable endpoint.
- * Accepts flat params from funnel.js checkout form.
+ * Webhook — envia dados do lead para o Google Sheets via Apps Script.
  */
 
-const WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/YOUR_HOOK_ID';
+const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyauEmbaa5N5vcob-uvLw17QjW_D2E_IMxHm3OWJYA4q41EaQb5hwo2lhtm_sqfxVc/exec';
 
 export async function submitLead(data) {
   const urlParams = new URLSearchParams(window.location.search);
 
   const payload = {
-    lead_info: {
-      first_name: data.firstName || '',
-      last_name: data.lastName || '',
-      phone: data.phone || '',
-      email: data.email || '',
-    },
-    financial_profile: {
-      age_range: data.ageRange || '',
-      primary_concern: data.primaryConcern || '',
-      state: data.stateCode || '',
-      home_value: data.homeValue || 0,
-      liquid_assets: data.liquidAssets || 0,
-      has_trust: data.hasTrust,
-    },
-    order: {
-      bump: data.orderBump || false,
-      total: data.orderTotal || 67,
-    },
-    source_campaign: urlParams.get('utm_campaign') || urlParams.get('source') || 'organic',
-    submitted_at: new Date().toISOString(),
+    firstName:      data.firstName      || '',
+    email:          data.email          || '',
+    ageRange:       data.ageRange       || '',
+    primaryConcern: data.primaryConcern || '',
+    stateCode:      data.stateCode      || '',
+    homeValue:      data.homeValue      || 0,
+    liquidAssets:   data.liquidAssets   || 0,
+    hasTrust:       data.hasTrust,
+    riskLevel:      data.riskLevel      || '',
+    atRisk:         data.atRisk         || 0,
+    source:         urlParams.get('utm_source') || urlParams.get('source') || 'organic',
+    campaign:       urlParams.get('utm_campaign') || '',
+    submittedAt:    new Date().toISOString(),
   };
 
-  console.log('[Webhook] Lead payload:', JSON.stringify(payload, null, 2));
+  console.log('[Webhook] Enviando lead:', JSON.stringify(payload, null, 2));
 
   try {
+    // Google Apps Script não aceita CORS, usamos no-cors (funciona para POST)
     await fetch(WEBHOOK_URL, {
-      method: 'POST',
+      method:  'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-      mode: 'no-cors',
+      body:    JSON.stringify(payload),
+      mode:    'no-cors',
     });
-    console.log('[Webhook] Submitted successfully');
+    console.log('[Webhook] Enviado com sucesso para o Google Sheets!');
     return true;
   } catch (err) {
-    console.warn('[Webhook] Failed:', err.message);
+    console.warn('[Webhook] Falhou:', err.message);
     return false;
   }
 }

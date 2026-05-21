@@ -131,9 +131,94 @@ export function renderDiagnosisPage(el, appState, goToStep) {
     ]);
   }
 
-  $('#btn-protect', el).addEventListener('click', () => goToStep('checkout'));
+  $('#btn-protect', el).addEventListener('click', () => goToStep('leadcapture'));
   const topBtn = $('#btn-protect-top', el);
-  if (topBtn) topBtn.addEventListener('click', () => goToStep('checkout'));
+  if (topBtn) topBtn.addEventListener('click', () => goToStep('leadcapture'));
+}
+
+/* ════════════════════════════════════════════════════════════
+   LEAD CAPTURE PAGE (between Diagnosis and Checkout)
+   ════════════════════════════════════════════════════════════ */
+
+export function renderLeadCapturePage(el, appState, goToStep) {
+  el.innerHTML = `
+    <div class="step-container anim-fade-in-up" style="max-width:520px; margin:0 auto;">
+      <div class="lead-capture-wrap">
+        <div class="lead-capture-badge">🔒 Your Free Report Is Ready</div>
+        <h2 class="lead-capture-title">Where Should We Send<br>Your <span style="color:var(--color-primary)">Free Risk Report</span>?</h2>
+        <p class="lead-capture-sub">Enter your details below and we'll send your personalized Estate Risk Report — plus instant access to the Blueprint.</p>
+
+        <div class="lead-capture-form">
+          <div class="input-group">
+            <label class="input-label">First Name</label>
+            <input type="text" id="lc-name" class="input-field" placeholder="e.g., John" autocomplete="given-name" value="${appState.lead?.firstName || ''}">
+          </div>
+          <div class="input-group">
+            <label class="input-label">Email Address</label>
+            <input type="email" id="lc-email" class="input-field" placeholder="e.g., john@email.com" autocomplete="email" value="${appState.lead?.email || ''}">
+          </div>
+          <div id="lc-error" style="color:var(--color-danger);font-size:13px;margin-top:-8px;display:none;">Please fill in your name and a valid email.</div>
+          <button class="btn btn-primary btn-large btn-full" id="lc-submit" style="margin-top:8px;">Send My Report &amp; Get Instant Access →</button>
+          <p style="font-size:12px;color:var(--color-text-muted);text-align:center;margin-top:12px;">🔒 100% Private. No spam. Unsubscribe anytime.</p>
+        </div>
+
+        <div class="lead-capture-trust">
+          <div>✅ Trusted by 10,000+ families</div>
+          <div>🛡️ 256-bit SSL encrypted</div>
+          <div>🇺🇸 U.S.-based support</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const nameEl  = document.getElementById('lc-name');
+  const emailEl = document.getElementById('lc-email');
+  const errEl   = document.getElementById('lc-error');
+  const btn     = document.getElementById('lc-submit');
+
+  nameEl.focus();
+
+  async function submit() {
+    const name  = nameEl.value.trim();
+    const email = emailEl.value.trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    if (!name || !emailOk) {
+      errEl.style.display = 'block';
+      if (!name) nameEl.focus();
+      else emailEl.focus();
+      return;
+    }
+    errEl.style.display = 'none';
+
+    // Save to state
+    appState.lead = { firstName: name, email };
+
+    // Send to Google Sheets (fire and forget)
+    submitLead({
+      firstName:      name,
+      email:          email,
+      ageRange:       appState.ageRange,
+      primaryConcern: appState.primaryConcern,
+      stateCode:      appState.stateCode,
+      homeValue:      appState.homeValue,
+      liquidAssets:   appState.liquidAssets,
+      hasTrust:       appState.hasTrust,
+      riskLevel:      appState.results?.riskLevel || '',
+      atRisk:         appState.results?.totalAtRisk || 0,
+    }).catch(console.warn);
+
+    btn.textContent = 'Loading...';
+    btn.disabled = true;
+    goToStep('checkout');
+  }
+
+  btn.addEventListener('click', submit);
+
+  // Enter key support
+  [nameEl, emailEl].forEach(inp => {
+    inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') submit(); });
+  });
 }
 
 /* ════════════════════════════════════════════════════════════

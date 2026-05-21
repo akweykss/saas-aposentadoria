@@ -209,4 +209,19 @@ input, select, textarea {
   .navbar-inner { justify-content: center; }
   .footer-top { flex-direction: column; gap: 8px; text-align: center; }
   .footer-links { gap: 16px; }
+
+  #main-content,
+  .main-content {
+    padding: 16px 12px;
+    min-height: calc(100vh - 120px);
+  }
+
+  .site-footer { padding: 16px 12px; }
+}
+
+@media (max-width: 480px) {
+  #main-content,
+  .main-content {
+    padding: 12px 8px;
+  }
 }

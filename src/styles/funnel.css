@@ -874,20 +874,88 @@
 /* ===== RESPONSIVE ===== */
 
 @media (max-width: 768px) {
-  .diagnosis-main { grid-template-columns: 1fr; text-align: center; }
-  .diagnosis-trust-bar { grid-template-columns: repeat(2, 1fr); }
+  /* Lead Capture */
+  .lead-capture-wrap {
+    padding: 32px 20px;
+    border-radius: 12px;
+  }
+  .lead-capture-title { font-size: 1.4rem; }
+  .lead-capture-sub { font-size: 13px; margin-bottom: 20px; }
+  .lead-capture-trust {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+
+  /* Diagnosis */
+  .step-diagnosis { padding: 0 4px; }
+  .diagnosis-header h2 { font-size: 1.4rem; }
+  .diagnosis-header p { font-size: 0.85rem; }
+  .diagnosis-main {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 20px 16px;
+    gap: 20px;
+    border-radius: 12px;
+  }
+  .diagnosis-chart-wrap { max-width: 200px; margin: 0 auto; }
+  .diagnosis-amount-big { font-size: 2rem; }
+  .diagnosis-legend { justify-content: center; }
+  .diagnosis-trust-bar {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 16px;
+    font-size: 13px;
+  }
+  .step-diagnosis-action {
+    padding: 24px 16px;
+    text-align: center;
+  }
+  .step-diagnosis-action h3 { font-size: 1.2rem; }
+  .step-diagnosis-action p { font-size: 0.9rem; }
+
+  /* Risk breakdown */
   .risk-breakdown-cards { grid-template-columns: 1fr; }
-  .step-checkout { grid-template-columns: 1fr; }
-  .upsell-main { grid-template-columns: 1fr; }
-  .upsell-trust-row { grid-template-columns: 1fr; gap: 12px; }
+
+  /* Checkout */
+  .step-checkout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 0 4px;
+  }
+  .checkout-product-title { font-size: 1.3rem; }
+  .checkout-features li { font-size: 13px; }
+  .checkout-box {
+    padding: 24px 16px;
+    border-radius: 12px;
+  }
+
+  /* Upsell / Downsell */
+  .step-upsell { padding: 0 4px; }
+  .upsell-main { grid-template-columns: 1fr; gap: 20px; }
+  .upsell-headline { font-size: 1.3rem; }
+  .upsell-product-image { min-height: 140px; }
+  .upsell-trust-row { grid-template-columns: 1fr; gap: 10px; }
+  .upsell-cta-section { padding: 20px 16px; }
+  .upsell-cta-section .btn { width: 100%; font-size: 14px; }
+
+  /* Thank You */
+  .step-thankyou { padding: 0 4px; }
+  .ty-header h2 { font-size: 1.4rem; }
   .ty-next-steps { grid-template-columns: 1fr; }
   .ty-help { grid-template-columns: 1fr; }
+}
 
-  .checkout-product-title { font-size: 1.4rem; }
-  .checkout-features li { font-size: 14px; }
+@media (max-width: 480px) {
+  .lead-capture-wrap { padding: 24px 16px; }
+  .lead-capture-title { font-size: 1.2rem; }
 
-  .upsell-headline { font-size: 1.5rem; }
-  .upsell-product-image { min-height: 160px; }
+  .diagnosis-header h2 { font-size: 1.2rem; }
+  .diagnosis-main { padding: 16px 12px; }
+  .diagnosis-amount-big { font-size: 1.6rem; }
+
+  .checkout-product-title { font-size: 1.15rem; }
+  .upsell-headline { font-size: 1.15rem; }
 }
 
 /* Large screens — maximize viewport usage */

@@ -570,29 +570,150 @@
 /* ───── Responsive ───── */
 
 @media (max-width: 768px) {
+  /* Hero - stack vertically, show monitor+shield scaled down */
   .step-landing {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 16px;
     text-align: center;
-    padding: 20px 0 16px;
+    padding: 16px 0 12px;
   }
-  .hero-title { font-size: 1.75rem; }
-  .hero-subtitle { max-width: 100%; font-size: 0.95rem; }
-  .hero-trust-line { justify-content: center; flex-wrap: wrap; }
-  .hero-image { order: -1; }
+
+  .hero-content {
+    order: 2;
+  }
+
+  .hero-image {
+    order: 1;
+    min-height: 200px;
+    max-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Hide person on mobile — not enough space */
   .hero-person-img { display: none; }
-  .trust-stats-bar { grid-template-columns: repeat(2, 1fr); gap: 16px; padding: 20px 0; }
-  .step-container { padding: 24px 20px 32px; margin: 0 8px; }
+
+  /* Hide green glow on mobile */
+  .hero-image::before { display: none; }
+
+  /* Monitor — centered and scaled */
+  .hero-monitor-img {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 55%;
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
+  /* Shield — relative to monitor, top-right */
+  .hero-shield-overlay-img {
+    position: absolute;
+    top: 5px;
+    right: 15%;
+    width: 60px;
+  }
+
+  .hero-title {
+    font-size: 1.65rem;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    max-width: 100%;
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
+
+  .hero-trust-line {
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 12px;
+    gap: 4px;
+  }
+
+  .hero-content .btn {
+    margin-top: 16px;
+    width: 100%;
+    font-size: 15px;
+    padding: 14px;
+  }
+
+  /* Trust Stats Bar */
+  .trust-stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 16px 0;
+  }
+
+  .trust-stat-icon { font-size: 22px; margin-bottom: 4px; }
+  .trust-stat-number { font-size: 1.15rem; }
+  .trust-stat-label { font-size: 0.7rem; }
+
+  /* Step Container (quiz cards) */
+  .step-container {
+    padding: 20px 16px 28px;
+    margin: 0 4px;
+    border-radius: 12px;
+  }
+
   .step-header-title { display: none; }
+  .step-security-badge { font-size: 11px; }
+
+  .step-question { font-size: 1.2rem; }
+  .step-description { font-size: 0.9rem; }
+
+  /* Concern cards - 2 columns on tablet, 1 on phone */
   .concern-cards { grid-template-columns: repeat(2, 1fr); }
   .trust-cards { grid-template-columns: 1fr 1fr; }
+
+  /* Step nav */
+  .step-nav {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .step-nav .btn { width: 100%; }
+
+  /* Enter hint */
+  .enter-hint { font-size: 12px; }
 }
 
 @media (max-width: 480px) {
-  .hero-title { font-size: 1.5rem; }
+  .hero-title { font-size: 1.4rem; }
+
+  .hero-image {
+    max-height: 180px;
+    min-height: 160px;
+  }
+
+  .hero-monitor-img {
+    width: 50%;
+    max-width: 200px;
+  }
+
+  .hero-shield-overlay-img {
+    width: 48px;
+    right: 18%;
+    top: 2px;
+  }
+
   .age-buttons { flex-wrap: wrap; }
   .concern-cards { grid-template-columns: 1fr; }
-  .step-question { font-size: 1.2rem; }
+  .trust-cards { grid-template-columns: 1fr; gap: 10px; }
+  .step-question { font-size: 1.1rem; }
+
+  .step-container {
+    padding: 16px 14px 24px;
+    margin: 0;
+  }
+
+  .trust-stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 12px 0;
+  }
 }
 
 /* Large screens — fill the viewport, bigger text for 60+ audience */

@@ -573,13 +573,7 @@ export function renderThankYouPage(el, appState) {
       <p class="ty-subtitle">Your order has been received!</p>
       <p class="ty-intro">We're excited to help you protect your assets, reduce risk, and build a more secure retirement for you and your family.</p>
 
-      <div class="ty-order-summary">
-        <h3 class="ty-summary-title">📋 Order Summary</h3>
-        <div class="ty-item"><span>📄 2026 Retiree Asset Protection Blueprint</span><span>$67.00</span></div>
-        ${bump ? '<div class="ty-item"><span>📄 Retirement Account Protection Checklist (Order Bump)</span><span>$27.00</span></div>' : ''}
-        ${upsell ? '<div class="ty-item"><span>📄 Estate Planning Document Prep Kit</span><span>$197.00</span></div>' : ''}
-        <div class="ty-total"><span>Total Paid</span><span>$${total}.00</span></div>
-      </div>
+
 
       <h3 class="ty-next-title">What's Next?</h3>
       <div class="ty-next-steps">

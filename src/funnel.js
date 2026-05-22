@@ -20,109 +20,105 @@ export function renderDiagnosisPage(el, appState, goToStep) {
   const taxPct = Math.max(0, 100 - probatePct - medicaidPct);
   
   const stateLabel = r.stateName ? r.stateName : "your state";
-  const dateStr = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
   el.innerHTML = `
     <div class="step-diagnosis anim-fade-in-up">
-      <div class="diagnosis-header" style="border-bottom: 2px solid var(--color-border); padding-bottom: 24px; margin-bottom: 32px;">
-        <div style="font-family: monospace; font-size: 13px; color: var(--color-danger); font-weight: bold; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px;">
-          🔴 Official Vulnerability Assessment — Generated ${dateStr}
-        </div>
-        <h2 style="font-size: 2.2rem; margin-bottom: 12px;">WARNING: Your Estate is Vulnerable to <span style="color: var(--color-danger)">Confiscation</span></h2>
-        <p style="font-size: 1.1rem;">Based on your inputs and current ${stateLabel} laws, here is the brutal reality of what probate courts, nursing homes, and taxes could strip away from your family if you don't act.</p>
+      <div class="diagnosis-header">
+        <h2>WARNING: Your Estate is Vulnerable to Confiscation</h2>
+        <p>Based on your inputs and current ${stateLabel} laws, here is the brutal reality of what probate courts, nursing homes, and taxes could strip away from your family if you don't act.</p>
       </div>
 
-      <div class="diagnosis-main" style="box-shadow: 0 10px 40px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; padding: 0;">
-        
-        <div style="background: #f8fafc; padding: 20px 32px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
-           <span style="font-weight: 700; color: #475569;">Risk Analysis Breakdown</span>
-           <span class="badge badge-danger" style="font-size: 12px; font-family: monospace;">STATUS: EXPOSED</span>
+      <div class="diagnosis-main">
+        <div class="diagnosis-chart-section">
+          <div class="diagnosis-chart-wrap" id="diag-chart">
+            <div class="diagnosis-chart-label">
+              <div class="chart-amount">${formatCurrency(r.totalAtRisk)}</div>
+              <div class="chart-sublabel">At Risk</div>
+            </div>
+          </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 32px; align-items: center; padding: 32px;">
-          <div class="diagnosis-chart-section">
-            <div class="diagnosis-chart-wrap" id="diag-chart">
-              <div class="diagnosis-chart-label">
-                <div class="chart-amount">${formatCurrency(r.totalAtRisk)}</div>
-                <div class="chart-sublabel">At Risk</div>
-              </div>
-            </div>
-          </div>
+        <div class="diagnosis-amount-section">
+          <div class="diagnosis-amount-label">Estimated Wealth at Risk</div>
+          <div class="diagnosis-amount-big">${formatCurrency(r.totalAtRisk)}</div>
+          <div class="diagnosis-amount-desc">Due to probate costs, Medicaid spend-down, and potential state taxes.</div>
+        </div>
 
-          <div class="diagnosis-amount-section">
-            <div class="diagnosis-amount-label" style="color: var(--color-danger); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 12px;">Estimated Wealth at Risk</div>
-            <div class="diagnosis-amount-big" style="color: #0f172a; font-size: 3rem;">${formatCurrency(r.totalAtRisk)}</div>
-            <div class="diagnosis-amount-desc" style="color: #64748b; font-size: 14px; margin-top: 8px;">If you require long-term care or pass away without a protective trust, the system is legally entitled to take this much.</div>
+        <div class="diagnosis-legend">
+          <div class="diagnosis-legend-item">
+            <span class="diagnosis-legend-dot" style="background:#D32F2F"></span>
+            <span class="diagnosis-legend-label">Probate Costs</span>
+            <span class="diagnosis-legend-value">${formatCurrency(r.probateCost)}</span>
+            <span class="diagnosis-legend-pct">(${probatePct}%)</span>
           </div>
-
-          <div class="diagnosis-legend">
-            <div class="diagnosis-legend-item">
-              <span class="diagnosis-legend-dot" style="background:#D32F2F"></span>
-              <span class="diagnosis-legend-label">Probate Costs</span>
-              <span class="diagnosis-legend-value">${formatCurrency(r.probateCost)}</span>
-              <span class="diagnosis-legend-pct">(${probatePct}%)</span>
-            </div>
-            <div class="diagnosis-legend-item">
-              <span class="diagnosis-legend-dot" style="background:#E67E22"></span>
-              <span class="diagnosis-legend-label">Medicaid Exposure</span>
-              <span class="diagnosis-legend-value">${formatCurrency(r.medicaidRisk)}</span>
-              <span class="diagnosis-legend-pct">(${medicaidPct}%)</span>
-            </div>
-            <div class="diagnosis-legend-item">
-              <span class="diagnosis-legend-dot" style="background:#B8860B"></span>
-              <span class="diagnosis-legend-label">State Taxes</span>
-              <span class="diagnosis-legend-value">${formatCurrency(r.stateTax)}</span>
-              <span class="diagnosis-legend-pct">(${taxPct}%)</span>
-            </div>
+          <div class="diagnosis-legend-item">
+            <span class="diagnosis-legend-dot" style="background:#E67E22"></span>
+            <span class="diagnosis-legend-label">Medicaid Exposure</span>
+            <span class="diagnosis-legend-value">${formatCurrency(r.medicaidRisk)}</span>
+            <span class="diagnosis-legend-pct">(${medicaidPct}%)</span>
+          </div>
+          <div class="diagnosis-legend-item">
+            <span class="diagnosis-legend-dot" style="background:#B8860B"></span>
+            <span class="diagnosis-legend-label">State Taxes</span>
+            <span class="diagnosis-legend-value">${formatCurrency(r.stateTax)}</span>
+            <span class="diagnosis-legend-pct">(${taxPct}%)</span>
           </div>
         </div>
       </div>
 
       <!-- CTA button between diagnosis and cards -->
-      <div style="text-align: center; margin: 40px 0;">
-        <button class="btn btn-primary btn-large" id="btn-protect-top" style="font-size: 1.1rem; padding: 18px 40px; box-shadow: 0 10px 25px rgba(27,122,61,0.3);">Get Your Custom Protection Plan →</button>
-        <div style="margin-top: 12px; font-size: 13px; color: #64748b;">🔒 256-bit SSL encrypted • Takes 2 minutes to generate</div>
+      <div style="text-align: center; margin: 28px 0;">
+        <button class="btn btn-primary btn-large" id="btn-protect-top">Discover How to Shield Your Wealth →</button>
       </div>
 
-      <div class="risk-breakdown-cards" style="margin-top: 24px;">
+      <div class="risk-breakdown-cards">
         <div class="risk-card">
-          <div class="risk-card-icon-wrap" style="background: rgba(211,47,47,0.1); color: #D32F2F;">⚖️</div>
+          <div class="risk-card-icon-wrap">⚖️</div>
           <div class="risk-card-info">
-            <div class="risk-card-label" style="font-weight: 700; color: #333;">Probate Court Fees</div>
-            <div class="risk-card-value" style="color: #D32F2F;">${formatCurrency(r.probateCost)}</div>
-            <div class="risk-card-pct" style="color: #666; font-size: 13px;">Attorneys will take this cut before your heirs see a dime.</div>
+            <div class="risk-card-label">Probate Court Fees</div>
+            <div class="risk-card-value">${formatCurrency(r.probateCost)}</div>
+            <div class="risk-card-pct">${probatePct}% of total risk</div>
           </div>
+          <div class="risk-card-trend">📈</div>
         </div>
         <div class="risk-card">
-          <div class="risk-card-icon-wrap" style="background: rgba(230,126,34,0.1); color: #E67E22;">🛡️</div>
+          <div class="risk-card-icon-wrap">🛡️</div>
           <div class="risk-card-info">
-            <div class="risk-card-label" style="font-weight: 700; color: #333;">Medicaid Spend-Down</div>
-            <div class="risk-card-value" style="color: #E67E22;">${formatCurrency(r.medicaidRisk)}</div>
-            <div class="risk-card-pct" style="color: #666; font-size: 13px;">Nursing homes can legally drain this amount within months.</div>
+            <div class="risk-card-label">Medicaid Spend-Down</div>
+            <div class="risk-card-value">${formatCurrency(r.medicaidRisk)}</div>
+            <div class="risk-card-pct">${medicaidPct}% of total risk</div>
           </div>
+          <div class="risk-card-trend">📈</div>
         </div>
         <div class="risk-card">
-          <div class="risk-card-icon-wrap" style="background: rgba(184,134,11,0.1); color: #B8860B;">🏛️</div>
+          <div class="risk-card-icon-wrap">🏛️</div>
           <div class="risk-card-info">
-            <div class="risk-card-label" style="font-weight: 700; color: #333;">State Taxes</div>
-            <div class="risk-card-value" style="color: #B8860B;">${formatCurrency(r.stateTax)}</div>
-            <div class="risk-card-pct" style="color: #666; font-size: 13px;">The "Widow Tax" could take this if structured improperly.</div>
+            <div class="risk-card-label">State Taxes</div>
+            <div class="risk-card-value">${formatCurrency(r.stateTax)}</div>
+            <div class="risk-card-pct">${taxPct}% of total risk</div>
           </div>
+          <div class="risk-card-trend">📈</div>
         </div>
       </div>
 
-      <div class="diagnosis-disclaimer" style="background: #fffbea; border: 1px solid #fef08a; border-radius: 8px; padding: 16px; margin-top: 32px; display: flex; gap: 16px; align-items: flex-start;">
-        <div class="disclaimer-icon" style="font-size: 24px;">⚠️</div>
+      <div class="diagnosis-disclaimer">
+        <div class="disclaimer-icon">⚠️</div>
         <div class="disclaimer-content">
-          <div class="disclaimer-title" style="font-weight: 700; color: #854d0e; margin-bottom: 4px;">Crucial Time Warning: The 5-Year Lookback Period</div>
-          <div class="disclaimer-text" style="color: #713f12; font-size: 14px; line-height: 1.5;">If you transfer assets right before needing a nursing home, the government will still count them due to the 5-Year Medicaid Lookback rule. <strong>You must put protective documents in place NOW</strong>, not when a crisis hits.</div>
+          <div class="disclaimer-title">Crucial Time Warning: The 5-Year Lookback Period</div>
+          <div class="disclaimer-text">If you transfer assets right before needing a nursing home, the government will still count them due to the 5-Year Medicaid Lookback rule. You must put protective documents in place NOW.</div>
         </div>
+      </div>
+
+      <div class="diagnosis-trust-bar">
+        <div class="diagnosis-trust-item"><span class="trust-icon">✅</span> Trusted by thousands of families nationwide</div>
+        <div class="diagnosis-trust-item"><span class="trust-icon">🔒</span> Your information is secure and confidential</div>
+        <div class="diagnosis-trust-item"><span class="trust-icon">👥</span> 10,000+ families protected</div>
       </div>
       
-      <div class="step-diagnosis-action" style="margin-top: 40px; border-top: 1px solid var(--color-border); padding-top: 40px;">
-        <h3 style="font-size: 1.8rem; margin-bottom: 16px;">Stop the IRS, Probate, and Nursing Homes From Taking What You Built</h3>
-        <p style="font-size: 1.1rem; color: #475569; margin-bottom: 24px; max-width: 700px; margin-left: auto; margin-right: auto;">The average family without a trust loses $340,000 to these three "wealth thieves." The good news? You can legally shield 100% of your assets if you use the right legal loopholes.</p>
-        <button class="btn btn-primary btn-large" id="btn-protect">Get Your Custom Protection Plan →</button>
+      <div class="step-diagnosis-action">
+        <h3>Stop the IRS, Probate, and Nursing Homes From Taking What You Built</h3>
+        <p>The average family without a trust loses $340,000 to these three "wealth thieves." The good news? You can legally shield 100% of your assets if you use the right legal loopholes.</p>
+        <button class="btn btn-primary btn-large" id="btn-protect">Discover How to Shield Your Wealth →</button>
       </div>
     </div>
   `;
@@ -242,39 +238,31 @@ export function renderCheckoutPage(el, appState, goToStep) {
         <div class="checkout-product-image">
           <img src="/assets/book-blueprint.png" alt="2026 Retiree Asset Protection Blueprint" class="checkout-book-img">
         </div>
-        
-        <!-- Social Proof / Review snippet -->
-        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-top: 24px;">
-          <div style="display: flex; gap: 4px; color: #fbbf24; margin-bottom: 8px; font-size: 14px;">★★★★★</div>
-          <p style="font-size: 13px; font-style: italic; color: #475569; margin: 0;">"The chapter on the 5-Year Medicaid Lookback alone saved our family home. I wish I had read this 5 years ago before my father got sick."</p>
-          <div style="font-size: 12px; font-weight: bold; margin-top: 8px; color: #334155;">— Robert M., 68</div>
-        </div>
       </div>
 
       <!-- RIGHT COLUMN: Features + Secure Checkout -->
       <div class="checkout-right-col">
         <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--color-text-primary);">Inside Your Blueprint You'll Discover:</h3>
-        <ul class="checkout-features" style="margin-bottom: 24px;">
+        <ul class="checkout-features">
           <li>✅ <strong>The Henderson Family Catastrophe:</strong> How one family lost $340,000 to probate fees because they believed a simple will was enough.</li>
           <li>✅ <strong>The 5-Year Medicaid Lookback Defense:</strong> Why waiting to transfer your home could cost you everything, and the exact trust structure to use today.</li>
-          <li>✅ <strong>The "Step-Up in Basis" Loophole:</strong> How to pass your $600K home to your kids without them paying a dime in capital gains tax (IRC §1014).</li>
+          <li>✅ <strong>The "Step-Up in Basis" Loophole:</strong> How to pass your $600K home to your kids without them paying a dime in capital gains tax.</li>
           <li>✅ <strong>Defeating the Widow Tax:</strong> Why your spouse could pay up to 60% MORE in taxes the year after you pass—and how to stop it.</li>
-          <li>✅ <strong>The OBBBA 2026 Secret:</strong> The new $15M exemption rules and the $6,000 Senior Bonus Deduction that your financial advisor isn't telling you about.</li>
+          <li>✅ <strong>The OBBBA 2026 Secret:</strong> The new $15M exemption rules and the $6,000 Senior Bonus Deduction.</li>
         </ul>
 
         <div class="checkout-form-section">
           
           <!-- ORDER BUMP -->
           <div class="order-bump-box" style="border: 2px dashed #E67E22; background: #fffaf0; border-radius: 8px; padding: 16px; margin-bottom: 24px; position: relative;">
-            <div style="position: absolute; top: -12px; left: 16px; background: #E67E22; color: #fff; font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 4px; text-transform: uppercase;">Highly Recommended</div>
-            <div style="display: flex; gap: 12px; align-items: flex-start; margin-top: 8px;">
+            <div style="display: flex; gap: 12px; align-items: flex-start;">
               <input type="checkbox" id="order-bump-checkbox" style="width: 20px; height: 20px; margin-top: 4px; accent-color: #E67E22;">
               <div>
-                <label for="order-bump-checkbox" style="font-weight: 700; font-size: 16px; color: #333; cursor: pointer; display: block; margin-bottom: 6px;">
-                  Add The 24-Hour Roth IRA Restructuring Checklist (+$27)
+                <label for="order-bump-checkbox" style="font-weight: 700; font-size: 15px; color: #333; cursor: pointer; display: block; margin-bottom: 4px;">
+                  Yes! Add The 24-Hour Roth IRA Restructuring Checklist (+$27)
                 </label>
                 <p style="font-size: 13px; color: #555; line-height: 1.4; margin: 0;">
-                  <strong>Carl & Linda lost $340,000</strong> because they didn't touch their Traditional IRA. Discover the 4 hidden "detonators" inside your IRA, how to avoid the $218,000 IRMAA cliff, and the 6-year bracket-filling strategy to convert $810K paying only 14% effective tax. <em>48-page technical execution manual.</em>
+                  <strong>Highly Recommended:</strong> Discover the 4 hidden "detonators" inside your IRA, how to avoid the $218,000 IRMAA cliff, and the 6-year bracket-filling strategy.
                 </p>
               </div>
             </div>
@@ -282,7 +270,7 @@ export function renderCheckoutPage(el, appState, goToStep) {
 
           <div class="checkout-form-header">
             <h3 style="font-size: 20px; color: var(--color-primary);">🔒 Secure Checkout</h3>
-            <p style="font-size: 14px; color: var(--color-text-light); margin-top: 4px;">Complete your order securely via Hotmart.</p>
+            <p style="font-size: 14px; color: var(--color-text-light); margin-top: 4px;">Click below to complete your order securely via Hotmart.</p>
           </div>
 
           <div style="text-align: center; margin: 16px 0;">
@@ -291,22 +279,12 @@ export function renderCheckoutPage(el, appState, goToStep) {
             <span style="font-size: 13px; color: var(--color-text-light); display: block; margin-top: 2px;">One-time payment · Instant digital access</span>
           </div>
 
-          <!-- The link will be updated dynamically based on the order bump checkbox -->
-          <a href="https://pay.hotmart.com/N105921395O?checkoutMode=2" id="hotmart-link" class="btn btn-primary btn-large btn-full hotmart-fb hotmart__button-checkout" style="font-size: 18px; padding: 16px; display: block; text-align: center; box-shadow: 0 8px 20px rgba(27,122,61,0.25);">Continue to Secure Checkout →</a>
+          <a href="https://pay.hotmart.com/N105921395O?checkoutMode=2" id="hotmart-link" class="btn btn-primary btn-large btn-full hotmart-fb hotmart__button-checkout" style="font-size: 18px; padding: 16px; display: block; text-align: center;">Continue to Secure Checkout →</a>
 
-          <div class="checkout-guarantees" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #e2e8f0;">
-            <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px;">
-              <div style="font-size: 32px;">🛡️</div>
-              <div>
-                <div style="font-weight: 700; font-size: 14px;">60-Day Ironclad Guarantee</div>
-                <div style="font-size: 12px; color: #64748b;">Read the blueprint. If you don't feel 100% confident your assets are protected, get a full refund. No questions asked.</div>
-              </div>
-            </div>
-            <div style="display: flex; justify-content: space-between; font-size: 12px; color: #64748b; font-weight: 500;">
-              <span>🔒 256-bit SSL</span>
-              <span>🇺🇸 U.S. Support</span>
-              <span>💳 Secure Payment</span>
-            </div>
+          <div class="checkout-guarantees" style="margin-top: 16px;">
+            <span>💰 30-Day Money-Back Guarantee</span>
+            <span>🔒 Secure 256-bit SSL Encryption</span>
+            <span>🇺🇸 U.S. Based Customer Support</span>
           </div>
         </div>
       </div>
@@ -316,24 +294,14 @@ export function renderCheckoutPage(el, appState, goToStep) {
   // Dynamic Order Bump logic
   const bumpCheckbox = el.querySelector('#order-bump-checkbox');
   const priceDisplay = el.querySelector('#checkout-total-price');
-  const hotmartLink = el.querySelector('#hotmart-link');
 
-  // Base Hotmart link for $67 product
-  const baseLink = "https://pay.hotmart.com/N105921395O?checkoutMode=2";
-  // The user will need to provide the Hotmart link for the offer with the Order Bump,
-  // or use Hotmart's URL parameters for order bumps. Assuming standard Hotmart setup,
-  // if order bump is native in Hotmart, they handle it. 
-  // If not, we might need to redirect to a different checkout offer.
-  // For now, we will just update the visual price, as Hotmart usually handles the bump on their side,
-  // or we pass a parameter. We will simulate the visual update.
   if (bumpCheckbox) {
     bumpCheckbox.addEventListener('change', (e) => {
+      appState.orderBump = e.target.checked;
       if (e.target.checked) {
         priceDisplay.textContent = "$94"; // 67 + 27
-        // hotmartLink.href = "... link with bump ..."; // Requires user's specific hotmart bump config
       } else {
         priceDisplay.textContent = "$67";
-        // hotmartLink.href = baseLink;
       }
     });
   }
@@ -342,7 +310,6 @@ export function renderCheckoutPage(el, appState, goToStep) {
   const hotmartBtn = el.querySelector('.hotmart__button-checkout');
   if (hotmartBtn) {
     hotmartBtn.addEventListener('click', () => {
-      // Dispara webhook em background com dados do quiz
       submitLead({
         firstName: 'Hotmart',
         email: 'Checkout',
@@ -353,7 +320,6 @@ export function renderCheckoutPage(el, appState, goToStep) {
         liquidAssets: appState.liquidAssets,
         hasTrust: appState.hasTrust
       }).catch(console.warn);
-      // O href do link já cuida da navegação para a Hotmart na mesma aba
     });
   }
 }
@@ -400,7 +366,7 @@ export function renderUpsellPage(el, appState, goToStep) {
           <p style="text-align: center; margin-bottom: 24px;">67% of Americans 55+ have nothing. 21% have only a simple will. But the wealthiest 3% have a complete "vault" of 12 specific documents. And it typically costs <strong>$3,500 to $4,500</strong> to have an attorney draft them.</p>
           
           <div style="text-align: center;">
-            <img src="/assets/document-prep-kit.png" alt="The Complete Legal Forms Vault" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); margin-bottom: 24px;">
+            <img src="/assets/document-prep-kit.png" alt="The Complete Legal Forms Vault" style="width: 100%; max-width: 350px; height: auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); margin-bottom: 24px; display: inline-block;">
           </div>
         </div>
 

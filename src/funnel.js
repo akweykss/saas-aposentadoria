@@ -298,9 +298,9 @@ export function renderCheckoutPage(el, appState, goToStep) {
 
   // Links da Hotmart
   const linkSemBump = "https://pay.hotmart.com/N105921395O?checkoutMode=2";
-  // Você precisa criar uma Oferta/Link na Hotmart que cobre os $94 (Blueprint + Checklist)
-  // ou usar o parâmetro da Hotmart para adicionar o bump. Cole o link abaixo:
-  const linkComBump = "https://pay.hotmart.com/N105921395O?checkoutMode=2&off_bump=COLOQUE_O_ID_AQUI"; 
+  // Como você escolheu o Caminho 1, a Hotmart cuida do Order Bump nativamente na página deles.
+  // A caixinha no nosso site serve como "preparo psicológico" (aumenta muito a conversão!).
+  const linkComBump = "https://pay.hotmart.com/N105921395O?checkoutMode=2"; 
 
   if (bumpCheckbox) {
     bumpCheckbox.addEventListener('change', (e) => {

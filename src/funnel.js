@@ -294,14 +294,23 @@ export function renderCheckoutPage(el, appState, goToStep) {
   // Dynamic Order Bump logic
   const bumpCheckbox = el.querySelector('#order-bump-checkbox');
   const priceDisplay = el.querySelector('#checkout-total-price');
+  const hotmartLink = el.querySelector('#hotmart-link');
+
+  // Links da Hotmart
+  const linkSemBump = "https://pay.hotmart.com/N105921395O?checkoutMode=2";
+  // Você precisa criar uma Oferta/Link na Hotmart que cobre os $94 (Blueprint + Checklist)
+  // ou usar o parâmetro da Hotmart para adicionar o bump. Cole o link abaixo:
+  const linkComBump = "https://pay.hotmart.com/N105921395O?checkoutMode=2&off_bump=COLOQUE_O_ID_AQUI"; 
 
   if (bumpCheckbox) {
     bumpCheckbox.addEventListener('change', (e) => {
       appState.orderBump = e.target.checked;
       if (e.target.checked) {
         priceDisplay.textContent = "$94"; // 67 + 27
+        if (hotmartLink) hotmartLink.href = linkComBump;
       } else {
         priceDisplay.textContent = "$67";
+        if (hotmartLink) hotmartLink.href = linkSemBump;
       }
     });
   }

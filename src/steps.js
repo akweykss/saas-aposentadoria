@@ -1,6 +1,6 @@
 import { US_STATES } from './stateTaxData.js';
 import { calculateRisk, formatCurrency } from './calculator.js';
-import { renderDiagnosisPage, renderLeadCapturePage, renderCheckoutPage, renderUpsellPage, renderDownsellPage, renderThankYouPage } from './funnel.js';
+import { renderDiagnosisPage, renderLeadCapturePage, renderCheckoutPage, renderUpsell1Page, renderUpsell2Page, renderDownsellPage, renderThankYouPage } from './funnel.js';
 
 /* ───────────────────────── State ───────────────────────── */
 
@@ -53,7 +53,8 @@ const STEP_TO_PATH = {
   4: '/diagnosis',
   'leadcapture': '/get-report',
   'checkout': '/checkout',
-  'upsell': '/upsell',
+  'upsell1': '/upsell-1',
+  'upsell2': '/upsell-2',
   'downsell': '/downsell',
   'thankyou': '/thankyou',
 };
@@ -97,7 +98,8 @@ function renderStep(step) {
     case 4:  renderDiagnosisPage(el, state, goToStep); break;
     case 'leadcapture': renderLeadCapturePage(el, state, goToStep); break;
     case 'checkout':  renderCheckoutPage(el, state, goToStep); break;
-    case 'upsell':    renderUpsellPage(el, state, goToStep);   break;
+    case 'upsell1':   renderUpsell1Page(el, state, goToStep);  break;
+    case 'upsell2':   renderUpsell2Page(el, state, goToStep);  break;
     case 'downsell':  renderDownsellPage(el, state, goToStep); break;
     case 'thankyou':  renderThankYouPage(el, state);           break;
     default: renderLanding(el); break;

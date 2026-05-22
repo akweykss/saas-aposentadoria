@@ -253,21 +253,6 @@ export function renderCheckoutPage(el, appState, goToStep) {
 
         <div class="checkout-form-section">
           
-          <!-- ORDER BUMP -->
-          <div class="order-bump-box" style="border: 2px dashed #E67E22; background: #fffaf0; border-radius: 8px; padding: 16px; margin-bottom: 24px; position: relative;">
-            <div style="display: flex; gap: 12px; align-items: flex-start;">
-              <input type="checkbox" id="order-bump-checkbox" style="width: 20px; height: 20px; margin-top: 4px; accent-color: #E67E22;">
-              <div>
-                <label for="order-bump-checkbox" style="font-weight: 700; font-size: 15px; color: #333; cursor: pointer; display: block; margin-bottom: 4px;">
-                  Yes! Add The 24-Hour Roth IRA Restructuring Checklist (+$27)
-                </label>
-                <p style="font-size: 13px; color: #555; line-height: 1.4; margin: 0;">
-                  <strong>Highly Recommended:</strong> Discover the 4 hidden "detonators" inside your IRA, how to avoid the $218,000 IRMAA cliff, and the 6-year bracket-filling strategy.
-                </p>
-              </div>
-            </div>
-          </div>
-
           <div class="checkout-form-header">
             <h3 style="font-size: 20px; color: var(--color-primary);">🔒 Secure Checkout</h3>
             <p style="font-size: 14px; color: var(--color-text-light); margin-top: 4px;">Click below to complete your order securely via Hotmart.</p>
@@ -290,30 +275,6 @@ export function renderCheckoutPage(el, appState, goToStep) {
       </div>
     </div>
   `;
-
-  // Dynamic Order Bump logic
-  const bumpCheckbox = el.querySelector('#order-bump-checkbox');
-  const priceDisplay = el.querySelector('#checkout-total-price');
-  const hotmartLink = el.querySelector('#hotmart-link');
-
-  // Links da Hotmart
-  const linkSemBump = "https://pay.hotmart.com/N105921395O?checkoutMode=2";
-  // Como você escolheu o Caminho 1, a Hotmart cuida do Order Bump nativamente na página deles.
-  // A caixinha no nosso site serve como "preparo psicológico" (aumenta muito a conversão!).
-  const linkComBump = "https://pay.hotmart.com/N105921395O?checkoutMode=2"; 
-
-  if (bumpCheckbox) {
-    bumpCheckbox.addEventListener('change', (e) => {
-      appState.orderBump = e.target.checked;
-      if (e.target.checked) {
-        priceDisplay.textContent = "$94"; // 67 + 27
-        if (hotmartLink) hotmartLink.href = linkComBump;
-      } else {
-        priceDisplay.textContent = "$67";
-        if (hotmartLink) hotmartLink.href = linkSemBump;
-      }
-    });
-  }
 
   // Quando o botão for clicado, dispara o webhook com dados do quiz
   const hotmartBtn = el.querySelector('.hotmart__button-checkout');
@@ -343,10 +304,83 @@ function formatPhone(val) {
 }
 
 /* ════════════════════════════════════════════════════════════
-   UPSELL PAGE
+   UPSELL 1 PAGE (Roth IRA Checklist - $27)
    ════════════════════════════════════════════════════════════ */
 
-export function renderUpsellPage(el, appState, goToStep) {
+export function renderUpsell1Page(el, appState, goToStep) {
+  el.innerHTML = `
+    <div class="step-upsell anim-fade-in-up" style="max-width: 650px; margin: 40px auto; padding: 40px; background: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-top: 6px solid #2563eb;">
+      
+      <div style="text-align: center; margin-bottom: 24px;">
+        <div class="upsell-badge" style="background: #dbeafe; color: #1e40af; border: none; font-weight: 700; margin-bottom: 16px;">WAIT! YOUR ORDER IS NOT COMPLETE</div>
+        <h2 style="font-size: 2rem; color: #1e3a8a; line-height: 1.2; margin-bottom: 16px;">Don't Let The IRS Confiscate 30% of Your Retirement Accounts</h2>
+        <p style="font-size: 1.1rem; color: #475569;">You've protected your home, but your IRA and 401(k) are still sitting ducks for the <strong>Hidden "Detonators"</strong>.</p>
+      </div>
+
+      <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 24px; margin: 32px 0;">
+        <h3 style="font-size: 1.4rem; color: #0f172a; margin-top: 0; text-align: center;">The 24-Hour Roth IRA Restructuring Checklist</h3>
+        <p style="text-align: center; margin-bottom: 24px; color: #475569;">Carl & Linda lost $340,000 because they didn't touch their Traditional IRA. Discover the 4 hidden "detonators", how to avoid the $218,000 IRMAA cliff, and the 6-year bracket-filling strategy.</p>
+        
+        <ul style="list-style: none; padding: 0; margin: 0 0 24px 0; color: #334155;">
+          <li style="margin-bottom: 12px; display: flex; gap: 8px;">
+            <span style="color: #2563eb;">✅</span> 
+            <span><strong>The IRMAA Cliff:</strong> How to avoid paying triple for Medicare when you convert.</span>
+          </li>
+          <li style="margin-bottom: 12px; display: flex; gap: 8px;">
+            <span style="color: #2563eb;">✅</span> 
+            <span><strong>6-Year Bracket Strategy:</strong> Convert $810K while paying only 14% effective tax.</span>
+          </li>
+          <li style="display: flex; gap: 8px;">
+            <span style="color: #2563eb;">✅</span> 
+            <span><strong>The SECURE Act Trap:</strong> Why leaving an IRA to your kids now forces them into a massive 10-year tax bomb.</span>
+          </li>
+        </ul>
+
+        <div style="text-align: center; font-weight: 800; font-size: 2.2rem; color: #2563eb;">
+          Just $27
+        </div>
+      </div>
+
+      <!-- Botões de ação (fallback local / aparência em produção) -->
+      <div id="upsell1-action-area" style="text-align: center;">
+        <button class="btn btn-primary btn-large btn-full" id="btn-upsell1-yes" style="font-size: 1.1rem; padding: 18px; margin-bottom: 16px; background: #2563eb; border: none; box-shadow: 0 8px 20px rgba(37,99,235,0.3);">
+          ✅ Yes, Add The Roth IRA Checklist for $27 →
+        </button>
+        <button id="btn-upsell1-no" style="background: none; border: none; color: #94a3b8; font-size: 14px; cursor: pointer; text-decoration: underline;">
+          No thanks, I'll take my chances with the IRS.
+        </button>
+      </div>
+    </div>
+  `;
+
+  setTimeout(() => {
+    if (window.checkoutElements) {
+      try {
+        const area = document.getElementById('upsell1-action-area');
+        if (area) {
+          const hotmartDiv = document.createElement('div');
+          hotmartDiv.id = 'hotmart-sales-funnel';
+          area.replaceWith(hotmartDiv);
+          window.checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel');
+          return;
+        }
+      } catch (e) {
+        console.warn('Hotmart Sales Funnel: sem sessão ativa, usando botões locais.');
+      }
+    }
+    // Fallback local
+    const yesBtn = document.getElementById('btn-upsell1-yes');
+    const noBtn = document.getElementById('btn-upsell1-no');
+    if (yesBtn) yesBtn.addEventListener('click', () => { appState.orderBump = true; appState.orderTotal += 27; goToStep('upsell2'); });
+    if (noBtn) noBtn.addEventListener('click', () => goToStep('upsell2'));
+  }, 200);
+}
+
+/* ════════════════════════════════════════════════════════════
+   UPSELL 2 PAGE (The Vault - $197)
+   ════════════════════════════════════════════════════════════ */
+
+export function renderUpsell2Page(el, appState, goToStep) {
   el.innerHTML = `
     <div class="step-upsell anim-fade-in-up" style="max-width: 800px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.08);">
       
@@ -436,7 +470,7 @@ export function renderUpsellPage(el, appState, goToStep) {
     // Fallback local: botões normais
     const yesBtn = document.getElementById('btn-upsell-yes');
     const noBtn = document.getElementById('btn-upsell-no');
-    if (yesBtn) yesBtn.addEventListener('click', () => { appState.upsellAccepted = true; appState.orderTotal += 197; goToStep('thankyou'); });
+    if (yesBtn) yesBtn.addEventListener('click', () => { appState.upsellAccepted = true; appState.orderTotal += 197; goToStep('downsell'); });
     if (noBtn) noBtn.addEventListener('click', () => goToStep('downsell'));
   }, 200);
 }

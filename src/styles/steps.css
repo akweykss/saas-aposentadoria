@@ -584,36 +584,49 @@
 
   .hero-image {
     order: 1;
-    min-height: 200px;
-    max-height: 220px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  /* Hide person on mobile — not enough space */
-  .hero-person-img { display: none; }
-
-  /* Hide green glow on mobile */
-  .hero-image::before { display: none; }
-
-  /* Monitor — centered and scaled */
-  .hero-monitor-img {
+    height: 240px;
     position: relative;
-    top: auto;
-    right: auto;
-    width: 55%;
-    max-width: 240px;
-    margin: 0 auto;
+    display: block;
+    overflow: hidden;
+    margin-bottom: -10px;
   }
 
-  /* Shield — relative to monitor, top-right */
+  /* Show person on mobile, scaled */
+  .hero-person-img { 
+    display: block; 
+    left: -15%; 
+    height: 110%; 
+    bottom: -10px; 
+    top: auto; 
+    z-index: 2; 
+  }
+
+  /* Show green glow on mobile */
+  .hero-image::before { 
+    display: block; 
+    left: -10%;
+    width: 70%;
+  }
+
+  /* Monitor — positioned to the right */
+  .hero-monitor-img {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0%;
+    width: 60%;
+    max-width: 240px;
+    margin: 0;
+    z-index: 1;
+  }
+
+  /* Shield — top-right */
   .hero-shield-overlay-img {
     position: absolute;
-    top: 5px;
-    right: 15%;
-    width: 60px;
+    top: 10%;
+    right: 0%;
+    width: 50px;
+    z-index: 3;
   }
 
   .hero-title {

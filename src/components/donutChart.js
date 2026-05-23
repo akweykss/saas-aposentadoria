@@ -28,7 +28,11 @@ export function renderDonutChart(container, segments, options = {}) {
   canvas.height = size * dpr;
   canvas.style.width = `${size}px`;
   canvas.style.height = `${size}px`;
-  container.innerHTML = '';
+  // Remove existing canvas if any
+  const existingCanvas = container.querySelector('canvas');
+  if (existingCanvas) {
+    existingCanvas.remove();
+  }
   container.appendChild(canvas);
 
   const ctx = canvas.getContext('2d');
@@ -39,7 +43,9 @@ export function renderDonutChart(container, segments, options = {}) {
   const radius = (size - lineWidth) / 2 - 4;
 
   const total = segments.reduce((sum, s) => sum + s.value, 0);
-  if (total === 0) return;
+
+  // If total is 0, we'll draw a grey empty ring
+  const isEmpty = total === 0;
 
   // Calculate angles
   const arcs = [];
@@ -83,6 +89,14 @@ export function renderDonutChart(container, segments, options = {}) {
       ctx.strokeStyle = arc.color;
       ctx.lineWidth = lineWidth;
       ctx.lineCap = 'round';
+      ctx.stroke();
+    }
+
+    if (isEmpty) {
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius, 0, Math.PI * 2 * eased);
+      ctx.strokeStyle = '#e2e8f0'; // Light grey empty ring
+      ctx.lineWidth = lineWidth;
       ctx.stroke();
     }
 

@@ -584,48 +584,53 @@
 
   .hero-image {
     order: 1;
-    height: 240px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
     position: relative;
+    height: auto;
+    min-height: 200px;
+    overflow: visible;
+    margin-bottom: 0;
+    padding: 0 16px;
+  }
+
+  /* Person on mobile — static in flow, left side */
+  .hero-person-img {
     display: block;
-    overflow: hidden;
-    margin-bottom: -10px;
+    position: static;
+    width: 40%;
+    max-width: 160px;
+    height: auto;
+    max-height: 220px;
+    object-fit: contain;
+    object-position: bottom;
+    mix-blend-mode: multiply;
+    z-index: 2;
+    flex-shrink: 0;
   }
 
-  /* Show person on mobile, scaled */
-  .hero-person-img { 
-    display: block; 
-    left: -15%; 
-    height: 110%; 
-    bottom: -10px; 
-    top: auto; 
-    z-index: 2; 
-  }
+  /* Hide green glow on mobile — not needed with flex layout */
+  .hero-image::before { display: none; }
 
-  /* Show green glow on mobile */
-  .hero-image::before { 
-    display: block; 
-    left: -10%;
-    width: 70%;
-  }
-
-  /* Monitor — positioned to the right */
+  /* Monitor — static in flow, right side */
   .hero-monitor-img {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 0%;
-    width: 60%;
-    max-width: 240px;
+    position: static;
+    width: 55%;
+    max-width: 220px;
+    height: auto;
     margin: 0;
     z-index: 1;
+    flex-shrink: 0;
+    align-self: center;
   }
 
-  /* Shield — top-right */
+  /* Shield — positioned relative to the hero-image container */
   .hero-shield-overlay-img {
     position: absolute;
-    top: 10%;
-    right: 0%;
-    width: 50px;
+    top: 0;
+    right: 12%;
+    width: 44px;
     z-index: 3;
   }
 

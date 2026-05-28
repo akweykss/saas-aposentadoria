@@ -624,4 +624,15 @@ export function renderThankYouPage(el, appState) {
       </div>
     </div>
   `;
+
+  // ── Google Ads Conversion Tracking ──
+  // Fires the "Compra VSL - Hotmart" conversion event
+  if (typeof gtag === 'function') {
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18189369943/9Dg9CJ7C0bQcENeEr-FD',
+      'value': total,
+      'currency': 'USD'
+    });
+    console.log('[Google Ads] Conversion event fired:', total);
+  }
 }

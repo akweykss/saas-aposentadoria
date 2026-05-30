@@ -18,6 +18,7 @@ const state = {
   orderBump: false,
   upsellAccepted: false,
   orderTotal: 67,
+  src: '',
 };
 
 const TOTAL_STEPS = 4;
@@ -505,6 +506,17 @@ function runCalculations() {
 /* ───────────── Init ─────────────── */
 
 export function initSteps() {
+  // Capture traffic source parameters from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  let srcVal = urlParams.get('src') || urlParams.get('utm_source');
+  
+  if (srcVal) {
+    localStorage.setItem('traffic_src', srcVal);
+  } else {
+    srcVal = localStorage.getItem('traffic_src');
+  }
+  state.src = srcVal || '';
+
   // Read URL and render the correct page
   const initialStep = getStepFromURL();
   state.currentStep = initialStep;

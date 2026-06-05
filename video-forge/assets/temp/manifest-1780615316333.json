@@ -1,0 +1,1289 @@
+{
+  "meta": {
+    "title": "Filme Terror Que Quebra Por Dentro",
+    "description": "Terror psicológico sobre obsessão amorosa perturbador",
+    "language": "pt-BR",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920
+  },
+  "style": {
+    "primaryColor": "#DC2626",
+    "secondaryColor": "#7C2D12",
+    "backgroundColor": "#0A0A0F",
+    "fontFamily": "Playfair Display",
+    "mood": "dramatico"
+  },
+  "scenes": [
+    {
+      "id": "scene-001",
+      "type": "content",
+      "durationInSeconds": 3,
+      "headline": "**Não assista sozinho**",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_image",
+      "imagePrompt": "",
+      "stockQuery": "horror movie cinema dark theater alone watching",
+      "animation": "ken-burns",
+      "transition": "fade",
+      "transitionDurationFrames": 4,
+      "narrationText": "Não assista a esse filme sozinho.",
+      "narrationStartMs": 31,
+      "narrationEndMs": 2611,
+      "assetUrl": "pipeline-assets/scene-000.jpg",
+      "durationInFrames": 90,
+      "startFrame": 1
+    },
+    {
+      "id": "scene-002",
+      "type": "broll",
+      "durationInSeconds": 2,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "ai_image",
+      "imagePrompt": "Person sitting alone in dark movie theater looking distressed and unable to sleep, eerie lighting, psychological horror atmosphere, vertical composition, portrait orientation, 9:16 aspect ratio",
+      "stockQuery": "",
+      "animation": "zoom-in",
+      "transition": "whip",
+      "transitionDurationFrames": 3,
+      "narrationText": "Eu estou te avisando. Eu saí do cinema e não consegui dormir.",
+      "narrationStartMs": 2771,
+      "narrationEndMs": 6051,
+      "assetUrl": "pipeline-assets/scene-001.png",
+      "durationInFrames": 120,
+      "startFrame": 83
+    },
+    {
+      "id": "scene-003",
+      "type": "quote",
+      "durationInSeconds": 3,
+      "headline": "Te quebra por dentro",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_video",
+      "imagePrompt": "",
+      "stockQuery": "psychological horror broken person emotional trauma",
+      "animation": "scale-up",
+      "transition": "zoom-out",
+      "transitionDurationFrames": 5,
+      "narrationText": "Esse é o tipo de filme que te quebra por dentro.",
+      "narrationStartMs": 6191,
+      "narrationEndMs": 8851,
+      "assetUrl": "pipeline-assets/scene-002.mp4",
+      "durationInFrames": 90,
+      "startFrame": 186
+    },
+    {
+      "id": "scene-004",
+      "type": "content",
+      "durationInSeconds": 3,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_image",
+      "imagePrompt": "",
+      "stockQuery": "young man love childhood friend unrequited love",
+      "animation": "fade-in",
+      "transition": "slide-left",
+      "transitionDurationFrames": 4,
+      "narrationText": "Um moleque apaixonado pela amiga de infância não tem coragem de abrir a boca.",
+      "narrationStartMs": 8971,
+      "narrationEndMs": 13551,
+      "assetUrl": "pipeline-assets/scene-003.jpeg",
+      "durationInFrames": 150,
+      "startFrame": 269
+    },
+    {
+      "id": "scene-005",
+      "type": "broll",
+      "durationInSeconds": 2,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "ai_image",
+      "imagePrompt": "Teenage boy looking shy and nervous, unable to express feelings, realistic portrait, soft lighting, vertical composition, portrait orientation, 9:16 aspect ratio",
+      "stockQuery": "",
+      "animation": "ken-burns",
+      "transition": "cut",
+      "transitionDurationFrames": 1,
+      "narrationText": "Até aí, normal.",
+      "narrationStartMs": 13751,
+      "narrationEndMs": 14631,
+      "assetUrl": "pipeline-assets/scene-004.png",
+      "durationInFrames": 60,
+      "startFrame": 413
+    },
+    {
+      "id": "scene-006",
+      "type": "content",
+      "durationInSeconds": 3,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_video",
+      "imagePrompt": "",
+      "stockQuery": "cursed object breaking ancient artifact dark magic",
+      "animation": "zoom-in",
+      "transition": "whip",
+      "transitionDurationFrames": 3,
+      "narrationText": "Aí o idiota quebra um objeto amaldiçoado e pede para ela amar ele",
+      "narrationStartMs": 14771,
+      "narrationEndMs": 19131,
+      "assetUrl": "pipeline-assets/scene-005.mp4",
+      "durationInFrames": 150,
+      "startFrame": 443
+    },
+    {
+      "id": "scene-007",
+      "type": "statistic",
+      "durationInSeconds": 2,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_image",
+      "imagePrompt": "",
+      "stockQuery": "obsessive love desire possession horror movie",
+      "animation": "parallax",
+      "transition": "fade",
+      "transitionDurationFrames": 4,
+      "narrationText": "mais do que qualquer pessoa no mundo.",
+      "narrationStartMs": 19491,
+      "narrationEndMs": 21171,
+      "assetUrl": "pipeline-assets/scene-006.png",
+      "durationInFrames": 60,
+      "startFrame": 585
+    },
+    {
+      "id": "scene-008",
+      "type": "content",
+      "durationInSeconds": 3,
+      "headline": "**Desejo se realiza**",
+      "body": "",
+      "subtitle": "",
+      "visualType": "ai_image",
+      "imagePrompt": "Dark magical wish coming true in twisted horrific way, supernatural transformation, eerie lighting, vertical composition, portrait orientation, 9:16 aspect ratio",
+      "stockQuery": "",
+      "animation": "slide-right",
+      "transition": "zoom-in",
+      "transitionDurationFrames": 3,
+      "narrationText": "E o desejo se realiza, só que do pior jeito possível.",
+      "narrationStartMs": 21291,
+      "narrationEndMs": 24531,
+      "assetUrl": "pipeline-assets/scene-007.png",
+      "durationInFrames": 120,
+      "startFrame": 639
+    },
+    {
+      "id": "scene-009",
+      "type": "quote",
+      "durationInSeconds": 3,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_video",
+      "imagePrompt": "",
+      "stockQuery": "possessed girl empty eyes demonic possession horror",
+      "animation": "ken-burns",
+      "transition": "slide-left",
+      "transitionDurationFrames": 4,
+      "narrationText": "A menina some. O corpo está lá, mas ela não está mais.",
+      "narrationStartMs": 24584,
+      "narrationEndMs": 27564,
+      "assetUrl": "pipeline-assets/scene-008.mp4",
+      "durationInFrames": 90,
+      "startFrame": 738
+    },
+    {
+      "id": "scene-010",
+      "type": "broll",
+      "durationInSeconds": 2,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_image",
+      "imagePrompt": "",
+      "stockQuery": "demonic possession taking control evil entity horror",
+      "animation": "zoom-out",
+      "transition": "whip",
+      "transitionDurationFrames": 3,
+      "narrationText": "O que assume o controle é outra coisa.",
+      "narrationStartMs": 27664,
+      "narrationEndMs": 29364,
+      "assetUrl": "pipeline-assets/scene-009.jpg",
+      "durationInFrames": 60,
+      "startFrame": 830
+    },
+    {
+      "id": "scene-011",
+      "type": "content",
+      "durationInSeconds": 3,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "ai_image",
+      "imagePrompt": "Disturbing scene of possessed person cooking dead cat, horror movie style, dark kitchen, vertical composition, portrait orientation, 9:16 aspect ratio",
+      "stockQuery": "",
+      "animation": "bounce",
+      "transition": "cut",
+      "transitionDurationFrames": 1,
+      "narrationText": "Ela cozinha o gato morto.",
+      "narrationStartMs": 29464,
+      "narrationEndMs": 30744,
+      "assetUrl": "pipeline-assets/scene-010.png",
+      "durationInFrames": 60,
+      "startFrame": 884
+    },
+    {
+      "id": "scene-012",
+      "type": "broll",
+      "durationInSeconds": 3,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_video",
+      "imagePrompt": "",
+      "stockQuery": "creepy person standing dark room staring horror",
+      "animation": "scale-up",
+      "transition": "fade",
+      "transitionDurationFrames": 5,
+      "narrationText": "Fica parada no escuro te encarando enquanto você dorme.",
+      "narrationStartMs": 30844,
+      "narrationEndMs": 33344,
+      "assetUrl": "pipeline-assets/scene-011.mp4",
+      "durationInFrames": 90,
+      "startFrame": 925
+    },
+    {
+      "id": "scene-013",
+      "type": "content",
+      "durationInSeconds": 3,
+      "headline": "Instinto de matar",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_image",
+      "imagePrompt": "",
+      "stockQuery": "Siamese twins horror movie killing instinct",
+      "animation": "ken-burns",
+      "transition": "zoom-in",
+      "transitionDurationFrames": 4,
+      "narrationText": "Tem um Siúmes que não é Siúmes. É instinto de matar.",
+      "narrationStartMs": 33384,
+      "narrationEndMs": 37424,
+      "assetUrl": "pipeline-assets/scene-012.jpg",
+      "durationInFrames": 150,
+      "startFrame": 1002
+    },
+    {
+      "id": "scene-014",
+      "type": "quote",
+      "durationInSeconds": 4,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "ai_image",
+      "imagePrompt": "Person self-mutilating being used by demonic force, psychological horror, dark atmosphere, vertical composition, portrait orientation, 9:16 aspect ratio",
+      "stockQuery": "",
+      "animation": "slide-left",
+      "transition": "whip",
+      "transitionDurationFrames": 3,
+      "narrationText": "Se mutila por você, te usa. Tudo sem ela ter escolha nenhuma.",
+      "narrationStartMs": 37644,
+      "narrationEndMs": 42144,
+      "assetUrl": "pipeline-assets/scene-013.png",
+      "durationInFrames": 150,
+      "startFrame": 1129
+    },
+    {
+      "id": "scene-015",
+      "type": "content",
+      "durationInSeconds": 3,
+      "headline": "**Presa num vazio**",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_video",
+      "imagePrompt": "",
+      "stockQuery": "person trapped void screaming nobody hears horror",
+      "animation": "parallax",
+      "transition": "zoom-out",
+      "transitionDurationFrames": 5,
+      "narrationText": "Ela está presa num vazio, gritando, e ninguém ouve.",
+      "narrationStartMs": 42344,
+      "narrationEndMs": 45324,
+      "assetUrl": "pipeline-assets/scene-014.mp4",
+      "durationInFrames": 90,
+      "startFrame": 1270
+    },
+    {
+      "id": "scene-016",
+      "type": "broll",
+      "durationInSeconds": 2,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_image",
+      "imagePrompt": "",
+      "stockQuery": "plot twist revelation horror movie shocking truth",
+      "animation": "zoom-in",
+      "transition": "cut",
+      "transitionDurationFrames": 1,
+      "narrationText": "e o mais doente de tudo?",
+      "narrationStartMs": 45408,
+      "narrationEndMs": 47528,
+      "assetUrl": "pipeline-assets/scene-015.jpg",
+      "durationInFrames": 90,
+      "startFrame": 1362
+    },
+    {
+      "id": "scene-017",
+      "type": "content",
+      "durationInSeconds": 3,
+      "headline": "Vilão não é o demônio",
+      "body": "",
+      "subtitle": "",
+      "visualType": "ai_image",
+      "imagePrompt": "Young man revealed as true villain not the demon, psychological horror twist, dramatic lighting, vertical composition, portrait orientation, 9:16 aspect ratio",
+      "stockQuery": "",
+      "animation": "kinetic-text",
+      "transition": "slide-left",
+      "transitionDurationFrames": 4,
+      "narrationText": "O vilão não é o demônio. O vilão é o cara que fez o pedido.",
+      "narrationStartMs": 47708,
+      "narrationEndMs": 51868,
+      "assetUrl": "pipeline-assets/scene-016.png",
+      "durationInFrames": 150,
+      "startFrame": 1431
+    },
+    {
+      "id": "scene-018",
+      "type": "quote",
+      "durationInSeconds": 2,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_video",
+      "imagePrompt": "",
+      "stockQuery": "obsession psychological horror movie dark theme",
+      "animation": "fade-in",
+      "transition": "fade",
+      "transitionDurationFrames": 4,
+      "narrationText": "O filme é obsessão.",
+      "narrationStartMs": 52008,
+      "narrationEndMs": 53388,
+      "assetUrl": "pipeline-assets/scene-017.mp4",
+      "durationInFrames": 60,
+      "startFrame": 1560
+    },
+    {
+      "id": "scene-019",
+      "type": "content",
+      "durationInSeconds": 3,
+      "headline": "**Mas não diz que não avisei**",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_image",
+      "imagePrompt": "",
+      "stockQuery": "movie recommendation warning psychological horror cinema",
+      "animation": "scale-up",
+      "transition": "fade",
+      "transitionDurationFrames": 5,
+      "narrationText": "Vai assistir. Mas não diz que eu não avisei?",
+      "narrationStartMs": 53508,
+      "narrationEndMs": 55968,
+      "assetUrl": "pipeline-assets/scene-018.png",
+      "durationInFrames": 90,
+      "startFrame": 1605
+    }
+  ],
+  "backgroundMusicVolume": 0.12,
+  "totalDurationInFrames": 1710,
+  "localAudioPath": "pipeline-assets/narration.mp3",
+  "words": [
+    {
+      "text": "Não",
+      "start": 31,
+      "end": 171
+    },
+    {
+      "text": "assista",
+      "start": 171,
+      "end": 911
+    },
+    {
+      "text": "a",
+      "start": 911,
+      "end": 1131
+    },
+    {
+      "text": "esse",
+      "start": 1131,
+      "end": 1371
+    },
+    {
+      "text": "filme",
+      "start": 1371,
+      "end": 1871
+    },
+    {
+      "text": "sozinho.",
+      "start": 1871,
+      "end": 2611
+    },
+    {
+      "text": "Eu",
+      "start": 2771,
+      "end": 2871
+    },
+    {
+      "text": "estou",
+      "start": 2871,
+      "end": 2991
+    },
+    {
+      "text": "te",
+      "start": 2991,
+      "end": 3151
+    },
+    {
+      "text": "avisando.",
+      "start": 3151,
+      "end": 3671
+    },
+    {
+      "text": "Eu",
+      "start": 3771,
+      "end": 3891
+    },
+    {
+      "text": "saí",
+      "start": 3891,
+      "end": 4111
+    },
+    {
+      "text": "do",
+      "start": 4111,
+      "end": 4251
+    },
+    {
+      "text": "cinema",
+      "start": 4251,
+      "end": 4711
+    },
+    {
+      "text": "e",
+      "start": 4711,
+      "end": 5051
+    },
+    {
+      "text": "não",
+      "start": 5051,
+      "end": 5171
+    },
+    {
+      "text": "consegui",
+      "start": 5171,
+      "end": 5631
+    },
+    {
+      "text": "dormir.",
+      "start": 5631,
+      "end": 6051
+    },
+    {
+      "text": "Esse",
+      "start": 6191,
+      "end": 6411
+    },
+    {
+      "text": "é",
+      "start": 6411,
+      "end": 6571
+    },
+    {
+      "text": "o",
+      "start": 6571,
+      "end": 6731
+    },
+    {
+      "text": "tipo",
+      "start": 6731,
+      "end": 6991
+    },
+    {
+      "text": "de",
+      "start": 6991,
+      "end": 7211
+    },
+    {
+      "text": "filme",
+      "start": 7211,
+      "end": 7471
+    },
+    {
+      "text": "que",
+      "start": 7471,
+      "end": 7771
+    },
+    {
+      "text": "te",
+      "start": 7771,
+      "end": 7951
+    },
+    {
+      "text": "quebra",
+      "start": 7951,
+      "end": 8271
+    },
+    {
+      "text": "por",
+      "start": 8271,
+      "end": 8511
+    },
+    {
+      "text": "dentro.",
+      "start": 8511,
+      "end": 8851
+    },
+    {
+      "text": "Um",
+      "start": 8971,
+      "end": 9091
+    },
+    {
+      "text": "moleque",
+      "start": 9091,
+      "end": 9531
+    },
+    {
+      "text": "apaixonado",
+      "start": 9531,
+      "end": 10471
+    },
+    {
+      "text": "pela",
+      "start": 10471,
+      "end": 10751
+    },
+    {
+      "text": "amiga",
+      "start": 10751,
+      "end": 11111
+    },
+    {
+      "text": "de",
+      "start": 11111,
+      "end": 11271
+    },
+    {
+      "text": "infância",
+      "start": 11271,
+      "end": 11791
+    },
+    {
+      "text": "não",
+      "start": 11791,
+      "end": 12031
+    },
+    {
+      "text": "tem",
+      "start": 12031,
+      "end": 12231
+    },
+    {
+      "text": "coragem",
+      "start": 12231,
+      "end": 12691
+    },
+    {
+      "text": "de",
+      "start": 12691,
+      "end": 12891
+    },
+    {
+      "text": "abrir",
+      "start": 12891,
+      "end": 13091
+    },
+    {
+      "text": "a",
+      "start": 13091,
+      "end": 13291
+    },
+    {
+      "text": "boca.",
+      "start": 13291,
+      "end": 13551
+    },
+    {
+      "text": "Até",
+      "start": 13751,
+      "end": 13891
+    },
+    {
+      "text": "aí,",
+      "start": 13891,
+      "end": 14171
+    },
+    {
+      "text": "normal.",
+      "start": 14331,
+      "end": 14631
+    },
+    {
+      "text": "Aí",
+      "start": 14771,
+      "end": 14931
+    },
+    {
+      "text": "o",
+      "start": 14931,
+      "end": 15111
+    },
+    {
+      "text": "idiota",
+      "start": 15111,
+      "end": 15571
+    },
+    {
+      "text": "quebra",
+      "start": 15571,
+      "end": 15971
+    },
+    {
+      "text": "um",
+      "start": 15971,
+      "end": 16091
+    },
+    {
+      "text": "objeto",
+      "start": 16091,
+      "end": 16511
+    },
+    {
+      "text": "amaldiçoado",
+      "start": 16511,
+      "end": 17511
+    },
+    {
+      "text": "e",
+      "start": 17511,
+      "end": 17891
+    },
+    {
+      "text": "pede",
+      "start": 17891,
+      "end": 18111
+    },
+    {
+      "text": "para",
+      "start": 18111,
+      "end": 18291
+    },
+    {
+      "text": "ela",
+      "start": 18291,
+      "end": 18491
+    },
+    {
+      "text": "amar",
+      "start": 18491,
+      "end": 18891
+    },
+    {
+      "text": "ele",
+      "start": 18891,
+      "end": 19131
+    },
+    {
+      "text": "mais",
+      "start": 19131,
+      "end": 19491
+    },
+    {
+      "text": "do",
+      "start": 19491,
+      "end": 19651
+    },
+    {
+      "text": "que",
+      "start": 19651,
+      "end": 19771
+    },
+    {
+      "text": "qualquer",
+      "start": 19771,
+      "end": 20051
+    },
+    {
+      "text": "pessoa",
+      "start": 20051,
+      "end": 20631
+    },
+    {
+      "text": "no",
+      "start": 20631,
+      "end": 20851
+    },
+    {
+      "text": "mundo.",
+      "start": 20851,
+      "end": 21171
+    },
+    {
+      "text": "E",
+      "start": 21291,
+      "end": 21351
+    },
+    {
+      "text": "o",
+      "start": 21351,
+      "end": 21431
+    },
+    {
+      "text": "desejo",
+      "start": 21431,
+      "end": 21891
+    },
+    {
+      "text": "se",
+      "start": 21891,
+      "end": 22131
+    },
+    {
+      "text": "realiza,",
+      "start": 22131,
+      "end": 22671
+    },
+    {
+      "text": "só",
+      "start": 22831,
+      "end": 22971
+    },
+    {
+      "text": "que",
+      "start": 22971,
+      "end": 23091
+    },
+    {
+      "text": "do",
+      "start": 23091,
+      "end": 23191
+    },
+    {
+      "text": "pior",
+      "start": 23191,
+      "end": 23531
+    },
+    {
+      "text": "jeito",
+      "start": 23531,
+      "end": 23971
+    },
+    {
+      "text": "possível.",
+      "start": 23971,
+      "end": 24531
+    },
+    {
+      "text": "A",
+      "start": 24584,
+      "end": 24784
+    },
+    {
+      "text": "menina",
+      "start": 24784,
+      "end": 25084
+    },
+    {
+      "text": "some.",
+      "start": 25084,
+      "end": 25444
+    },
+    {
+      "text": "O",
+      "start": 25564,
+      "end": 25664
+    },
+    {
+      "text": "corpo",
+      "start": 25664,
+      "end": 25944
+    },
+    {
+      "text": "está",
+      "start": 25944,
+      "end": 26164
+    },
+    {
+      "text": "lá,",
+      "start": 26164,
+      "end": 26444
+    },
+    {
+      "text": "mas",
+      "start": 26604,
+      "end": 26704
+    },
+    {
+      "text": "ela",
+      "start": 26704,
+      "end": 26884
+    },
+    {
+      "text": "não",
+      "start": 26884,
+      "end": 27064
+    },
+    {
+      "text": "está",
+      "start": 27064,
+      "end": 27244
+    },
+    {
+      "text": "mais.",
+      "start": 27244,
+      "end": 27564
+    },
+    {
+      "text": "O",
+      "start": 27664,
+      "end": 27724
+    },
+    {
+      "text": "que",
+      "start": 27724,
+      "end": 27824
+    },
+    {
+      "text": "assume",
+      "start": 27824,
+      "end": 28104
+    },
+    {
+      "text": "o",
+      "start": 28104,
+      "end": 28244
+    },
+    {
+      "text": "controle",
+      "start": 28244,
+      "end": 28624
+    },
+    {
+      "text": "é",
+      "start": 28624,
+      "end": 28764
+    },
+    {
+      "text": "outra",
+      "start": 28764,
+      "end": 28944
+    },
+    {
+      "text": "coisa.",
+      "start": 28944,
+      "end": 29364
+    },
+    {
+      "text": "Ela",
+      "start": 29464,
+      "end": 29564
+    },
+    {
+      "text": "cozinha",
+      "start": 29564,
+      "end": 29924
+    },
+    {
+      "text": "o",
+      "start": 29924,
+      "end": 30044
+    },
+    {
+      "text": "gato",
+      "start": 30044,
+      "end": 30264
+    },
+    {
+      "text": "morto.",
+      "start": 30264,
+      "end": 30744
+    },
+    {
+      "text": "Fica",
+      "start": 30844,
+      "end": 30964
+    },
+    {
+      "text": "parada",
+      "start": 30964,
+      "end": 31344
+    },
+    {
+      "text": "no",
+      "start": 31344,
+      "end": 31464
+    },
+    {
+      "text": "escuro",
+      "start": 31464,
+      "end": 31804
+    },
+    {
+      "text": "te",
+      "start": 31804,
+      "end": 31984
+    },
+    {
+      "text": "encarando",
+      "start": 31984,
+      "end": 32424
+    },
+    {
+      "text": "enquanto",
+      "start": 32424,
+      "end": 32704
+    },
+    {
+      "text": "você",
+      "start": 32704,
+      "end": 32984
+    },
+    {
+      "text": "dorme.",
+      "start": 32984,
+      "end": 33344
+    },
+    {
+      "text": "Tem",
+      "start": 33384,
+      "end": 33524
+    },
+    {
+      "text": "um",
+      "start": 33524,
+      "end": 33744
+    },
+    {
+      "text": "Siúmes",
+      "start": 33744,
+      "end": 34384
+    },
+    {
+      "text": "que",
+      "start": 34384,
+      "end": 34664
+    },
+    {
+      "text": "não",
+      "start": 34664,
+      "end": 34944
+    },
+    {
+      "text": "é",
+      "start": 34944,
+      "end": 35184
+    },
+    {
+      "text": "Siúmes.",
+      "start": 35184,
+      "end": 35784
+    },
+    {
+      "text": "É",
+      "start": 35944,
+      "end": 36044
+    },
+    {
+      "text": "instinto",
+      "start": 36044,
+      "end": 36784
+    },
+    {
+      "text": "de",
+      "start": 36784,
+      "end": 37004
+    },
+    {
+      "text": "matar.",
+      "start": 37004,
+      "end": 37424
+    },
+    {
+      "text": "Se",
+      "start": 37644,
+      "end": 37784
+    },
+    {
+      "text": "mutila",
+      "start": 37784,
+      "end": 38404
+    },
+    {
+      "text": "por",
+      "start": 38404,
+      "end": 38684
+    },
+    {
+      "text": "você,",
+      "start": 38684,
+      "end": 39144
+    },
+    {
+      "text": "te",
+      "start": 39304,
+      "end": 39484
+    },
+    {
+      "text": "usa.",
+      "start": 39484,
+      "end": 39864
+    },
+    {
+      "text": "Tudo",
+      "start": 39964,
+      "end": 40224
+    },
+    {
+      "text": "sem",
+      "start": 40224,
+      "end": 40644
+    },
+    {
+      "text": "ela",
+      "start": 40644,
+      "end": 40944
+    },
+    {
+      "text": "ter",
+      "start": 40944,
+      "end": 41164
+    },
+    {
+      "text": "escolha",
+      "start": 41164,
+      "end": 41664
+    },
+    {
+      "text": "nenhuma.",
+      "start": 41664,
+      "end": 42144
+    },
+    {
+      "text": "Ela",
+      "start": 42344,
+      "end": 42464
+    },
+    {
+      "text": "está",
+      "start": 42464,
+      "end": 42644
+    },
+    {
+      "text": "presa",
+      "start": 42644,
+      "end": 43024
+    },
+    {
+      "text": "num",
+      "start": 43024,
+      "end": 43184
+    },
+    {
+      "text": "vazio,",
+      "start": 43184,
+      "end": 43804
+    },
+    {
+      "text": "gritando,",
+      "start": 43984,
+      "end": 44444
+    },
+    {
+      "text": "e",
+      "start": 44584,
+      "end": 44644
+    },
+    {
+      "text": "ninguém",
+      "start": 44644,
+      "end": 44924
+    },
+    {
+      "text": "ouve.",
+      "start": 44924,
+      "end": 45324
+    },
+    {
+      "text": "e",
+      "start": 45408,
+      "end": 45608
+    },
+    {
+      "text": "o",
+      "start": 45608,
+      "end": 45848
+    },
+    {
+      "text": "mais",
+      "start": 45848,
+      "end": 46188
+    },
+    {
+      "text": "doente",
+      "start": 46188,
+      "end": 46728
+    },
+    {
+      "text": "de",
+      "start": 46728,
+      "end": 47208
+    },
+    {
+      "text": "tudo?",
+      "start": 47208,
+      "end": 47528
+    },
+    {
+      "text": "O",
+      "start": 47708,
+      "end": 47808
+    },
+    {
+      "text": "vilão",
+      "start": 47808,
+      "end": 48208
+    },
+    {
+      "text": "não",
+      "start": 48208,
+      "end": 48508
+    },
+    {
+      "text": "é",
+      "start": 48508,
+      "end": 48688
+    },
+    {
+      "text": "o",
+      "start": 48688,
+      "end": 48788
+    },
+    {
+      "text": "demônio.",
+      "start": 48788,
+      "end": 49288
+    },
+    {
+      "text": "O",
+      "start": 49388,
+      "end": 49508
+    },
+    {
+      "text": "vilão",
+      "start": 49508,
+      "end": 49888
+    },
+    {
+      "text": "é",
+      "start": 49888,
+      "end": 50088
+    },
+    {
+      "text": "o",
+      "start": 50088,
+      "end": 50288
+    },
+    {
+      "text": "cara",
+      "start": 50288,
+      "end": 50588
+    },
+    {
+      "text": "que",
+      "start": 50588,
+      "end": 50868
+    },
+    {
+      "text": "fez",
+      "start": 50868,
+      "end": 51288
+    },
+    {
+      "text": "o",
+      "start": 51288,
+      "end": 51448
+    },
+    {
+      "text": "pedido.",
+      "start": 51448,
+      "end": 51868
+    },
+    {
+      "text": "O",
+      "start": 52008,
+      "end": 52128
+    },
+    {
+      "text": "filme",
+      "start": 52128,
+      "end": 52388
+    },
+    {
+      "text": "é",
+      "start": 52388,
+      "end": 52668
+    },
+    {
+      "text": "obsessão.",
+      "start": 52668,
+      "end": 53388
+    },
+    {
+      "text": "Vai",
+      "start": 53508,
+      "end": 53688
+    },
+    {
+      "text": "assistir.",
+      "start": 53688,
+      "end": 54168
+    },
+    {
+      "text": "Mas",
+      "start": 54288,
+      "end": 54488
+    },
+    {
+      "text": "não",
+      "start": 54488,
+      "end": 54688
+    },
+    {
+      "text": "diz",
+      "start": 54688,
+      "end": 55008
+    },
+    {
+      "text": "que",
+      "start": 55008,
+      "end": 55168
+    },
+    {
+      "text": "eu",
+      "start": 55168,
+      "end": 55348
+    },
+    {
+      "text": "não",
+      "start": 55348,
+      "end": 55468
+    },
+    {
+      "text": "avisei?",
+      "start": 55468,
+      "end": 55968
+    }
+  ]
+}

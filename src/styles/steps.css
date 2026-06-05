@@ -1,3 +1,266 @@
+/* ═══════════════════════════════════════════════════════════════
+   VSL (Video Sales Letter) SECTION
+   ═══════════════════════════════════════════════════════════════ */
+
+.vsl-section {
+  background: linear-gradient(180deg, #0a0f1a 0%, #111827 100%);
+  padding: 48px 24px 56px;
+  text-align: center;
+  margin: -32px -32px 0;
+  width: calc(100% + 64px);
+}
+
+.vsl-inner {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* ── Urgent Badge ── */
+.vsl-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(220, 38, 38, 0.15);
+  border: 1px solid rgba(220, 38, 38, 0.4);
+  color: #fca5a5;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+  animation: vslBadgePulse 2s ease-in-out infinite;
+}
+
+@keyframes vslBadgePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
+}
+
+/* ── Headline ── */
+.vsl-headline {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Subheadline ── */
+.vsl-subheadline {
+  font-size: 1rem;
+  color: #9ca3af;
+  line-height: 1.65;
+  max-width: 620px;
+  margin: 0 auto 32px;
+}
+
+/* ── Video Container ── */
+.vsl-video-wrap {
+  max-width: 820px;
+  margin: 0 auto 28px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow:
+    0 0 40px rgba(16, 185, 129, 0.08),
+    0 0 80px rgba(16, 185, 129, 0.04),
+    0 20px 60px rgba(0, 0, 0, 0.5);
+  position: relative;
+  background: #000;
+}
+
+.vsl-video-ratio {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
+}
+
+.vsl-video-ratio iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ── Progress Area ── */
+.vsl-progress-area {
+  max-width: 820px;
+  margin: 0 auto 24px;
+}
+
+.vsl-progress-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.vsl-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #10b981, #34d399);
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.vsl-progress-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #9ca3af;
+  transition: color 0.4s ease;
+}
+
+.vsl-progress-status.unlocked {
+  color: #34d399;
+}
+
+.vsl-progress-icon {
+  font-size: 18px;
+  transition: transform 0.4s ease;
+}
+
+.vsl-progress-status.unlocked .vsl-progress-icon {
+  animation: vslCheckBounce 0.5s ease;
+}
+
+@keyframes vslCheckBounce {
+  0% { transform: scale(0.5); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* ── CTA Button ── */
+.vsl-cta-wrap {
+  margin: 0 auto 16px;
+  max-width: 520px;
+}
+
+.vsl-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 18px 32px;
+  font-size: 17px;
+  font-weight: 700;
+  font-family: inherit;
+  border: none;
+  border-radius: 12px;
+  cursor: not-allowed;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.vsl-cta-btn.locked {
+  background: #374151;
+  color: #6b7280;
+  box-shadow: none;
+  opacity: 0.7;
+}
+
+.vsl-cta-btn.unlocked {
+  background: linear-gradient(135deg, #059669, #10b981);
+  color: #ffffff;
+  cursor: pointer;
+  opacity: 1;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3), 0 0 40px rgba(16, 185, 129, 0.15);
+  animation: vslCtaGlow 2s ease-in-out infinite;
+  transform: scale(1.03);
+}
+
+.vsl-cta-btn.unlocked:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.4), 0 0 60px rgba(16, 185, 129, 0.2);
+}
+
+.vsl-cta-btn.unlocked:active {
+  transform: scale(0.98);
+}
+
+@keyframes vslCtaGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3), 0 0 40px rgba(16, 185, 129, 0.15); }
+  50% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.5), 0 0 60px rgba(16, 185, 129, 0.25); }
+}
+
+/* ── Trust Line (dark) ── */
+.vsl-trust-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #6b7280;
+  flex-wrap: wrap;
+}
+
+/* ── Hero Start Button — locked state ── */
+#btn-start.vsl-locked {
+  opacity: 0.45;
+  pointer-events: none;
+  filter: grayscale(0.5);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .vsl-section {
+    padding: 32px 16px 40px;
+    margin: -16px -16px 0;
+    width: calc(100% + 32px);
+  }
+  .vsl-headline {
+    font-size: 1.5rem;
+  }
+  .vsl-subheadline {
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+  }
+  .vsl-cta-btn {
+    font-size: 15px;
+    padding: 16px 24px;
+  }
+  .vsl-trust-line {
+    font-size: 11px;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .vsl-section {
+    padding: 24px 12px 32px;
+    margin: -16px -14px 0;
+    width: calc(100% + 28px);
+  }
+  .vsl-headline {
+    font-size: 1.3rem;
+  }
+  .vsl-badge {
+    font-size: 10px;
+    padding: 6px 14px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .vsl-headline {
+    font-size: 2.5rem;
+  }
+  .vsl-subheadline {
+    font-size: 1.1rem;
+  }
+}
+
 /* ===== STEP LAYOUTS ===== */
 
 /* ───── Landing / Hero ───── */

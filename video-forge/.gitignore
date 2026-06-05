@@ -1,0 +1,11 @@
+node_modules
+dist
+.env
+.turbo
+assets/generated
+assets/downloaded
+assets/output
+*.mp4
+*.mp3
+*.wav
+.DS_Store

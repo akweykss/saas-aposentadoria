@@ -1,0 +1,1614 @@
+{
+  "meta": {
+    "title": "Neymar Jr: O Talento que Conquistou o Mundo",
+    "description": "A trajetória completa do maior artilheiro da seleção brasileira",
+    "language": "pt-BR",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920
+  },
+  "style": {
+    "primaryColor": "#FFD700",
+    "secondaryColor": "#1E40AF",
+    "backgroundColor": "#0A0A0F",
+    "fontFamily": "Playfair Display",
+    "mood": "inspirador"
+  },
+  "scenes": [
+    {
+      "id": "scene-001",
+      "type": "content",
+      "durationInSeconds": 3,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_video",
+      "imagePrompt": "",
+      "stockQuery": "Neymar Jr Barcelona PSG football highlights",
+      "animation": "fade-in",
+      "transition": "fade",
+      "transitionDurationFrames": 6,
+      "narrationText": "Neymar Jr., o cara que fez o mundo inteiro parar pra assistir futebol.",
+      "narrationStartMs": 31,
+      "narrationEndMs": 3051,
+      "assetUrl": "pipeline-assets/scene-000.mp4",
+      "durationInFrames": 120,
+      "startFrame": 1
+    },
+    {
+      "id": "scene-002",
+      "type": "statistic",
+      "durationInSeconds": 3,
+      "headline": "**Descoberto pelo Santos aos 11 anos, esse garoto de Mogi das Cruzes já mostrava o talento que mudaria o futebol brasileiro para sempre**",
+      "body": "",
+      "subtitle": "",
+      "visualType": "ai_image",
+      "imagePrompt": "Young Brazilian boy playing street football in Mogi das Cruzes neighborhood, Santos FC scout watching from car, golden hour lighting, cinematic documentary style, vertical 9:16 composition",
+      "stockQuery": "",
+      "animation": "ken-burns",
+      "transition": "cut",
+      "transitionDurationFrames": 4,
+      "narrationText": "Com 11 anos, esse moleque de Mogi das Cruzes já tinha o Olheiro dos Santos batendo na porta da casa dele.",
+      "narrationStartMs": 3471,
+      "narrationEndMs": 7831,
+      "assetUrl": "pipeline-assets/scene-001.png",
+      "durationInFrames": 150,
+      "startFrame": 104
+    },
+    {
+      "id": "scene-003",
+      "type": "content",
+      "durationInSeconds": 2,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_video",
+      "imagePrompt": "",
+      "stockQuery": "young Neymar Santos FC training youth academy",
+      "animation": "zoom-in",
+      "transition": "slide",
+      "transitionDurationFrames": 5,
+      "narrationText": "E não era à toa.",
+      "narrationStartMs": 8271,
+      "narrationEndMs": 9011,
+      "assetUrl": "pipeline-assets/scene-002.mp4",
+      "durationInFrames": 60,
+      "startFrame": 248
+    },
+    {
+      "id": "scene-004",
+      "type": "statistic",
+      "durationInSeconds": 3,
+      "headline": "17 anos",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_image",
+      "imagePrompt": "",
+      "stockQuery": "Neymar Santos FC young player debut match",
+      "animation": "scale-up",
+      "transition": "wipe",
+      "transitionDurationFrames": 6,
+      "narrationText": "Aos 17, ele já era titular absoluto.",
+      "narrationStartMs": 9411,
+      "narrationEndMs": 11371,
+      "assetUrl": "pipeline-assets/scene-003.jpg",
+      "durationInFrames": 60,
+      "startFrame": 282
+    },
+    {
+      "id": "scene-005",
+      "type": "content",
+      "durationInSeconds": 3,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "ai_image",
+      "imagePrompt": "Young Neymar carrying Santos FC team on his shoulders during Copa Libertadores 2011, stadium lights, dramatic cinematic angle, Brazilian flag in background, vertical composition",
+      "stockQuery": "",
+      "animation": "slide-up",
+      "transition": "dissolve",
+      "transitionDurationFrames": 5,
+      "narrationText": "Aos 19, carregava o time nas costas na Libertadores de 2011",
+      "narrationStartMs": 11731,
+      "narrationEndMs": 14551,
+      "assetUrl": "pipeline-assets/scene-004.png",
+      "durationInFrames": 90,
+      "startFrame": 352
+    },
+    {
+      "id": "scene-006",
+      "type": "quote",
+      "durationInSeconds": 3,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_video",
+      "imagePrompt": "",
+      "stockQuery": "Neymar goal Penarol Copa Libertadores 2011",
+      "animation": "ken-burns",
+      "transition": "cut",
+      "transitionDurationFrames": 4,
+      "narrationText": "e quem assistiu aquele gol contra o Penarol sabe exatamente do que eu tô falando.",
+      "narrationStartMs": 14951,
+      "narrationEndMs": 17851,
+      "assetUrl": "pipeline-assets/scene-005.mp4",
+      "durationInFrames": 90,
+      "startFrame": 449
+    },
+    {
+      "id": "scene-007",
+      "type": "content",
+      "durationInSeconds": 2,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "ai_image",
+      "imagePrompt": "Barcelona Camp Nou stadium exterior with FC Barcelona logo prominently displayed, sunset lighting, aerial cinematic shot, vertical 9:16 composition",
+      "stockQuery": "",
+      "animation": "zoom-out",
+      "transition": "fade",
+      "transitionDurationFrames": 6,
+      "narrationText": "Aí veio o Barcelona.",
+      "narrationStartMs": 18271,
+      "narrationEndMs": 18871,
+      "assetUrl": "pipeline-assets/scene-006.png",
+      "durationInFrames": 60,
+      "startFrame": 548
+    },
+    {
+      "id": "scene-008",
+      "type": "content",
+      "durationInSeconds": 3,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_video",
+      "imagePrompt": "",
+      "stockQuery": "Neymar Barcelona Camp Nou debut presentation",
+      "animation": "slide-left",
+      "transition": "slide",
+      "transitionDurationFrames": 5,
+      "narrationText": "E lá ele fez o que ninguém achava possível.",
+      "narrationStartMs": 19171,
+      "narrationEndMs": 20451,
+      "assetUrl": "pipeline-assets/scene-007.mp4",
+      "durationInFrames": 60,
+      "startFrame": 575
+    },
+    {
+      "id": "scene-009",
+      "type": "quote",
+      "durationInSeconds": 3,
+      "headline": "O trio mais devastador da Europa",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_image",
+      "imagePrompt": "",
+      "stockQuery": "MSN Messi Suarez Neymar Barcelona trio celebration",
+      "animation": "parallax",
+      "transition": "wipe",
+      "transitionDurationFrames": 4,
+      "narrationText": "Formou com Messi e Suárez o trio mais devastador que o futebol europeu já viu, MSN.",
+      "narrationStartMs": 20791,
+      "narrationEndMs": 24031,
+      "assetUrl": "pipeline-assets/scene-008.jpg",
+      "durationInFrames": 120,
+      "startFrame": 624
+    },
+    {
+      "id": "scene-010",
+      "type": "statistic",
+      "durationInSeconds": 2,
+      "headline": "364 gols",
+      "body": "",
+      "subtitle": "",
+      "visualType": "ai_image",
+      "imagePrompt": "Digital scoreboard displaying 364 goals statistic in golden numbers, Camp Nou stadium background blurred, dramatic lighting, close-up cinematic shot, vertical composition",
+      "stockQuery": "",
+      "animation": "bounce",
+      "transition": "cut",
+      "transitionDurationFrames": 6,
+      "narrationText": "364 gols em três temporadas juntos.",
+      "narrationStartMs": 24291,
+      "narrationEndMs": 26191,
+      "assetUrl": "pipeline-assets/scene-009.png",
+      "durationInFrames": 60,
+      "startFrame": 729
+    },
+    {
+      "id": "scene-011",
+      "type": "content",
+      "durationInSeconds": 4,
+      "headline": "**A remontada histórica contra o PSG em 2017 com placar de 6x1 se tornou uma das maiores viradas da Champions League de todos os tempos**",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_video",
+      "imagePrompt": "",
+      "stockQuery": "Barcelona PSG 6-1 remontada Champions League 2017",
+      "animation": "zoom-in",
+      "transition": "dissolve",
+      "transitionDurationFrames": 5,
+      "narrationText": "Aquela remontada contra o PSG em 2017 6x1 entrou pra história, e o Neymar foi o maestro daquilo tudo.",
+      "narrationStartMs": 26660,
+      "narrationEndMs": 32140,
+      "assetUrl": "pipeline-assets/scene-010.mp4",
+      "durationInFrames": 180,
+      "startFrame": 800
+    },
+    {
+      "id": "scene-012",
+      "type": "statistic",
+      "durationInSeconds": 4,
+      "headline": "**A transferência mais cara da história do futebol custou exatos 222 milhões de euros e mudou o mercado para sempre**",
+      "body": "",
+      "subtitle": "",
+      "visualType": "ai_image",
+      "imagePrompt": "Giant contract with 222 million euros figure highlighted, PSG logo and Neymar signature visible, legal documents on luxury desk, dramatic office lighting, vertical composition",
+      "stockQuery": "",
+      "animation": "kinetic-text",
+      "transition": "slide",
+      "transitionDurationFrames": 4,
+      "narrationText": "Depois, a transferência mais cara da história do futebol. 222 milhões de euros pro PSG.",
+      "narrationStartMs": 32560,
+      "narrationEndMs": 36460,
+      "assetUrl": "pipeline-assets/scene-011.png",
+      "durationInFrames": 120,
+      "startFrame": 977
+    },
+    {
+      "id": "scene-013",
+      "type": "content",
+      "durationInSeconds": 2,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_video",
+      "imagePrompt": "",
+      "stockQuery": "Neymar PSG trophies celebration Ligue 1",
+      "animation": "fade-in",
+      "transition": "fade",
+      "transitionDurationFrames": 6,
+      "narrationText": "Títulos vieram, mas as lesões também.",
+      "narrationStartMs": 36760,
+      "narrationEndMs": 38220,
+      "assetUrl": "pipeline-assets/scene-012.mp4",
+      "durationInFrames": 60,
+      "startFrame": 1103
+    },
+    {
+      "id": "scene-014",
+      "type": "broll",
+      "durationInSeconds": 2,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "ai_image",
+      "imagePrompt": "Medical room showing ankle, knee and foot injury X-rays on light board, physiotherapy equipment, concerned medical staff, hospital atmosphere, dramatic lighting, vertical composition",
+      "stockQuery": "",
+      "animation": "slide-right",
+      "transition": "cut",
+      "transitionDurationFrames": 5,
+      "narrationText": "Tornozelo, joelho, metatarsolista e longa.",
+      "narrationStartMs": 38580,
+      "narrationEndMs": 40800,
+      "assetUrl": "pipeline-assets/scene-013.png",
+      "durationInFrames": 90,
+      "startFrame": 1157
+    },
+    {
+      "id": "scene-015",
+      "type": "quote",
+      "durationInSeconds": 3,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_image",
+      "imagePrompt": "",
+      "stockQuery": "Neymar injured PSG bench sad expression",
+      "animation": "ken-burns",
+      "transition": "dissolve",
+      "transitionDurationFrames": 6,
+      "narrationText": "E é aí que a história do Neymar vira debate.",
+      "narrationStartMs": 41189,
+      "narrationEndMs": 42749,
+      "assetUrl": "pipeline-assets/scene-014.jpg",
+      "durationInFrames": 60,
+      "startFrame": 1236
+    },
+    {
+      "id": "scene-016",
+      "type": "quote",
+      "durationInSeconds": 2,
+      "headline": "Talento desperdiçado ou gênio?",
+      "body": "",
+      "subtitle": "",
+      "visualType": "ai_image",
+      "imagePrompt": "Split screen showing Neymar's brilliant skills on left and injury moments on right, contemplative mood, golden hour lighting, artistic documentary style, vertical composition",
+      "stockQuery": "",
+      "animation": "parallax",
+      "transition": "wipe",
+      "transitionDurationFrames": 4,
+      "narrationText": "Talento desperdiçado ou gênio que o corpo não acompanhou?",
+      "narrationStartMs": 43129,
+      "narrationEndMs": 45529,
+      "assetUrl": "pipeline-assets/scene-015.png",
+      "durationInFrames": 90,
+      "startFrame": 1294
+    },
+    {
+      "id": "scene-017",
+      "type": "content",
+      "durationInSeconds": 3,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_video",
+      "imagePrompt": "",
+      "stockQuery": "Neymar Brazil national team celebration goal",
+      "animation": "zoom-in",
+      "transition": "slide",
+      "transitionDurationFrames": 5,
+      "narrationText": "Com a seleção, ele chegou a 79 gols, ultrapassou o Pelé como o maior artilheiro da história da equipe.",
+      "narrationStartMs": 45909,
+      "narrationEndMs": 50349,
+      "assetUrl": "pipeline-assets/scene-016.mp4",
+      "durationInFrames": 150,
+      "startFrame": 1377
+    },
+    {
+      "id": "scene-018",
+      "type": "statistic",
+      "durationInSeconds": 3,
+      "headline": "79 gols",
+      "body": "",
+      "subtitle": "",
+      "visualType": "ai_image",
+      "imagePrompt": "Golden number 79 floating above Brazilian national team jersey, Pelé's silhouette fading in background, emotional tribute style, stadium lights, vertical composition",
+      "stockQuery": "",
+      "animation": "scale-up",
+      "transition": "cut",
+      "transitionDurationFrames": 4,
+      "narrationText": "79 gols. Lê esse número de novo.",
+      "narrationStartMs": 50749,
+      "narrationEndMs": 52749,
+      "assetUrl": "pipeline-assets/scene-017.png",
+      "durationInFrames": 60,
+      "startFrame": 1522
+    },
+    {
+      "id": "scene-019",
+      "type": "quote",
+      "durationInSeconds": 4,
+      "headline": "Isso ninguém discute",
+      "body": "",
+      "subtitle": "",
+      "visualType": "stock_image",
+      "imagePrompt": "",
+      "stockQuery": "Neymar 34 years old current photo portrait",
+      "animation": "ken-burns",
+      "transition": "dissolve",
+      "transitionDurationFrames": 6,
+      "narrationText": "Hoje, aos 34 anos, a pergunta não é se o Neymar foi genial. Isso ninguém discute.",
+      "narrationStartMs": 53189,
+      "narrationEndMs": 57589,
+      "assetUrl": "pipeline-assets/scene-018.jpg",
+      "durationInFrames": 150,
+      "startFrame": 1596
+    },
+    {
+      "id": "scene-020",
+      "type": "content",
+      "durationInSeconds": 6,
+      "headline": "",
+      "body": "",
+      "subtitle": "",
+      "visualType": "ai_image",
+      "imagePrompt": "Contemplative Neymar silhouette against sunset sky, question marks floating around him, artistic documentary style showing unfulfilled potential, melancholic mood, vertical composition",
+      "stockQuery": "",
+      "animation": "fade-in",
+      "transition": "fade",
+      "transitionDurationFrames": 6,
+      "narrationText": "A pergunta é o que teria sido se o corpo tivesse aguentado o que o talento prometia. E essa resposta a gente nunca vai ter.",
+      "narrationStartMs": 57929,
+      "narrationEndMs": 63149,
+      "assetUrl": "pipeline-assets/scene-019.png",
+      "durationInFrames": 180,
+      "startFrame": 1738
+    }
+  ],
+  "backgroundMusicVolume": 0.12,
+  "totalDurationInFrames": 1920,
+  "localAudioPath": "pipeline-assets/narration.mp3",
+  "words": [
+    {
+      "text": "Neymar",
+      "start": 31,
+      "end": 371
+    },
+    {
+      "text": "Jr.,",
+      "start": 371,
+      "end": 811
+    },
+    {
+      "text": "o",
+      "start": 811,
+      "end": 951
+    },
+    {
+      "text": "cara",
+      "start": 951,
+      "end": 1111
+    },
+    {
+      "text": "que",
+      "start": 1111,
+      "end": 1251
+    },
+    {
+      "text": "fez",
+      "start": 1251,
+      "end": 1471
+    },
+    {
+      "text": "o",
+      "start": 1471,
+      "end": 1551
+    },
+    {
+      "text": "mundo",
+      "start": 1551,
+      "end": 1691
+    },
+    {
+      "text": "inteiro",
+      "start": 1691,
+      "end": 1931
+    },
+    {
+      "text": "parar",
+      "start": 1931,
+      "end": 2171
+    },
+    {
+      "text": "pra",
+      "start": 2171,
+      "end": 2351
+    },
+    {
+      "text": "assistir",
+      "start": 2351,
+      "end": 2611
+    },
+    {
+      "text": "futebol.",
+      "start": 2611,
+      "end": 3051
+    },
+    {
+      "text": "Com",
+      "start": 3471,
+      "end": 3611
+    },
+    {
+      "text": "11",
+      "start": 3611,
+      "end": 3911
+    },
+    {
+      "text": "anos,",
+      "start": 3911,
+      "end": 4171
+    },
+    {
+      "text": "esse",
+      "start": 4391,
+      "end": 4511
+    },
+    {
+      "text": "moleque",
+      "start": 4511,
+      "end": 4791
+    },
+    {
+      "text": "de",
+      "start": 4791,
+      "end": 4911
+    },
+    {
+      "text": "Mogi",
+      "start": 4911,
+      "end": 5071
+    },
+    {
+      "text": "das",
+      "start": 5071,
+      "end": 5231
+    },
+    {
+      "text": "Cruzes",
+      "start": 5231,
+      "end": 5531
+    },
+    {
+      "text": "já",
+      "start": 5531,
+      "end": 5891
+    },
+    {
+      "text": "tinha",
+      "start": 5891,
+      "end": 6031
+    },
+    {
+      "text": "o",
+      "start": 6031,
+      "end": 6151
+    },
+    {
+      "text": "Olheiro",
+      "start": 6151,
+      "end": 6311
+    },
+    {
+      "text": "dos",
+      "start": 6311,
+      "end": 6471
+    },
+    {
+      "text": "Santos",
+      "start": 6471,
+      "end": 6691
+    },
+    {
+      "text": "batendo",
+      "start": 6691,
+      "end": 6991
+    },
+    {
+      "text": "na",
+      "start": 6991,
+      "end": 7131
+    },
+    {
+      "text": "porta",
+      "start": 7131,
+      "end": 7331
+    },
+    {
+      "text": "da",
+      "start": 7331,
+      "end": 7451
+    },
+    {
+      "text": "casa",
+      "start": 7451,
+      "end": 7591
+    },
+    {
+      "text": "dele.",
+      "start": 7591,
+      "end": 7831
+    },
+    {
+      "text": "E",
+      "start": 8271,
+      "end": 8471
+    },
+    {
+      "text": "não",
+      "start": 8471,
+      "end": 8571
+    },
+    {
+      "text": "era",
+      "start": 8571,
+      "end": 8711
+    },
+    {
+      "text": "à",
+      "start": 8711,
+      "end": 8851
+    },
+    {
+      "text": "toa.",
+      "start": 8851,
+      "end": 9011
+    },
+    {
+      "text": "Aos",
+      "start": 9411,
+      "end": 9531
+    },
+    {
+      "text": "17,",
+      "start": 9531,
+      "end": 9811
+    },
+    {
+      "text": "ele",
+      "start": 10151,
+      "end": 10331
+    },
+    {
+      "text": "já",
+      "start": 10331,
+      "end": 10451
+    },
+    {
+      "text": "era",
+      "start": 10451,
+      "end": 10591
+    },
+    {
+      "text": "titular",
+      "start": 10591,
+      "end": 10871
+    },
+    {
+      "text": "absoluto.",
+      "start": 10871,
+      "end": 11371
+    },
+    {
+      "text": "Aos",
+      "start": 11731,
+      "end": 11871
+    },
+    {
+      "text": "19,",
+      "start": 11871,
+      "end": 12211
+    },
+    {
+      "text": "carregava",
+      "start": 12371,
+      "end": 12631
+    },
+    {
+      "text": "o",
+      "start": 12631,
+      "end": 12751
+    },
+    {
+      "text": "time",
+      "start": 12751,
+      "end": 12871
+    },
+    {
+      "text": "nas",
+      "start": 12871,
+      "end": 13051
+    },
+    {
+      "text": "costas",
+      "start": 13051,
+      "end": 13351
+    },
+    {
+      "text": "na",
+      "start": 13351,
+      "end": 13471
+    },
+    {
+      "text": "Libertadores",
+      "start": 13471,
+      "end": 13851
+    },
+    {
+      "text": "de",
+      "start": 13851,
+      "end": 14011
+    },
+    {
+      "text": "2011",
+      "start": 14011,
+      "end": 14551
+    },
+    {
+      "text": "e",
+      "start": 14551,
+      "end": 14951
+    },
+    {
+      "text": "quem",
+      "start": 14951,
+      "end": 15051
+    },
+    {
+      "text": "assistiu",
+      "start": 15051,
+      "end": 15351
+    },
+    {
+      "text": "aquele",
+      "start": 15351,
+      "end": 15531
+    },
+    {
+      "text": "gol",
+      "start": 15531,
+      "end": 15691
+    },
+    {
+      "text": "contra",
+      "start": 15691,
+      "end": 15911
+    },
+    {
+      "text": "o",
+      "start": 15911,
+      "end": 16031
+    },
+    {
+      "text": "Penarol",
+      "start": 16031,
+      "end": 16371
+    },
+    {
+      "text": "sabe",
+      "start": 16371,
+      "end": 16791
+    },
+    {
+      "text": "exatamente",
+      "start": 16791,
+      "end": 17171
+    },
+    {
+      "text": "do",
+      "start": 17171,
+      "end": 17351
+    },
+    {
+      "text": "que",
+      "start": 17351,
+      "end": 17411
+    },
+    {
+      "text": "eu",
+      "start": 17411,
+      "end": 17491
+    },
+    {
+      "text": "tô",
+      "start": 17491,
+      "end": 17571
+    },
+    {
+      "text": "falando.",
+      "start": 17571,
+      "end": 17851
+    },
+    {
+      "text": "Aí",
+      "start": 18271,
+      "end": 18411
+    },
+    {
+      "text": "veio",
+      "start": 18411,
+      "end": 18531
+    },
+    {
+      "text": "o",
+      "start": 18531,
+      "end": 18591
+    },
+    {
+      "text": "Barcelona.",
+      "start": 18591,
+      "end": 18871
+    },
+    {
+      "text": "E",
+      "start": 19171,
+      "end": 19251
+    },
+    {
+      "text": "lá",
+      "start": 19251,
+      "end": 19351
+    },
+    {
+      "text": "ele",
+      "start": 19351,
+      "end": 19491
+    },
+    {
+      "text": "fez",
+      "start": 19491,
+      "end": 19651
+    },
+    {
+      "text": "o",
+      "start": 19651,
+      "end": 19731
+    },
+    {
+      "text": "que",
+      "start": 19731,
+      "end": 19771
+    },
+    {
+      "text": "ninguém",
+      "start": 19771,
+      "end": 19931
+    },
+    {
+      "text": "achava",
+      "start": 19931,
+      "end": 20151
+    },
+    {
+      "text": "possível.",
+      "start": 20151,
+      "end": 20451
+    },
+    {
+      "text": "Formou",
+      "start": 20791,
+      "end": 20971
+    },
+    {
+      "text": "com",
+      "start": 20971,
+      "end": 21091
+    },
+    {
+      "text": "Messi",
+      "start": 21091,
+      "end": 21311
+    },
+    {
+      "text": "e",
+      "start": 21311,
+      "end": 21411
+    },
+    {
+      "text": "Suárez",
+      "start": 21411,
+      "end": 21671
+    },
+    {
+      "text": "o",
+      "start": 21671,
+      "end": 21771
+    },
+    {
+      "text": "trio",
+      "start": 21771,
+      "end": 21891
+    },
+    {
+      "text": "mais",
+      "start": 21891,
+      "end": 22031
+    },
+    {
+      "text": "devastador",
+      "start": 22031,
+      "end": 22411
+    },
+    {
+      "text": "que",
+      "start": 22411,
+      "end": 22491
+    },
+    {
+      "text": "o",
+      "start": 22491,
+      "end": 22551
+    },
+    {
+      "text": "futebol",
+      "start": 22551,
+      "end": 22751
+    },
+    {
+      "text": "europeu",
+      "start": 22751,
+      "end": 23011
+    },
+    {
+      "text": "já",
+      "start": 23011,
+      "end": 23131
+    },
+    {
+      "text": "viu,",
+      "start": 23131,
+      "end": 23251
+    },
+    {
+      "text": "MSN.",
+      "start": 23511,
+      "end": 24031
+    },
+    {
+      "text": "364",
+      "start": 24291,
+      "end": 25151
+    },
+    {
+      "text": "gols",
+      "start": 25151,
+      "end": 25411
+    },
+    {
+      "text": "em",
+      "start": 25411,
+      "end": 25511
+    },
+    {
+      "text": "três",
+      "start": 25511,
+      "end": 25631
+    },
+    {
+      "text": "temporadas",
+      "start": 25631,
+      "end": 25971
+    },
+    {
+      "text": "juntos.",
+      "start": 25971,
+      "end": 26191
+    },
+    {
+      "text": "Aquela",
+      "start": 26660,
+      "end": 26940
+    },
+    {
+      "text": "remontada",
+      "start": 26940,
+      "end": 27380
+    },
+    {
+      "text": "contra",
+      "start": 27380,
+      "end": 27580
+    },
+    {
+      "text": "o",
+      "start": 27580,
+      "end": 27700
+    },
+    {
+      "text": "PSG",
+      "start": 27700,
+      "end": 28100
+    },
+    {
+      "text": "em",
+      "start": 28100,
+      "end": 28280
+    },
+    {
+      "text": "2017",
+      "start": 28280,
+      "end": 28840
+    },
+    {
+      "text": "6x1",
+      "start": 28840,
+      "end": 29540
+    },
+    {
+      "text": "entrou",
+      "start": 29540,
+      "end": 30000
+    },
+    {
+      "text": "pra",
+      "start": 30000,
+      "end": 30120
+    },
+    {
+      "text": "história,",
+      "start": 30120,
+      "end": 30420
+    },
+    {
+      "text": "e",
+      "start": 30660,
+      "end": 30740
+    },
+    {
+      "text": "o",
+      "start": 30740,
+      "end": 30800
+    },
+    {
+      "text": "Neymar",
+      "start": 30800,
+      "end": 31080
+    },
+    {
+      "text": "foi",
+      "start": 31080,
+      "end": 31220
+    },
+    {
+      "text": "o",
+      "start": 31220,
+      "end": 31320
+    },
+    {
+      "text": "maestro",
+      "start": 31320,
+      "end": 31620
+    },
+    {
+      "text": "daquilo",
+      "start": 31620,
+      "end": 31880
+    },
+    {
+      "text": "tudo.",
+      "start": 31880,
+      "end": 32140
+    },
+    {
+      "text": "Depois,",
+      "start": 32560,
+      "end": 32800
+    },
+    {
+      "text": "a",
+      "start": 32880,
+      "end": 32940
+    },
+    {
+      "text": "transferência",
+      "start": 32940,
+      "end": 33260
+    },
+    {
+      "text": "mais",
+      "start": 33260,
+      "end": 33460
+    },
+    {
+      "text": "cara",
+      "start": 33460,
+      "end": 33640
+    },
+    {
+      "text": "da",
+      "start": 33640,
+      "end": 33760
+    },
+    {
+      "text": "história",
+      "start": 33760,
+      "end": 33960
+    },
+    {
+      "text": "do",
+      "start": 33960,
+      "end": 34060
+    },
+    {
+      "text": "futebol.",
+      "start": 34060,
+      "end": 34420
+    },
+    {
+      "text": "222",
+      "start": 34600,
+      "end": 35380
+    },
+    {
+      "text": "milhões",
+      "start": 35380,
+      "end": 35560
+    },
+    {
+      "text": "de",
+      "start": 35560,
+      "end": 35740
+    },
+    {
+      "text": "euros",
+      "start": 35740,
+      "end": 35880
+    },
+    {
+      "text": "pro",
+      "start": 35880,
+      "end": 36020
+    },
+    {
+      "text": "PSG.",
+      "start": 36020,
+      "end": 36460
+    },
+    {
+      "text": "Títulos",
+      "start": 36760,
+      "end": 36960
+    },
+    {
+      "text": "vieram,",
+      "start": 36960,
+      "end": 37340
+    },
+    {
+      "text": "mas",
+      "start": 37480,
+      "end": 37580
+    },
+    {
+      "text": "as",
+      "start": 37580,
+      "end": 37700
+    },
+    {
+      "text": "lesões",
+      "start": 37700,
+      "end": 37900
+    },
+    {
+      "text": "também.",
+      "start": 37900,
+      "end": 38220
+    },
+    {
+      "text": "Tornozelo,",
+      "start": 38580,
+      "end": 38960
+    },
+    {
+      "text": "joelho,",
+      "start": 39260,
+      "end": 39560
+    },
+    {
+      "text": "metatarsolista",
+      "start": 39820,
+      "end": 40460
+    },
+    {
+      "text": "e",
+      "start": 40460,
+      "end": 40560
+    },
+    {
+      "text": "longa.",
+      "start": 40560,
+      "end": 40800
+    },
+    {
+      "text": "E",
+      "start": 41189,
+      "end": 41269
+    },
+    {
+      "text": "é",
+      "start": 41269,
+      "end": 41349
+    },
+    {
+      "text": "aí",
+      "start": 41349,
+      "end": 41469
+    },
+    {
+      "text": "que",
+      "start": 41469,
+      "end": 41549
+    },
+    {
+      "text": "a",
+      "start": 41549,
+      "end": 41629
+    },
+    {
+      "text": "história",
+      "start": 41629,
+      "end": 41849
+    },
+    {
+      "text": "do",
+      "start": 41849,
+      "end": 41949
+    },
+    {
+      "text": "Neymar",
+      "start": 41949,
+      "end": 42209
+    },
+    {
+      "text": "vira",
+      "start": 42209,
+      "end": 42409
+    },
+    {
+      "text": "debate.",
+      "start": 42409,
+      "end": 42749
+    },
+    {
+      "text": "Talento",
+      "start": 43129,
+      "end": 43429
+    },
+    {
+      "text": "desperdiçado",
+      "start": 43429,
+      "end": 44089
+    },
+    {
+      "text": "ou",
+      "start": 44089,
+      "end": 44269
+    },
+    {
+      "text": "gênio",
+      "start": 44269,
+      "end": 44549
+    },
+    {
+      "text": "que",
+      "start": 44549,
+      "end": 44669
+    },
+    {
+      "text": "o",
+      "start": 44669,
+      "end": 44789
+    },
+    {
+      "text": "corpo",
+      "start": 44789,
+      "end": 44949
+    },
+    {
+      "text": "não",
+      "start": 44949,
+      "end": 45089
+    },
+    {
+      "text": "acompanhou?",
+      "start": 45089,
+      "end": 45529
+    },
+    {
+      "text": "Com",
+      "start": 45909,
+      "end": 46029
+    },
+    {
+      "text": "a",
+      "start": 46029,
+      "end": 46129
+    },
+    {
+      "text": "seleção,",
+      "start": 46129,
+      "end": 46469
+    },
+    {
+      "text": "ele",
+      "start": 46709,
+      "end": 46809
+    },
+    {
+      "text": "chegou",
+      "start": 46809,
+      "end": 47009
+    },
+    {
+      "text": "a",
+      "start": 47009,
+      "end": 47109
+    },
+    {
+      "text": "79",
+      "start": 47109,
+      "end": 47569
+    },
+    {
+      "text": "gols,",
+      "start": 47569,
+      "end": 47949
+    },
+    {
+      "text": "ultrapassou",
+      "start": 48189,
+      "end": 48569
+    },
+    {
+      "text": "o",
+      "start": 48569,
+      "end": 48669
+    },
+    {
+      "text": "Pelé",
+      "start": 48669,
+      "end": 48849
+    },
+    {
+      "text": "como",
+      "start": 48849,
+      "end": 48989
+    },
+    {
+      "text": "o",
+      "start": 48989,
+      "end": 49069
+    },
+    {
+      "text": "maior",
+      "start": 49069,
+      "end": 49229
+    },
+    {
+      "text": "artilheiro",
+      "start": 49229,
+      "end": 49589
+    },
+    {
+      "text": "da",
+      "start": 49589,
+      "end": 49709
+    },
+    {
+      "text": "história",
+      "start": 49709,
+      "end": 49929
+    },
+    {
+      "text": "da",
+      "start": 49929,
+      "end": 50049
+    },
+    {
+      "text": "equipe.",
+      "start": 50049,
+      "end": 50349
+    },
+    {
+      "text": "79",
+      "start": 50749,
+      "end": 51209
+    },
+    {
+      "text": "gols.",
+      "start": 51209,
+      "end": 51709
+    },
+    {
+      "text": "Lê",
+      "start": 51969,
+      "end": 52089
+    },
+    {
+      "text": "esse",
+      "start": 52089,
+      "end": 52209
+    },
+    {
+      "text": "número",
+      "start": 52209,
+      "end": 52409
+    },
+    {
+      "text": "de",
+      "start": 52409,
+      "end": 52569
+    },
+    {
+      "text": "novo.",
+      "start": 52569,
+      "end": 52749
+    },
+    {
+      "text": "Hoje,",
+      "start": 53189,
+      "end": 53429
+    },
+    {
+      "text": "aos",
+      "start": 53589,
+      "end": 53689
+    },
+    {
+      "text": "34",
+      "start": 53689,
+      "end": 54109
+    },
+    {
+      "text": "anos,",
+      "start": 54109,
+      "end": 54449
+    },
+    {
+      "text": "a",
+      "start": 54689,
+      "end": 54849
+    },
+    {
+      "text": "pergunta",
+      "start": 54849,
+      "end": 55089
+    },
+    {
+      "text": "não",
+      "start": 55089,
+      "end": 55409
+    },
+    {
+      "text": "é",
+      "start": 55409,
+      "end": 55609
+    },
+    {
+      "text": "se",
+      "start": 55609,
+      "end": 55709
+    },
+    {
+      "text": "o",
+      "start": 55709,
+      "end": 55809
+    },
+    {
+      "text": "Neymar",
+      "start": 55809,
+      "end": 56029
+    },
+    {
+      "text": "foi",
+      "start": 56029,
+      "end": 56169
+    },
+    {
+      "text": "genial.",
+      "start": 56169,
+      "end": 56489
+    },
+    {
+      "text": "Isso",
+      "start": 56829,
+      "end": 56989
+    },
+    {
+      "text": "ninguém",
+      "start": 56989,
+      "end": 57209
+    },
+    {
+      "text": "discute.",
+      "start": 57209,
+      "end": 57589
+    },
+    {
+      "text": "A",
+      "start": 57929,
+      "end": 58029
+    },
+    {
+      "text": "pergunta",
+      "start": 58029,
+      "end": 58289
+    },
+    {
+      "text": "é",
+      "start": 58289,
+      "end": 58489
+    },
+    {
+      "text": "o",
+      "start": 58489,
+      "end": 58749
+    },
+    {
+      "text": "que",
+      "start": 58749,
+      "end": 58829
+    },
+    {
+      "text": "teria",
+      "start": 58829,
+      "end": 59029
+    },
+    {
+      "text": "sido",
+      "start": 59029,
+      "end": 59249
+    },
+    {
+      "text": "se",
+      "start": 59249,
+      "end": 59389
+    },
+    {
+      "text": "o",
+      "start": 59389,
+      "end": 59509
+    },
+    {
+      "text": "corpo",
+      "start": 59509,
+      "end": 59689
+    },
+    {
+      "text": "tivesse",
+      "start": 59689,
+      "end": 59949
+    },
+    {
+      "text": "aguentado",
+      "start": 59949,
+      "end": 60449
+    },
+    {
+      "text": "o",
+      "start": 60449,
+      "end": 60609
+    },
+    {
+      "text": "que",
+      "start": 60609,
+      "end": 60649
+    },
+    {
+      "text": "o",
+      "start": 60649,
+      "end": 60749
+    },
+    {
+      "text": "talento",
+      "start": 60749,
+      "end": 60969
+    },
+    {
+      "text": "prometia.",
+      "start": 60969,
+      "end": 61389
+    },
+    {
+      "text": "E",
+      "start": 61769,
+      "end": 61889
+    },
+    {
+      "text": "essa",
+      "start": 61889,
+      "end": 61989
+    },
+    {
+      "text": "resposta",
+      "start": 61989,
+      "end": 62369
+    },
+    {
+      "text": "a",
+      "start": 62369,
+      "end": 62529
+    },
+    {
+      "text": "gente",
+      "start": 62529,
+      "end": 62649
+    },
+    {
+      "text": "nunca",
+      "start": 62649,
+      "end": 62829
+    },
+    {
+      "text": "vai",
+      "start": 62829,
+      "end": 62989
+    },
+    {
+      "text": "ter.",
+      "start": 62989,
+      "end": 63149
+    }
+  ]
+}

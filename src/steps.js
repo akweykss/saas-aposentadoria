@@ -78,6 +78,8 @@ function goToStep(step) {
   el.classList.add('anim-slide-out-left');
   setTimeout(() => {
     el.classList.remove('anim-slide-out-left');
+    // Clean up VSL resources when navigating away from landing
+    if (typeof cleanupVSL === 'function') cleanupVSL();
     state.currentStep = step;
     // Update URL without page reload
     const path = STEP_TO_PATH[step] || '/';
@@ -107,17 +109,88 @@ function renderStep(step) {
   }
 }
 
-/* ════════════════════════════════════════════════════════════
-   STEP 0 — Landing Page
-   ════════════════════════════════════════════════════════════ */
+/* ── VSL player state (module-level for cleanup) ── */
+let vslPollInterval = null;
+let vslPlayer = null;
+
+function cleanupVSL() {
+  if (vslPollInterval) { clearInterval(vslPollInterval); vslPollInterval = null; }
+  if (vslPlayer && typeof vslPlayer.destroy === 'function') {
+    try { vslPlayer.destroy(); } catch (_) {}
+    vslPlayer = null;
+  }
+}
+
+function playUnlockSound() {
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  // First note
+  const osc1 = ctx.createOscillator();
+  const gain1 = ctx.createGain();
+  osc1.connect(gain1);
+  gain1.connect(ctx.destination);
+  osc1.frequency.value = 523.25; // C5
+  osc1.type = 'sine';
+  gain1.gain.setValueAtTime(0.3, ctx.currentTime);
+  gain1.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+  osc1.start(ctx.currentTime);
+  osc1.stop(ctx.currentTime + 0.4);
+  // Second note (higher, delayed)
+  const osc2 = ctx.createOscillator();
+  const gain2 = ctx.createGain();
+  osc2.connect(gain2);
+  gain2.connect(ctx.destination);
+  osc2.frequency.value = 659.25; // E5
+  osc2.type = 'sine';
+  gain2.gain.setValueAtTime(0.3, ctx.currentTime + 0.15);
+  gain2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.6);
+  osc2.start(ctx.currentTime + 0.15);
+  osc2.stop(ctx.currentTime + 0.6);
+}
 
 function renderLanding(el) {
+  // Clean up any previous VSL resources
+  cleanupVSL();
+
   el.innerHTML = `
+    <!-- ═══ VSL SECTION ═══ -->
+    <div class="vsl-section">
+      <div class="vsl-inner">
+        <div class="vsl-badge">⚠️ URGENT: WATCH THIS BEFORE YOU CONTINUE</div>
+        <h2 class="vsl-headline">What The Mainstream Media Won't Tell You About Your Retirement</h2>
+        <p class="vsl-subheadline">This 8-minute presentation reveals the 3 legal traps that could wipe out your entire estate. Watch it now — your assessment will unlock when the video ends.</p>
+        <div class="vsl-video-wrap">
+          <div class="vsl-video-ratio">
+            <div id="vsl-player"></div>
+          </div>
+        </div>
+        <div class="vsl-progress-area">
+          <div class="vsl-progress-track">
+            <div class="vsl-progress-fill" id="vsl-progress-fill"></div>
+          </div>
+          <div class="vsl-progress-status" id="vsl-progress-status">
+            <span class="vsl-progress-icon">🔒</span>
+            <span id="vsl-progress-text">Complete the video to unlock your free Estate Risk Assessment</span>
+          </div>
+        </div>
+        <div class="vsl-cta-wrap">
+          <button class="vsl-cta-btn locked" id="vsl-cta-btn" disabled>🔒 Assessment Locked — Watch the Video Above</button>
+        </div>
+        <div class="vsl-trust-line">
+          <span>🔒 No credit card required</span>
+          <span>·</span>
+          <span>Private estimate</span>
+          <span>·</span>
+          <span>Takes about 60 seconds</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ EXISTING HERO CONTENT ═══ -->
     <div class="step-landing anim-fade-in-up">
       <div class="hero-content">
         <h1 class="hero-title">The Government Could Legally <span class="text-danger">Confiscate</span> Your Life's Savings If You Don't Act Now</h1>
         <p class="hero-subtitle">Nursing homes, probate courts, and state taxes can drain your estate in months. Get your free <strong class="text-accent">60-second</strong> estate risk assessment and uncover exactly how much of your hard-earned money your family might lose — and how to shield it immediately.</p>
-        <button id="btn-start" class="btn btn-primary btn-large">Start My Free Estate Risk Check →</button>
+        <button id="btn-start" class="btn btn-primary btn-large vsl-locked">Start My Free Estate Risk Check →</button>
         <div class="hero-trust-line">
           <span>🔒 No credit card required</span>
           <span>·</span>
@@ -155,7 +228,121 @@ function renderLanding(el) {
       </div>
     </div>
   `;
-  $('#btn-start').addEventListener('click', () => goToStep(1));
+
+  // ─── Unlock logic ───
+  let hasUnlocked = false;
+
+  function unlockAssessment() {
+    if (hasUnlocked) return;
+    hasUnlocked = true;
+
+    // Update VSL progress status
+    const statusEl = $('#vsl-progress-status');
+    const iconEl = statusEl ? statusEl.querySelector('.vsl-progress-icon') : null;
+    const textEl = $('#vsl-progress-text');
+    if (iconEl) iconEl.textContent = '✅';
+    if (textEl) textEl.textContent = 'Your Assessment is Ready!';
+    if (statusEl) statusEl.classList.add('unlocked');
+
+    // Update progress bar to 100%
+    const fillEl = $('#vsl-progress-fill');
+    if (fillEl) fillEl.style.width = '100%';
+
+    // Unlock VSL CTA button
+    const ctaBtn = $('#vsl-cta-btn');
+    if (ctaBtn) {
+      ctaBtn.disabled = false;
+      ctaBtn.classList.remove('locked');
+      ctaBtn.classList.add('unlocked');
+      ctaBtn.textContent = '🛡️ Start My Free Estate Risk Check →';
+    }
+
+    // Unlock hero start button
+    const heroBtn = $('#btn-start');
+    if (heroBtn) {
+      heroBtn.classList.remove('vsl-locked');
+    }
+
+    // Play chime
+    try { playUnlockSound(); } catch (_) {}
+
+    // Clear polling
+    if (vslPollInterval) { clearInterval(vslPollInterval); vslPollInterval = null; }
+  }
+
+  // ─── YouTube Player Initialization ───
+  function initYTPlayer() {
+    vslPlayer = new YT.Player('vsl-player', {
+      videoId: 'W9EpmPLXx_E',
+      playerVars: {
+        autoplay: 0,
+        controls: 1,
+        modestbranding: 1,
+        rel: 0,
+        showinfo: 0,
+        fs: 1,
+        playsinline: 1,
+      },
+      events: {
+        onStateChange: onPlayerStateChange,
+      },
+    });
+  }
+
+  function onPlayerStateChange(event) {
+    // PLAYING — start polling progress
+    if (event.data === YT.PlayerState.PLAYING) {
+      if (!vslPollInterval) {
+        vslPollInterval = setInterval(() => {
+          if (!vslPlayer || typeof vslPlayer.getCurrentTime !== 'function') return;
+          const current = vslPlayer.getCurrentTime();
+          const duration = vslPlayer.getDuration();
+          if (duration > 0) {
+            const pct = Math.min((current / duration) * 100, 100);
+            const fillEl = $('#vsl-progress-fill');
+            if (fillEl) fillEl.style.width = pct.toFixed(1) + '%';
+          }
+        }, 1000);
+      }
+    }
+
+    // PAUSED or BUFFERING — stop polling
+    if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.BUFFERING) {
+      if (vslPollInterval) { clearInterval(vslPollInterval); vslPollInterval = null; }
+    }
+
+    // ENDED — unlock
+    if (event.data === YT.PlayerState.ENDED) {
+      unlockAssessment();
+    }
+  }
+
+  // ─── Load YouTube Player (handle async API loading) ───
+  if (typeof YT !== 'undefined' && YT.Player) {
+    // API already loaded
+    initYTPlayer();
+  } else {
+    // API not yet loaded — wait for callback
+    const prevCallback = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = function () {
+      if (typeof prevCallback === 'function') prevCallback();
+      // Only init if we're still on the landing page
+      if ($('#vsl-player')) initYTPlayer();
+    };
+  }
+
+  // ─── Button event listeners ───
+  $('#vsl-cta-btn').addEventListener('click', () => {
+    if (!hasUnlocked) return;
+    cleanupVSL();
+    goToStep(1);
+  });
+
+  $('#btn-start').addEventListener('click', () => {
+    if (!hasUnlocked) return;
+    cleanupVSL();
+    goToStep(1);
+  });
 }
 
 /* ════════════════════════════════════════════════════════════

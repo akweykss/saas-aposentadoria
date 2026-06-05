@@ -282,6 +282,9 @@ function renderLanding(el) {
         showinfo: 0,
         fs: 1,
         playsinline: 1,
+        iv_load_policy: 3,
+        cc_load_policy: 0,
+        disablekb: 0,
       },
       events: {
         onStateChange: onPlayerStateChange,

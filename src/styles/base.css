@@ -68,11 +68,15 @@ input, select, textarea {
 /* ===== NAVBAR ===== */
 
 .site-navbar {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
-  background: #FFFFFF;
-  border-bottom: 1px solid var(--color-border);
+  background: rgba(10, 15, 26, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   height: 70px;
 }
 
@@ -106,13 +110,13 @@ input, select, textarea {
 .navbar-brand {
   font-size: 18px;
   font-weight: 700;
-  color: var(--color-primary);
+  color: #ffffff;
   line-height: 1.2;
 }
 
 .navbar-tagline {
   font-size: 11px;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.5);
   font-style: italic;
 }
 
@@ -153,6 +157,7 @@ input, select, textarea {
   max-width: 1200px;
   margin: 0 auto;
   padding: 24px 32px;
+  padding-top: 94px; /* compensate for fixed navbar (70px height + 24px gap) */
   min-height: calc(100vh - 150px);
 }
 

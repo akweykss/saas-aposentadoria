@@ -4,10 +4,28 @@
 
 .vsl-section {
   background: linear-gradient(180deg, #0a0f1a 0%, #111827 100%);
-  padding: 48px 24px 56px;
+  padding: 48px 24px 80px;
   text-align: center;
-  margin: -32px -32px 0;
-  width: calc(100% + 64px);
+  /* Break out of parent container to fill full viewport width */
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  margin-top: -94px; /* compensate for main-content padding-top */
+  padding-top: 30px; /* space below fixed navbar */
+  width: 100vw;
+  position: relative;
+}
+
+/* Smooth gradient transition from dark to white */
+.vsl-section::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(180deg, #111827 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .vsl-inner {
@@ -316,9 +334,7 @@
 /* Responsive */
 @media (max-width: 768px) {
   .vsl-section {
-    padding: 32px 16px 40px;
-    margin: -16px -16px 0;
-    width: calc(100% + 32px);
+    padding: 32px 16px 60px;
   }
   .vsl-headline {
     font-size: 1.5rem;
@@ -352,9 +368,7 @@
 
 @media (max-width: 480px) {
   .vsl-section {
-    padding: 24px 12px 32px;
-    margin: -16px -14px 0;
-    width: calc(100% + 28px);
+    padding: 24px 12px 48px;
   }
   .vsl-headline {
     font-size: 1.3rem;
@@ -388,7 +402,9 @@
   grid-template-columns: 45fr 55fr;
   gap: 32px;
   align-items: center;
-  padding: 28px 0 24px;
+  padding: 80px 0 24px; /* extra top space for gradient fade from VSL dark section */
+  position: relative;
+  z-index: 2; /* above the gradient ::after */
 }
 
 .hero-title {

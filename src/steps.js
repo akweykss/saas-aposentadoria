@@ -110,14 +110,12 @@ function renderStep(step) {
 }
 
 /* ── VSL player state (module-level for cleanup) ── */
-let vslPollInterval = null;
-let vslPlayer = null;
+let vslVideo = null;
 
 function cleanupVSL() {
-  if (vslPollInterval) { clearInterval(vslPollInterval); vslPollInterval = null; }
-  if (vslPlayer && typeof vslPlayer.destroy === 'function') {
-    try { vslPlayer.destroy(); } catch (_) {}
-    vslPlayer = null;
+  if (vslVideo) {
+    try { vslVideo.pause(); } catch (_) {}
+    vslVideo = null;
   }
 }
 
@@ -157,10 +155,22 @@ function renderLanding(el) {
       <div class="vsl-inner">
         <div class="vsl-badge">⚠️ URGENT: WATCH THIS BEFORE YOU CONTINUE</div>
         <h2 class="vsl-headline">What The Mainstream Media Won't Tell You About Your Retirement</h2>
-        <p class="vsl-subheadline">This 8-minute presentation reveals the 3 legal traps that could wipe out your entire estate. Watch it now — your assessment will unlock when the video ends.</p>
+        <p class="vsl-subheadline">This presentation reveals the 3 legal traps that could wipe out your entire estate. Watch it now — your assessment will unlock when the video ends.</p>
         <div class="vsl-video-wrap">
-          <div class="vsl-video-ratio">
-            <div id="vsl-player"></div>
+          <div class="vsl-player-container" id="vsl-player-container">
+            <video id="vsl-video" preload="metadata" playsinline>
+              <source src="https://vsl-cdnAK.b-cdn.net/VSL%20LONGA_1.mp4" type="video/mp4">
+            </video>
+            <div class="vsl-big-play" id="vsl-big-play">▶</div>
+            <div class="vsl-controls" id="vsl-controls">
+              <button class="vsl-ctrl-btn" id="vsl-play-btn">▶</button>
+              <div class="vsl-time" id="vsl-time">0:00 / 0:00</div>
+              <div class="vsl-progress-track-ctrl">
+                <div class="vsl-progress-fill-ctrl" id="vsl-progress-fill-ctrl"></div>
+              </div>
+              <button class="vsl-ctrl-btn" id="vsl-mute-btn">🔊</button>
+              <button class="vsl-ctrl-btn" id="vsl-fs-btn">⛶</button>
+            </div>
           </div>
         </div>
         <div class="vsl-progress-area">
@@ -230,7 +240,22 @@ function renderLanding(el) {
   `;
 
   // ─── Unlock logic ───
+  const vslCompleted = localStorage.getItem('vsl_completed') === 'true';
+  const savedTime = parseFloat(localStorage.getItem('vsl_time') || '0');
   let hasUnlocked = false;
+
+  const video = document.getElementById('vsl-video');
+  const bigPlay = document.getElementById('vsl-big-play');
+  const playBtn = document.getElementById('vsl-play-btn');
+  const timeEl = document.getElementById('vsl-time');
+  const progressFill = document.getElementById('vsl-progress-fill-ctrl');
+  const progressFillMain = document.getElementById('vsl-progress-fill');
+  const muteBtn = document.getElementById('vsl-mute-btn');
+  const fsBtn = document.getElementById('vsl-fs-btn');
+  const container = document.getElementById('vsl-player-container');
+
+  // Store reference for cleanup
+  vslVideo = video;
 
   function unlockAssessment() {
     if (hasUnlocked) return;
@@ -245,8 +270,8 @@ function renderLanding(el) {
     if (statusEl) statusEl.classList.add('unlocked');
 
     // Update progress bar to 100%
-    const fillEl = $('#vsl-progress-fill');
-    if (fillEl) fillEl.style.width = '100%';
+    if (progressFillMain) progressFillMain.style.width = '100%';
+    if (progressFill) progressFill.style.width = '100%';
 
     // Unlock VSL CTA button
     const ctaBtn = $('#vsl-cta-btn');
@@ -265,71 +290,99 @@ function renderLanding(el) {
 
     // Play chime
     try { playUnlockSound(); } catch (_) {}
-
-    // Clear polling
-    if (vslPollInterval) { clearInterval(vslPollInterval); vslPollInterval = null; }
   }
 
-  // ─── YouTube Player Initialization ───
-  function initYTPlayer() {
-    vslPlayer = new YT.Player('vsl-player', {
-      videoId: 'W9EpmPLXx_E',
-      playerVars: {
-        autoplay: 0,
-        controls: 1,
-        modestbranding: 1,
-        rel: 0,
-        showinfo: 0,
-        fs: 1,
-        playsinline: 1,
-      },
-      events: {
-        onStateChange: onPlayerStateChange,
-      },
-    });
+  // If already completed, unlock immediately
+  if (vslCompleted) {
+    unlockAssessment();
   }
 
-  function onPlayerStateChange(event) {
-    // PLAYING — start polling progress
-    if (event.data === YT.PlayerState.PLAYING) {
-      if (!vslPollInterval) {
-        vslPollInterval = setInterval(() => {
-          if (!vslPlayer || typeof vslPlayer.getCurrentTime !== 'function') return;
-          const current = vslPlayer.getCurrentTime();
-          const duration = vslPlayer.getDuration();
-          if (duration > 0) {
-            const pct = Math.min((current / duration) * 100, 100);
-            const fillEl = $('#vsl-progress-fill');
-            if (fillEl) fillEl.style.width = pct.toFixed(1) + '%';
-          }
-        }, 1000);
-      }
-    }
+  // Restore saved position
+  if (savedTime > 0 && !vslCompleted) {
+    video.addEventListener('loadedmetadata', () => {
+      video.currentTime = savedTime;
+    }, { once: true });
+  }
 
-    // PAUSED or BUFFERING — stop polling
-    if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.BUFFERING) {
-      if (vslPollInterval) { clearInterval(vslPollInterval); vslPollInterval = null; }
-    }
+  // Format time helper
+  function formatTime(sec) {
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return m + ':' + String(s).padStart(2, '0');
+  }
 
-    // ENDED — unlock
-    if (event.data === YT.PlayerState.ENDED) {
-      unlockAssessment();
+  // Toggle play/pause
+  function togglePlay() {
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
     }
   }
 
-  // ─── Load YouTube Player (handle async API loading) ───
-  if (typeof YT !== 'undefined' && YT.Player) {
-    // API already loaded
-    initYTPlayer();
-  } else {
-    // API not yet loaded — wait for callback
-    const prevCallback = window.onYouTubeIframeAPIReady;
-    window.onYouTubeIframeAPIReady = function () {
-      if (typeof prevCallback === 'function') prevCallback();
-      // Only init if we're still on the landing page
-      if ($('#vsl-player')) initYTPlayer();
-    };
-  }
+  // Click video or big play button to toggle
+  bigPlay.addEventListener('click', togglePlay);
+  video.addEventListener('click', togglePlay);
+  playBtn.addEventListener('click', togglePlay);
+
+  // Prevent right-click (no download)
+  video.addEventListener('contextmenu', (e) => e.preventDefault());
+
+  // Play state updates
+  video.addEventListener('play', () => {
+    bigPlay.classList.add('hidden');
+    playBtn.textContent = '⏸';
+    container.classList.add('playing');
+    // Show controls briefly then fade
+    container.classList.add('show-controls');
+    setTimeout(() => container.classList.remove('show-controls'), 2500);
+  });
+
+  video.addEventListener('pause', () => {
+    if (!video.ended) {
+      bigPlay.classList.remove('hidden');
+      bigPlay.textContent = '▶';
+    }
+    playBtn.textContent = '▶';
+    container.classList.remove('playing');
+  });
+
+  // Time update — progress bar and save
+  let lastSave = 0;
+  video.addEventListener('timeupdate', () => {
+    if (!video.duration) return;
+    const pct = (video.currentTime / video.duration) * 100;
+    if (progressFill) progressFill.style.width = pct + '%';
+    if (progressFillMain) progressFillMain.style.width = pct + '%';
+    if (timeEl) timeEl.textContent = formatTime(video.currentTime) + ' / ' + formatTime(video.duration);
+
+    // Save every 3 seconds
+    const now = Date.now();
+    if (now - lastSave > 3000) {
+      localStorage.setItem('vsl_time', String(video.currentTime));
+      lastSave = now;
+    }
+  });
+
+  // Video ended — unlock
+  video.addEventListener('ended', () => {
+    localStorage.setItem('vsl_completed', 'true');
+    localStorage.setItem('vsl_time', '0');
+    bigPlay.classList.add('hidden');
+    unlockAssessment();
+  });
+
+  // Mute toggle
+  muteBtn.addEventListener('click', () => {
+    video.muted = !video.muted;
+    muteBtn.textContent = video.muted ? '🔇' : '🔊';
+  });
+
+  // Fullscreen
+  fsBtn.addEventListener('click', () => {
+    if (container.requestFullscreen) container.requestFullscreen();
+    else if (container.webkitRequestFullscreen) container.webkitRequestFullscreen();
+  });
 
   // ─── Button event listeners ───
   $('#vsl-cta-btn').addEventListener('click', () => {

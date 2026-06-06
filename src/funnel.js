@@ -236,7 +236,7 @@ export function renderCheckoutPage(el, appState, goToStep) {
         <h2 class="checkout-product-title">The 2026 Retiree Asset Protection Blueprint</h2>
         <p class="checkout-product-tagline">Stop the IRS, Probate Courts, and Nursing Homes from taking $340,000 of what you built. The 50-page legal playbook to protect your family's future.</p>
         <div class="checkout-product-image">
-          <img src="/assets/book-blueprint.png" alt="2026 Retiree Asset Protection Blueprint" class="checkout-book-img">
+          <img src="/assets/book-blueprint.jpg" alt="2026 Retiree Asset Protection Blueprint" class="checkout-book-img" loading="lazy" decoding="async">
         </div>
       </div>
 
@@ -409,7 +409,7 @@ export function renderUpsell2Page(el, appState, goToStep) {
           <p style="text-align: center; margin-bottom: 24px;">67% of Americans 55+ have nothing. 21% have only a simple will. But the wealthiest 3% have a complete "vault" of 12 specific documents. And it typically costs <strong>$3,500 to $4,500</strong> to have an attorney draft them.</p>
           
           <div style="text-align: center;">
-            <img src="/assets/document-prep-kit.png" alt="The Complete Legal Forms Vault" style="width: 100%; max-width: 350px; height: auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); margin-bottom: 24px; display: inline-block;">
+            <img src="/assets/document-prep-kit.jpg" alt="The Complete Legal Forms Vault" loading="lazy" decoding="async" style="width: 100%; max-width: 350px; height: auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); margin-bottom: 24px; display: inline-block;">
           </div>
         </div>
 

@@ -6,10 +6,20 @@
   <title>Retiree Shield Report | Free Estate Risk Assessment</title>
   <meta name="description" content="Get your free 60-second estate risk assessment. See what probate, Medicaid, or state taxes could cost your family — and how to protect your assets.">
   <link rel="icon" href="/favicon.svg">
+
+  <!-- DNS prefetch & preconnect for critical third-party origins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://vsl-cdnAK.b-cdn.net">
+  <link rel="preconnect" href="https://vsl-cdnAK.b-cdn.net" crossorigin>
+  <link rel="dns-prefetch" href="https://static.hotmart.com">
+  <link rel="dns-prefetch" href="https://checkout.hotmart.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
+  <!-- Font with display=swap (already in URL) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Google Ads Global Site Tag (gtag.js) -->
+
+  <!-- Google Ads — load async, non-blocking -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18189369943"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -17,7 +27,9 @@
     gtag('js', new Date());
     gtag('config', 'AW-18189369943');
   </script>
-  <script type="text/javascript">
+
+  <!-- Hotmart scripts — deferred, only loaded when DOM is idle -->
+  <script>
     function importHotmart(){
       var imported = document.createElement('script');
       imported.src = 'https://static.hotmart.com/checkout/widget.min.js';
@@ -28,10 +40,15 @@
       link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css';
       document.head.appendChild(link);
     }
-    importHotmart();
+    // Defer Hotmart loading until browser is idle (not needed on landing)
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(importHotmart, { timeout: 4000 });
+    } else {
+      setTimeout(importHotmart, 2000);
+    }
   </script>
-  <!-- Hotmart Sales Funnel Widget (Upsell / Downsell) -->
-  <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+  <!-- Hotmart Checkout Elements — defer to not block rendering -->
+  <script defer src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
   <style>
     .legal-modal-overlay {
       display: none;

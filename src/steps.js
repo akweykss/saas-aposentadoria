@@ -208,9 +208,9 @@ function renderLanding(el) {
         </div>
       </div>
       <div class="hero-image">
-        <img src="/assets/hero-person.png" alt="Financial Expert" class="hero-person-img">
-        <img src="/assets/hero-monitor.png" alt="Estate Risk Report Preview" class="hero-monitor-img">
-        <img src="/assets/shield-lock.png" alt="Secure Shield" class="hero-shield-overlay-img">
+        <img src="/assets/hero-person.jpg" alt="Financial Expert" class="hero-person-img" loading="lazy" decoding="async">
+        <img src="/assets/hero-monitor.jpg" alt="Estate Risk Report Preview" class="hero-monitor-img" loading="lazy" decoding="async">
+        <img src="/assets/shield-lock.jpg" alt="Secure Shield" class="hero-shield-overlay-img" loading="lazy" decoding="async">
       </div>
     </div>
     <div class="trust-stats-bar anim-fade-in-up anim-delay-3">

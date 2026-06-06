@@ -161,12 +161,13 @@ function renderLanding(el) {
             <video id="vsl-video" preload="metadata" playsinline>
               <source src="https://vsl-cdnAK.b-cdn.net/VSL%20LONGA_1.mp4" type="video/mp4">
             </video>
-            <div class="vsl-big-play" id="vsl-big-play">▶</div>
+            <div class="vsl-big-play" id="vsl-big-play"><svg viewBox="0 0 24 24" fill="white" width="40" height="40"><polygon points="6,4 20,12 6,20"/></svg></div>
             <div class="vsl-controls" id="vsl-controls">
-              <button class="vsl-ctrl-btn" id="vsl-play-btn">▶</button>
+              <button class="vsl-ctrl-btn" id="vsl-play-btn"><svg viewBox="0 0 24 24" fill="white" width="20" height="20"><polygon points="6,4 20,12 6,20"/></svg></button>
+              <div class="vsl-time" id="vsl-time">0:00</div>
               <div class="vsl-ctrl-spacer"></div>
-              <button class="vsl-ctrl-btn" id="vsl-mute-btn">🔊</button>
-              <button class="vsl-ctrl-btn" id="vsl-fs-btn">⛶</button>
+              <button class="vsl-ctrl-btn" id="vsl-mute-btn"><svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/><path d="M19 12c0-2.97-1.71-5.53-4.2-6.76v1.53C16.78 7.9 18 9.82 18 12s-1.22 4.1-3.2 5.24v1.53C17.29 17.53 19 14.97 19 12z"/></svg></button>
+              <button class="vsl-ctrl-btn" id="vsl-fs-btn"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="20" height="20"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></button>
             </div>
           </div>
         </div>
@@ -244,6 +245,7 @@ function renderLanding(el) {
   const video = document.getElementById('vsl-video');
   const bigPlay = document.getElementById('vsl-big-play');
   const playBtn = document.getElementById('vsl-play-btn');
+  const timeEl = document.getElementById('vsl-time');
   // Dynamic easing: bar moves fast early, slows down at end (engagement trick)
   function easedProgress(actual) {
     // actual is 0-1. Returns 0-1 with front-loaded curve.
@@ -328,10 +330,17 @@ function renderLanding(el) {
   // Prevent right-click (no download)
   video.addEventListener('contextmenu', (e) => e.preventDefault());
 
+  // SVG icon strings for play/pause
+  const svgPlay = '<svg viewBox="0 0 24 24" fill="white" width="20" height="20"><polygon points="6,4 20,12 6,20"/></svg>';
+  const svgPause = '<svg viewBox="0 0 24 24" fill="white" width="20" height="20"><rect x="5" y="4" width="4" height="16"/><rect x="15" y="4" width="4" height="16"/></svg>';
+  const svgBigPlay = '<svg viewBox="0 0 24 24" fill="white" width="40" height="40"><polygon points="6,4 20,12 6,20"/></svg>';
+  const svgVolOn = '<svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/><path d="M19 12c0-2.97-1.71-5.53-4.2-6.76v1.53C16.78 7.9 18 9.82 18 12s-1.22 4.1-3.2 5.24v1.53C17.29 17.53 19 14.97 19 12z"/></svg>';
+  const svgVolOff = '<svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M3 9v6h4l5 5V4L7 9H3z"/><line x1="23" y1="9" x2="17" y2="15" stroke="white" stroke-width="2"/><line x1="17" y1="9" x2="23" y2="15" stroke="white" stroke-width="2"/></svg>';
+
   // Play state updates
   video.addEventListener('play', () => {
     bigPlay.classList.add('hidden');
-    playBtn.textContent = '⏸';
+    playBtn.innerHTML = svgPause;
     container.classList.add('playing');
     // Show controls briefly then fade
     container.classList.add('show-controls');
@@ -341,9 +350,9 @@ function renderLanding(el) {
   video.addEventListener('pause', () => {
     if (!video.ended) {
       bigPlay.classList.remove('hidden');
-      bigPlay.textContent = '▶';
+      bigPlay.innerHTML = svgBigPlay;
     }
-    playBtn.textContent = '▶';
+    playBtn.innerHTML = svgPlay;
     container.classList.remove('playing');
   });
 
@@ -354,6 +363,8 @@ function renderLanding(el) {
     const actual = video.currentTime / video.duration; // 0 to 1
     const eased = easedProgress(actual) * 100; // Apply dynamic curve
     if (progressFillMain) progressFillMain.style.width = eased.toFixed(1) + '%';
+    // Update elapsed time only
+    if (timeEl) timeEl.textContent = formatTime(video.currentTime);
 
     // Save every 3 seconds
     const now = Date.now();
@@ -374,13 +385,19 @@ function renderLanding(el) {
   // Mute toggle
   muteBtn.addEventListener('click', () => {
     video.muted = !video.muted;
-    muteBtn.textContent = video.muted ? '🔇' : '🔊';
+    muteBtn.innerHTML = video.muted ? svgVolOff : svgVolOn;
   });
 
-  // Fullscreen
+  // Fullscreen (with iOS Safari fallback)
   fsBtn.addEventListener('click', () => {
-    if (container.requestFullscreen) container.requestFullscreen();
-    else if (container.webkitRequestFullscreen) container.webkitRequestFullscreen();
+    if (container.requestFullscreen) {
+      container.requestFullscreen();
+    } else if (container.webkitRequestFullscreen) {
+      container.webkitRequestFullscreen();
+    } else if (video.webkitEnterFullscreen) {
+      // iOS Safari fallback — fullscreen on the video element directly
+      video.webkitEnterFullscreen();
+    }
   });
 
   // ─── Button event listeners ───

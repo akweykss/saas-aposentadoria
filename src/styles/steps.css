@@ -10,7 +10,7 @@
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
   margin-top: -94px; /* compensate for main-content padding-top */
-  padding-top: 30px; /* space below fixed navbar */
+  padding-top: 100px; /* 70px navbar + 30px spacing */
   width: 100vw;
   position: relative;
 }
@@ -25,7 +25,7 @@
   height: 80px;
   background: linear-gradient(180deg, #111827 0%, transparent 100%);
   pointer-events: none;
-  z-index: 1;
+  z-index: 5;
 }
 
 .vsl-inner {
@@ -404,7 +404,6 @@
   align-items: center;
   padding: 80px 0 24px; /* extra top space for gradient fade from VSL dark section */
   position: relative;
-  z-index: 2; /* above the gradient ::after */
 }
 
 .hero-title {

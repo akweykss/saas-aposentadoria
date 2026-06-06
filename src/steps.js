@@ -164,7 +164,6 @@ function renderLanding(el) {
             <div class="vsl-big-play" id="vsl-big-play">▶</div>
             <div class="vsl-controls" id="vsl-controls">
               <button class="vsl-ctrl-btn" id="vsl-play-btn">▶</button>
-              <div class="vsl-time" id="vsl-time">0:00 / 0:00</div>
               <div class="vsl-ctrl-spacer"></div>
               <button class="vsl-ctrl-btn" id="vsl-mute-btn">🔊</button>
               <button class="vsl-ctrl-btn" id="vsl-fs-btn">⛶</button>
@@ -245,7 +244,6 @@ function renderLanding(el) {
   const video = document.getElementById('vsl-video');
   const bigPlay = document.getElementById('vsl-big-play');
   const playBtn = document.getElementById('vsl-play-btn');
-  const timeEl = document.getElementById('vsl-time');
   // Dynamic easing: bar moves fast early, slows down at end (engagement trick)
   function easedProgress(actual) {
     // actual is 0-1. Returns 0-1 with front-loaded curve.
@@ -356,7 +354,6 @@ function renderLanding(el) {
     const actual = video.currentTime / video.duration; // 0 to 1
     const eased = easedProgress(actual) * 100; // Apply dynamic curve
     if (progressFillMain) progressFillMain.style.width = eased.toFixed(1) + '%';
-    if (timeEl) timeEl.textContent = formatTime(video.currentTime) + ' / ' + formatTime(video.duration);
 
     // Save every 3 seconds
     const now = Date.now();

@@ -68,14 +68,9 @@ input, select, textarea {
 /* ===== NAVBAR ===== */
 
 .site-navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: static;
   z-index: 100;
   background: rgba(10, 15, 26, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   height: 70px;
 }
@@ -157,7 +152,6 @@ input, select, textarea {
   max-width: 1200px;
   margin: 0 auto;
   padding: 24px 32px;
-  padding-top: 94px; /* compensate for fixed navbar (70px height + 24px gap) */
   min-height: calc(100vh - 150px);
 }
 

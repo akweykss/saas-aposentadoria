@@ -166,22 +166,9 @@
   min-width: 90px;
 }
 
-/* Progress bar in controls (NOT clickable) */
-.vsl-progress-track-ctrl {
+/* Spacer pushes mute/fullscreen buttons to the right */
+.vsl-ctrl-spacer {
   flex: 1;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 2px;
-  overflow: hidden;
-  pointer-events: none; /* NOT clickable */
-}
-
-.vsl-progress-fill-ctrl {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #10b981, #34d399);
-  border-radius: 2px;
-  transition: width 0.3s linear;
 }
 
 /* Fullscreen styles */

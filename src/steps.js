@@ -165,9 +165,7 @@ function renderLanding(el) {
             <div class="vsl-controls" id="vsl-controls">
               <button class="vsl-ctrl-btn" id="vsl-play-btn">▶</button>
               <div class="vsl-time" id="vsl-time">0:00 / 0:00</div>
-              <div class="vsl-progress-track-ctrl">
-                <div class="vsl-progress-fill-ctrl" id="vsl-progress-fill-ctrl"></div>
-              </div>
+              <div class="vsl-ctrl-spacer"></div>
               <button class="vsl-ctrl-btn" id="vsl-mute-btn">🔊</button>
               <button class="vsl-ctrl-btn" id="vsl-fs-btn">⛶</button>
             </div>
@@ -248,7 +246,12 @@ function renderLanding(el) {
   const bigPlay = document.getElementById('vsl-big-play');
   const playBtn = document.getElementById('vsl-play-btn');
   const timeEl = document.getElementById('vsl-time');
-  const progressFill = document.getElementById('vsl-progress-fill-ctrl');
+  // Dynamic easing: bar moves fast early, slows down at end (engagement trick)
+  function easedProgress(actual) {
+    // actual is 0-1. Returns 0-1 with front-loaded curve.
+    // At 50% watched → bar shows ~73%. At 80% watched → bar shows ~93%.
+    return 1 - Math.pow(1 - actual, 2.5);
+  }
   const progressFillMain = document.getElementById('vsl-progress-fill');
   const muteBtn = document.getElementById('vsl-mute-btn');
   const fsBtn = document.getElementById('vsl-fs-btn');
@@ -271,7 +274,6 @@ function renderLanding(el) {
 
     // Update progress bar to 100%
     if (progressFillMain) progressFillMain.style.width = '100%';
-    if (progressFill) progressFill.style.width = '100%';
 
     // Unlock VSL CTA button
     const ctaBtn = $('#vsl-cta-btn');
@@ -347,13 +349,13 @@ function renderLanding(el) {
     container.classList.remove('playing');
   });
 
-  // Time update — progress bar and save
+  // Time update — dynamic progress bar and save
   let lastSave = 0;
   video.addEventListener('timeupdate', () => {
     if (!video.duration) return;
-    const pct = (video.currentTime / video.duration) * 100;
-    if (progressFill) progressFill.style.width = pct + '%';
-    if (progressFillMain) progressFillMain.style.width = pct + '%';
+    const actual = video.currentTime / video.duration; // 0 to 1
+    const eased = easedProgress(actual) * 100; // Apply dynamic curve
+    if (progressFillMain) progressFillMain.style.width = eased.toFixed(1) + '%';
     if (timeEl) timeEl.textContent = formatTime(video.currentTime) + ' / ' + formatTime(video.duration);
 
     // Save every 3 seconds

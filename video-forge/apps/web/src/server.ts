@@ -8,6 +8,7 @@ import cors from 'cors';
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
+import os from 'os';
 import { v4 as uuidv4 } from 'uuid';
 import { config } from 'dotenv';
 import { runPipeline, type PipelineEvent, type PipelineOptions } from './pipeline-runner';
@@ -84,11 +85,126 @@ const upload = multer({
 
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use((req, res, next) => {
+  const ct = req.headers['content-type'] || '';
+  if (ct.includes('multipart/form-data')) {
+    // Skip JSON body parsing for multipart uploads (e.g. character images)
+    // The raw body will be piped directly in the proxy handler
+    next();
+  } else {
+    express.json()(req, res, next);
+  }
+});
 
 // Static files
 app.use(express.static(PUBLIC_DIR));
 app.use('/assets', express.static(ASSETS_DIR));
+
+// ============================================================
+// Proxy: /api/translate/* → FastAPI (port 8000)
+// ============================================================
+const FASTAPI_URL = process.env.FASTAPI_URL || 'http://localhost:8000';
+
+app.all(['/api/translate/*', '/api/tts/*'], async (req, res) => {
+  const targetPath = req.originalUrl; // Keep full path
+  const targetUrl = `${FASTAPI_URL}${targetPath}`;
+
+  try {
+    const headers: Record<string, string> = {
+      'Host': new URL(FASTAPI_URL).host,
+    };
+
+    // Forward content-type for POST/PUT/PATCH
+    if (req.headers['content-type']) {
+      headers['Content-Type'] = req.headers['content-type'] as string;
+    }
+
+    const fetchOptions: RequestInit = {
+      method: req.method,
+      headers,
+    };
+
+    // Forward body for non-GET requests
+    if (['POST', 'PUT', 'PATCH'].includes(req.method)) {
+      const ct = (req.headers['content-type'] || '') as string;
+      if (ct.includes('multipart/form-data')) {
+        // For multipart uploads, collect raw chunks and forward
+        // (req.body is undefined since express.json() skips multipart)
+        const rawChunks: Buffer[] = [];
+        req.on('data', (chunk: Buffer) => rawChunks.push(chunk));
+        await new Promise<void>((resolve) => req.on('end', resolve));
+        fetchOptions.body = Buffer.concat(rawChunks);
+      } else if (req.body) {
+        fetchOptions.body = JSON.stringify(req.body);
+      }
+    }
+
+    const proxyRes = await fetch(targetUrl, fetchOptions);
+
+    // Forward status and headers
+    res.status(proxyRes.status);
+
+    // Check if SSE
+    const contentType = proxyRes.headers.get('content-type') || '';
+    if (contentType.includes('text/event-stream')) {
+      res.setHeader('Content-Type', 'text/event-stream');
+      res.setHeader('Cache-Control', 'no-cache');
+      res.setHeader('Connection', 'keep-alive');
+
+      // Stream SSE data
+      const reader = proxyRes.body?.getReader();
+      if (reader) {
+        const pump = async () => {
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            res.write(new TextDecoder().decode(value));
+          }
+          res.end();
+        };
+        pump().catch(() => res.end());
+      }
+      return;
+    }
+
+    // Check if binary (file download / video / audio / image stream)
+    if (contentType.includes('video/') || contentType.includes('audio/') || contentType.includes('image/') || contentType.includes('application/octet-stream')) {
+      res.setHeader('Content-Type', contentType);
+      const disposition = proxyRes.headers.get('content-disposition');
+      if (disposition) res.setHeader('Content-Disposition', disposition);
+      const contentLength = proxyRes.headers.get('content-length');
+      if (contentLength) res.setHeader('Content-Length', contentLength);
+
+      // Stream the response body instead of buffering
+      const reader = proxyRes.body?.getReader();
+      if (reader) {
+        const pump = async () => {
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            res.write(Buffer.from(value));
+          }
+          res.end();
+        };
+        pump().catch(() => res.end());
+      } else {
+        res.status(500).send('No response body');
+      }
+      return;
+    }
+
+    // JSON response
+    res.setHeader('Content-Type', contentType || 'application/json');
+    const body = await proxyRes.text();
+    res.send(body);
+  } catch (error) {
+    console.error(`[Proxy] Erro ao encaminhar para FastAPI: ${error}`);
+    res.status(502).json({
+      error: 'Translation Pipeline indisponível',
+      detail: 'O servidor FastAPI não está rodando. Inicie com: cd apps/translation-pipeline && python -m uvicorn src.server:app --port 8000',
+    });
+  }
+});
 
 // ============================================================
 // GET /api/manifests — List all generated manifests
@@ -339,6 +455,34 @@ app.listen(PORT, () => {
   console.log(`📁 Assets:   ${ASSETS_DIR}`);
   console.log(`📁 Public:   ${PUBLIC_DIR}`);
   console.log('═'.repeat(60) + '\n');
+
+  // Auto-open browser (only on first start, not on tsx watch restarts)
+  const url = `http://localhost:${PORT}`;
+  const flagFile = path.join(os.tmpdir(), `videoforge-browser-opened-${PORT}.flag`);
+  let isRestart = false;
+  if (fs.existsSync(flagFile)) {
+    // Expire flag after 6 hours — next dev session opens browser again
+    const flagAge = Date.now() - Number(fs.readFileSync(flagFile, 'utf-8') || '0');
+    isRestart = flagAge < 6 * 60 * 60 * 1000;
+  }
+
+  if (!isRestart) {
+    fs.writeFileSync(flagFile, Date.now().toString(), 'utf-8');
+    import('child_process').then(({ exec }) => {
+      // macOS
+      exec(`open "${url}"`, (err) => {
+        if (err) {
+          // Linux fallback
+          exec(`xdg-open "${url}"`, (err2) => {
+            if (err2) {
+              console.log(`📎 Abra manualmente: ${url}`);
+            }
+          });
+        }
+      });
+      console.log(`🚀 Abrindo navegador: ${url}`);
+    });
+  }
 });
 
 export default app;

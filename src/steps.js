@@ -155,7 +155,7 @@ function renderLanding(el) {
       <div class="vsl-inner">
         <div class="vsl-badge">⚠️ URGENT: WATCH THIS BEFORE YOU CONTINUE</div>
         <h2 class="vsl-headline">What The Mainstream Media Won't Tell You About Your Retirement</h2>
-        <p class="vsl-subheadline">This presentation reveals the 3 legal traps that could wipe out your entire estate. Watch it now — your assessment will unlock when the video ends.</p>
+        <p class="vsl-subheadline">This presentation reveals the 3 legal traps that could wipe out your entire estate. Watch it now — then take your free 60-second risk assessment below.</p>
         <div class="vsl-video-wrap">
           <div class="vsl-player-container" id="vsl-player-container">
             <video id="vsl-video" preload="metadata" playsinline>
@@ -175,13 +175,9 @@ function renderLanding(el) {
           <div class="vsl-progress-track">
             <div class="vsl-progress-fill" id="vsl-progress-fill"></div>
           </div>
-          <div class="vsl-progress-status" id="vsl-progress-status">
-            <span class="vsl-progress-icon">🔒</span>
-            <span id="vsl-progress-text">Complete the video to unlock your free Estate Risk Assessment</span>
-          </div>
         </div>
         <div class="vsl-cta-wrap">
-          <button class="vsl-cta-btn locked" id="vsl-cta-btn" disabled>🔒 Assessment Locked — Watch the Video Above</button>
+          <button class="vsl-cta-btn unlocked" id="vsl-cta-btn">🛡️ Start My Free Estate Risk Check →</button>
         </div>
         <div class="vsl-trust-line">
           <span>🔒 No credit card required</span>
@@ -198,7 +194,7 @@ function renderLanding(el) {
       <div class="hero-content">
         <h1 class="hero-title">The Government Could Legally <span class="text-danger">Confiscate</span> Your Life's Savings If You Don't Act Now</h1>
         <p class="hero-subtitle">Nursing homes, probate courts, and state taxes can drain your estate in months. Get your free <strong class="text-accent">60-second</strong> estate risk assessment and uncover exactly how much of your hard-earned money your family might lose — and how to shield it immediately.</p>
-        <button id="btn-start" class="btn btn-primary btn-large vsl-locked">Start My Free Estate Risk Check →</button>
+        <button id="btn-start" class="btn btn-primary btn-large">Start My Free Estate Risk Check →</button>
         <div class="hero-trust-line">
           <span>🔒 No credit card required</span>
           <span>·</span>
@@ -237,10 +233,8 @@ function renderLanding(el) {
     </div>
   `;
 
-  // ─── Unlock logic ───
-  const vslCompleted = localStorage.getItem('vsl_completed') === 'true';
+  // ─── Video player setup ───
   const savedTime = parseFloat(localStorage.getItem('vsl_time') || '0');
-  let hasUnlocked = false;
 
   const video = document.getElementById('vsl-video');
   const bigPlay = document.getElementById('vsl-big-play');
@@ -260,47 +254,8 @@ function renderLanding(el) {
   // Store reference for cleanup
   vslVideo = video;
 
-  function unlockAssessment() {
-    if (hasUnlocked) return;
-    hasUnlocked = true;
-
-    // Update VSL progress status
-    const statusEl = $('#vsl-progress-status');
-    const iconEl = statusEl ? statusEl.querySelector('.vsl-progress-icon') : null;
-    const textEl = $('#vsl-progress-text');
-    if (iconEl) iconEl.textContent = '✅';
-    if (textEl) textEl.textContent = 'Your Assessment is Ready!';
-    if (statusEl) statusEl.classList.add('unlocked');
-
-    // Update progress bar to 100%
-    if (progressFillMain) progressFillMain.style.width = '100%';
-
-    // Unlock VSL CTA button
-    const ctaBtn = $('#vsl-cta-btn');
-    if (ctaBtn) {
-      ctaBtn.disabled = false;
-      ctaBtn.classList.remove('locked');
-      ctaBtn.classList.add('unlocked');
-      ctaBtn.textContent = '🛡️ Start My Free Estate Risk Check →';
-    }
-
-    // Unlock hero start button
-    const heroBtn = $('#btn-start');
-    if (heroBtn) {
-      heroBtn.classList.remove('vsl-locked');
-    }
-
-    // Play chime
-    try { playUnlockSound(); } catch (_) {}
-  }
-
-  // If already completed, unlock immediately
-  if (vslCompleted) {
-    unlockAssessment();
-  }
-
   // Restore saved position
-  if (savedTime > 0 && !vslCompleted) {
+  if (savedTime > 0) {
     video.addEventListener('loadedmetadata', () => {
       video.currentTime = savedTime;
     }, { once: true });
@@ -374,12 +329,10 @@ function renderLanding(el) {
     }
   });
 
-  // Video ended — unlock
+  // Video ended
   video.addEventListener('ended', () => {
-    localStorage.setItem('vsl_completed', 'true');
     localStorage.setItem('vsl_time', '0');
     bigPlay.classList.add('hidden');
-    unlockAssessment();
   });
 
   // Mute toggle
@@ -402,13 +355,11 @@ function renderLanding(el) {
 
   // ─── Button event listeners ───
   $('#vsl-cta-btn').addEventListener('click', () => {
-    if (!hasUnlocked) return;
     cleanupVSL();
     goToStep(1);
   });
 
   $('#btn-start').addEventListener('click', () => {
-    if (!hasUnlocked) return;
     cleanupVSL();
     goToStep(1);
   });

@@ -12,7 +12,8 @@
     "remotion:dev": "pnpm --filter remotion-app dev",
     "remotion:render": "pnpm --filter remotion-app render",
     "studio": "pnpm --filter remotion-app dev",
-    "dev:web": "pnpm --filter @video-forge/web dev"
+    "dev:web": "pnpm --filter @video-forge/web dev",
+    "dev:translate": "cd apps/translation-pipeline && uvicorn src.server:app --host 0.0.0.0 --port 8000 --reload"
   },
   "devDependencies": {
     "turbo": "^2.5.0",
